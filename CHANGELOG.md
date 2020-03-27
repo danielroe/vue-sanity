@@ -1,3 +1,10 @@
+### [0.2.1](https://github.com/danielroe/vue-sanity/compare/v0.2.0...v0.2.1) (2020-03-27)
+
+
+### Bug Fixes
+
+* remove optional chaining for broader support ([d35e93d](https://github.com/danielroe/vue-sanity/commit/d35e93dafaf5cca8dd8ed2e70dc8d245efe54fb7))
+
 ## [0.2.0](https://github.com/danielroe/vue-sanity/compare/v0.1.1...v0.2.0) (2020-03-27)
 
 
