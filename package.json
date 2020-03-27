@@ -1,6 +1,6 @@
 {
   "name": "vue-sanity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Composition API methods to incorporate Sanity into a Vue project.",
   "license": "MIT",
   "main": "lib/index.js",
