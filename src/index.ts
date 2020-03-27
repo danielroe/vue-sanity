@@ -165,7 +165,7 @@ export function useSanityFetcher(
     }
   )
 
-  if (options?.listen) {
+  if (options && options.listen) {
     const previewClient = inject(previewClientSymbol) || inject(clientSymbol)
     if (!previewClient) return
 
