@@ -30,5 +30,8 @@
   "peerDependencies": {
     "@vue/composition-api": "^0.5.0",
     "vue": "^2"
+  },
+  "resolutions": {
+    "minimist": ">=1.2.2"
   }
 }
