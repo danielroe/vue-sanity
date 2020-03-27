@@ -1,4 +1,4 @@
-name: lint
+name: ci
 
 on: pull_request
 
@@ -21,3 +21,22 @@ jobs:
 
       - name: Lint project
         run: yarn lint:all:eslint
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Build project
+        run: yarn build
