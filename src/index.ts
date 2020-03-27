@@ -5,6 +5,7 @@ import CompositionApi, {
   InjectionKey,
   computed,
   Ref,
+  watch,
 } from '@vue/composition-api'
 
 import sanityClient, { SanityClient, ClientConfig } from '@sanity/client'
@@ -22,6 +23,9 @@ import { CacheOptions, useCache, ensureInstance, FetchStatus } from './cache'
 Vue.use(CompositionApi)
 
 const clientSymbol: InjectionKey<SanityClient> = Symbol('Sanity client')
+const previewClientSymbol: InjectionKey<SanityClient> = Symbol(
+  'Sanity client for previews'
+)
 const imageBuilderSymbol: InjectionKey<ImageUrlBuilder> = Symbol(
   'Sanity image URL builder'
 )
@@ -31,16 +35,10 @@ interface SanityProjectDetails {
   dataset: string
 }
 
-export function provideSanityClient(client: SanityClient) {
-  ensureInstance()
-
-  const imageBuilder = imageUrlBuilder(client.config() as any)
-
-  provide(clientSymbol, client)
-  provide(imageBuilderSymbol, imageBuilder)
-}
-
-export function useSanityClient(config: ClientConfig & SanityProjectDetails) {
+export function useSanityClient(
+  config: ClientConfig & SanityProjectDetails,
+  supportPreview = false
+) {
   ensureInstance()
 
   const client = sanityClient(config)
@@ -48,6 +46,16 @@ export function useSanityClient(config: ClientConfig & SanityProjectDetails) {
 
   provide(clientSymbol, client)
   provide(imageBuilderSymbol, imageBuilder)
+
+  if (supportPreview) {
+    const previewClient = sanityClient({
+      ...config,
+      useCdn: false,
+      token: undefined,
+      withCredentials: true,
+    })
+    provide(previewClientSymbol, previewClient)
+  }
 }
 
 export interface ResolvedSanityImage {
@@ -121,11 +129,15 @@ interface Result<T> {
   status: Ref<FetchStatus>
 }
 
-type Options = Omit<CacheOptions<any>, 'initialValue'>
+type Options = Omit<CacheOptions<any>, 'initialValue'> & {
+  listen?: boolean | Record<string, any>
+}
 
-export function useSanityFetcher<T extends any, R extends any = T | null>(
+export function useSanityFetcher<T extends any>(query: Query): Result<T | null>
+
+export function useSanityFetcher<T extends any, R extends any = T>(
   query: Query,
-  initialValue?: R,
+  initialValue: R,
   mapper?: (result: any) => T,
   options?: Options
 ): Result<T | R>
@@ -142,14 +154,37 @@ export function useSanityFetcher(
       'You must call useSanityClient before using sanity resources in this project.'
     )
 
-  const { data, status } = useCache(
-    computed(query),
+  const computedQuery = computed(query)
+
+  const { data, status, setCache } = useCache(
+    computedQuery,
     query => client.fetch(minifier(query)).then(mapper),
     {
       initialValue,
       ...options,
     }
   )
+
+  if (options?.listen) {
+    const previewClient = inject(previewClientSymbol) || inject(clientSymbol)
+    if (!previewClient) return
+
+    const listenOptions =
+      typeof options.listen === 'boolean' ? undefined : options.listen
+
+    watch(computedQuery, query => {
+      const subscription = previewClient
+        .listen(query, listenOptions)
+        .subscribe(event => setCache(query, event.result))
+
+      const unwatch = watch(computedQuery, newQuery => {
+        if (newQuery !== query) {
+          subscription.unsubscribe()
+          unwatch()
+        }
+      })
+    })
+  }
 
   return { data, status }
 }

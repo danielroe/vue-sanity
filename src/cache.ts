@@ -55,8 +55,12 @@ export function useCache<T, K = null>(
     if (!cache[key]) Vue.set(cache, key, initialValue || null)
   }
 
+  function setCache(key: string, value: any) {
+    Vue.set(cache, key, value)
+  }
+
   async function fetch(query = key.value) {
-    Vue.set(cache, query, (await fetcher(query)) || initialValue || null)
+    setCache(query, (await fetcher(query)) || initialValue || null)
   }
 
   const refetching = ref(false)
@@ -103,6 +107,7 @@ export function useCache<T, K = null>(
   })
 
   return {
+    setCache,
     triggerFetch,
     fetch,
     data,
