@@ -1,3 +1,15 @@
+## [0.2.0](https://github.com/danielroe/vue-sanity/compare/v0.1.1...v0.2.0) (2020-03-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* The options for useSanityFetcher have reversed - please see type definitions for details
+
+### Features
+
+* add support for real time events ([a13c51a](https://github.com/danielroe/vue-sanity/commit/a13c51a247ba8634be835b505a69b1155d605527))
+* improve typing and interface to fetcher ([96f7385](https://github.com/danielroe/vue-sanity/commit/96f73853dc35f947094f93cc1a19984f713b5fb7))
+
 ### [0.1.1](https://github.com/danielroe/vue-sanity/compare/v0.1.0...v0.1.1) (2020-03-27)
 
 
