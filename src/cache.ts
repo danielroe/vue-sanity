@@ -6,11 +6,18 @@ import CompositionApi, {
   watch,
   computed,
   onServerPrefetch,
+  getCurrentInstance,
 } from '@vue/composition-api'
 
 Vue.use(CompositionApi)
 
 const cache = reactive<Record<string, any>>({})
+
+export function ensureInstance() {
+  const instance = getCurrentInstance()
+  if (!instance) throw new Error('You must call this from within a component')
+  return instance
+}
 
 export type FetchStatus =
   | 'server loaded'
@@ -28,18 +35,30 @@ export function useCache<T, K = null>(
   fetcher: (key: string) => Promise<T>,
   options: CacheOptions<K> = {}
 ) {
-  function initialiseKey(key: string) {
-    if (!cache[key]) Vue.set(cache, key, options.initialValue || null)
-  }
-  async function fetch(query = key.value) {
-    Vue.set(
-      cache,
-      query,
-      (await fetcher(query)) || options.initialValue || null
-    )
-  }
+  const instance = ensureInstance()
+  const isServer = instance.$isServer
 
   const status = ref<FetchStatus>('loading')
+
+  let { initialValue } = options
+  if (!isServer && !options.clientOnly) {
+    const prefetchState =
+      (window as any).__VSANITY_STATE__ ||
+      ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
+    if (prefetchState[key.value]) {
+      initialValue = prefetchState[key.value]
+      status.value = 'server loaded'
+    }
+  }
+
+  function initialiseKey(key: string) {
+    if (!cache[key]) Vue.set(cache, key, initialValue || null)
+  }
+
+  async function fetch(query = key.value) {
+    Vue.set(cache, query, (await fetcher(query)) || initialValue || null)
+  }
+
   const refetching = ref(false)
 
   async function triggerFetch(query?: string) {
@@ -49,15 +68,27 @@ export function useCache<T, K = null>(
     status.value = 'client loaded'
   }
 
-  if (!options.clientOnly) {
+  if (!options.clientOnly && isServer) {
+    if (instance.$ssrContext.nuxt && !instance.$ssrContext.nuxt.vsanity) {
+      instance.$ssrContext.nuxt.vsanity = {}
+    } else if (!instance.$ssrContext.vsanity) {
+      instance.$ssrContext.vsanity = {}
+    }
+
     onServerPrefetch(async () => {
       await fetch()
+
+      if (instance.$ssrContext.nuxt) {
+        instance.$ssrContext.nuxt.vsanity[key.value] = cache[key.value]
+      } else {
+        instance.$ssrContext.vsanity[key.value] = cache[key.value]
+      }
+
       status.value = 'server loaded'
     })
   }
 
   watch(key, async key => {
-    if (status.value === 'client loaded') return
     try {
       await fetch(key)
       status.value = 'client loaded'
@@ -68,7 +99,7 @@ export function useCache<T, K = null>(
 
   const data = computed(() => {
     initialiseKey(key.value)
-    return (cache[key.value] || options.initialValue || null) as T | K
+    return (cache[key.value] || initialValue || null) as T | K
   })
 
   return {

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import CompositionApi, {
   provide,
-  getCurrentInstance,
   inject,
   InjectionKey,
   computed,
@@ -18,7 +17,7 @@ import {
 
 import minifier from 'minify-groq'
 
-import { useCache } from './cache'
+import { useCache, ensureInstance } from './cache'
 
 Vue.use(CompositionApi)
 
@@ -26,12 +25,6 @@ const clientSymbol: InjectionKey<SanityClient> = Symbol('Sanity client')
 const imageBuilderSymbol: InjectionKey<ImageUrlBuilder> = Symbol(
   'Sanity image URL builder'
 )
-
-function ensureInstance() {
-  const instance = getCurrentInstance()
-  if (!instance) throw new Error('You must call this from within a component')
-  return instance
-}
 
 interface SanityProjectDetails {
   projectId: string
@@ -140,3 +133,5 @@ export function useSanityFetcher<T, I = null, K = T>(
 
   return { data, status }
 }
+
+export { useCache }
