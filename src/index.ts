@@ -17,7 +17,7 @@ import {
 
 import minifier from 'minify-groq'
 
-import { useCache, ensureInstance } from './cache'
+import { CacheOptions, useCache, ensureInstance, FetchStatus } from './cache'
 
 Vue.use(CompositionApi)
 
@@ -114,10 +114,27 @@ export function useSanityImage(
   return result
 }
 
-export function useSanityFetcher<T, I = null, K = T>(
-  query: () => string,
-  map = (result: T) => (result as unknown) as K,
-  initialValue?: I
+type Query = () => string
+
+interface Result<T> {
+  data: Ref<T>
+  status: Ref<FetchStatus>
+}
+
+type Options = Omit<CacheOptions<any>, 'initialValue'>
+
+export function useSanityFetcher<T extends any, R extends any = T | null>(
+  query: Query,
+  initialValue?: R,
+  mapper?: (result: any) => T,
+  options?: Options
+): Result<T | R>
+
+export function useSanityFetcher(
+  query: Query,
+  initialValue = null,
+  mapper = (result: any) => result,
+  options?: Options
 ) {
   const client = inject(clientSymbol)
   if (!client)
@@ -125,10 +142,13 @@ export function useSanityFetcher<T, I = null, K = T>(
       'You must call useSanityClient before using sanity resources in this project.'
     )
 
-  const { data, status } = useCache<K, I>(
+  const { data, status } = useCache(
     computed(query),
-    query => client.fetch(minifier(query)).then(map),
-    initialValue
+    query => client.fetch(minifier(query)).then(mapper),
+    {
+      initialValue,
+      ...options,
+    }
   )
 
   return { data, status }

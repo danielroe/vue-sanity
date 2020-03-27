@@ -25,7 +25,7 @@ export type FetchStatus =
   | 'client loaded'
   | 'error'
 
-interface CacheOptions<K> {
+export interface CacheOptions<K> {
   initialValue?: K
   clientOnly?: boolean
 }
