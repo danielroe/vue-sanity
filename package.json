@@ -30,12 +30,20 @@
     "build": "yarn clean && yarn compile",
     "clean": "rm -rf lib/*",
     "compile": "tsc",
-    "lint:eslint": "eslint --fix",
-    "lint:prettier": "prettier --write --loglevel warn",
+    "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,md}\"",
-    "lint": "run-s lint:all:*",
-    "release": "release-it"
+    "lint:eslint": "eslint --fix",
+    "lint:prettier": "prettier --write --loglevel warn",
+    "release": "release-it",
+    "test": "run-s test:*",
+    "test:types": "tsd"
+  },
+  "tsd": {
+    "directory": "test/tsd",
+    "compilerOptions": {
+      "rootDir": "."
+    }
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -58,6 +66,7 @@
     "prettier": "^2.0.2",
     "prettier-eslint-cli": "^5.0.0",
     "release-it": "*",
+    "tsd": "^0.11.0",
     "vue": "2",
     "yorkie": "^2.0.0"
   },

@@ -20,9 +20,9 @@ jobs:
         run: yarn
 
       - name: Lint project
-        run: yarn lint:all:eslint
+        run: yarn lint
 
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,3 +40,6 @@ jobs:
 
       - name: Build project
         run: yarn build
+
+      - name: Test project
+        run: yarn test
