@@ -1,8 +1,24 @@
 {
   "name": "vue-sanity",
   "version": "0.2.1",
-  "description": "Composition API methods to incorporate Sanity into a Vue project.",
+  "description": "Sanity integration for VueJS",
   "license": "MIT",
+  "repository": "danielroe/vue-sanity",
+  "contributors": [
+    {
+      "name": "Daniel Roe <daniel@roe.dev>",
+      "url": "https://github.com/danielroe"
+    }
+  ],
+  "keywords": [
+    "vue",
+    "vuejs",
+    "nuxt",
+    "sanity",
+    "composition-api",
+    "typescript",
+    "javascript"
+  ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
