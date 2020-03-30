@@ -76,17 +76,17 @@ export function useSanityImage(
 ) {
   const builder = inject(imageBuilderSymbol)
 
+  if (!builder)
+    throw new Error(
+      'You must call useSanityClient before using sanity resources in this project.'
+    )
+
   function getImageUrl(
     image: Required<ResolvedSanityImage>,
     width: number,
     { quality = 82, fit = 'min' }: ImageOptions
   ) {
-    if (!builder)
-      throw new Error(
-        'You must call useSanityClient before using sanity resources in this project.'
-      )
-
-    return builder
+    return (builder as ImageUrlBuilder)
       .image(image.url)
       .width(Math.round(width))
       .height(Math.round(Number(width / image.dimensions.aspectRatio)))
@@ -166,8 +166,7 @@ export function useSanityFetcher(
   )
 
   if (options && options.listen) {
-    const previewClient = inject(previewClientSymbol) || inject(clientSymbol)
-    if (!previewClient) return
+    const previewClient = inject(previewClientSymbol) || client
 
     const listenOptions =
       typeof options.listen === 'boolean' ? undefined : options.listen

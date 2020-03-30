@@ -4,7 +4,9 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
+    'jest/globals': true,
   },
+  plugins: ['jest'],
   rules: {
     'prettier/prettier': [
       1,
@@ -25,5 +27,6 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier',
     'prettier/@typescript-eslint',
+    'plugin:jest/recommended',
   ],
 }

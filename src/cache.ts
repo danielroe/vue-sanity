@@ -45,7 +45,7 @@ export function useCache<T, K = null>(
     const prefetchState =
       (window as any).__VSANITY_STATE__ ||
       ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
-    if (prefetchState[key.value]) {
+    if (prefetchState && prefetchState[key.value]) {
       initialValue = prefetchState[key.value]
       status.value = 'server loaded'
     }
@@ -73,19 +73,22 @@ export function useCache<T, K = null>(
   }
 
   if (!options.clientOnly && isServer) {
-    if (instance.$ssrContext.nuxt && !instance.$ssrContext.nuxt.vsanity) {
-      instance.$ssrContext.nuxt.vsanity = {}
-    } else if (!instance.$ssrContext.vsanity) {
-      instance.$ssrContext.vsanity = {}
+    if (instance.$ssrContext) {
+      if (instance.$ssrContext.nuxt && !instance.$ssrContext.nuxt.vsanity) {
+        instance.$ssrContext.nuxt.vsanity = {}
+      } else if (!instance.$ssrContext.vsanity) {
+        instance.$ssrContext.vsanity = {}
+      }
     }
 
     onServerPrefetch(async () => {
       await fetch()
-
-      if (instance.$ssrContext.nuxt) {
-        instance.$ssrContext.nuxt.vsanity[key.value] = cache[key.value]
-      } else {
-        instance.$ssrContext.vsanity[key.value] = cache[key.value]
+      if (instance.$ssrContext) {
+        if (instance.$ssrContext.nuxt) {
+          instance.$ssrContext.nuxt.vsanity[key.value] = cache[key.value]
+        } else {
+          instance.$ssrContext.vsanity[key.value] = cache[key.value]
+        }
       }
 
       status.value = 'server loaded'
