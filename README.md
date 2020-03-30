@@ -11,6 +11,12 @@
 <a href="https://npmjs.com/package/vue-sanity">
     <img alt="" src="https://img.shields.io/npm/dt/vue-sanity.svg?style=flat-square">
 </a>
+<a href="https://lgtm.com/projects/g/danielroe/vue-sanity">
+    <img alt="" src="https://img.shields.io/lgtm/alerts/github/danielroe/vue-sanity?style=flat-square">
+</a>
+<a href="https://lgtm.com/projects/g/danielroe/vue-sanity">
+    <img alt="" src="https://img.shields.io/lgtm/grade/javascript/github/danielroe/vue-sanity?style=flat-square">
+</a>
 <a href="https://david-dm.org/danielroe/vue-sanity">
     <img alt="" src="https://img.shields.io/david/danielroe/vue-sanity.svg?style=flat-square">
 </a>

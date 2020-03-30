@@ -32,7 +32,7 @@
     "compile": "tsc",
     "lint": "run-s lint:all:*",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
-    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts,md}\"",
+    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts}\"",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
     "prepare": "yarn build",
