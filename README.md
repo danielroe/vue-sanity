@@ -81,6 +81,111 @@ export default {
 </script>
 ```
 
+## API
+
+### useSanityClient
+
+- `config`
+
+  These are the options required by `@sanity/client`. For more details, see the [Sanity docs](https://www.sanity.io/docs/js-client).
+
+- `supportPreview`
+
+  In addition to the config you would normally pass to `@sanity/client`, you can pass a boolean as a second parameter for whether to create a preview client. (Used currently only when listening to real-time data updating.)
+
+#### Example
+
+```ts
+import { useSanityClient } from 'vue-sanity'
+
+export default {
+  setup() {
+    useSanityClient(
+      {
+        projectId: 'myprojectid',
+        dataset: 'production',
+        useCdn: process.env.NODE_ENV === 'production',
+      },
+      true // will now create a preview client for use elsewhere
+    )
+  },
+}
+```
+
+### useSanityFetcher
+
+- `query`
+
+  A function that retuns a query string. If the return value changes, a new Sanity query will be run and the return value automatically updated.
+
+- `initialValue`
+  You can provide an initial value for the query result (which will be returned before query completes).
+
+- `mapper`
+
+  You can provide a function to transform the query result.
+
+- `options`
+
+  You can also provide an object of additional options.
+
+  - **listen**: true, false or an object of options to pass to `client.listen` (defaults to false)
+  - **clientOnly**: whether to disable SSR data fetching (defaults to false).
+
+#### Example
+
+```ts
+import { useSanityClient } from 'vue-sanity'
+
+export default {
+  setup() {
+    const { data: title } = useSanityFetcher(
+      // query
+      () => `*[_type == "article"][0].title`,
+      // initial value
+      'Title - Default',
+      // mapper
+      result => `Title - ${result}`,
+      // options
+      {
+        listen: true,
+        clientOnly: true,
+      }
+    )
+
+    return { title }
+  },
+}
+```
+
+#### Usage with TypeScript
+
+You can type the return value of `useSanityFetcher` in several ways.
+
+```ts
+// data will be typed as Ref<string | null>
+const { data } = useSanityFetcher<string>(
+  () => `*[_type == "article"][0].title`
+)
+```
+
+```ts
+// data will be typed as Ref<string | number> as a number has been provided as a default value
+const { data } = useSanityFetcher<string, number>(
+  () => `*[_type == "article"][0].title`,
+  3
+)
+```
+
+```ts
+// data will be typed as Ref<boolean | { value: string }> as it can infer the type
+const { data } = useSanityFetcher(
+  () => `*[_type == "article"][0].title`,
+  true,
+  (result: string) => ({ value: result })
+)
+```
+
 ## Inspirations
 
 Projects I've found helpful are:

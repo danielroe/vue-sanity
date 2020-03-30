@@ -30,13 +30,23 @@ const imageBuilderSymbol: InjectionKey<ImageUrlBuilder> = Symbol(
   'Sanity image URL builder'
 )
 
-interface SanityProjectDetails {
+interface RequiredConfig {
+  /**
+   * Your project ID. You can find it in your sanity.json.
+   */
   projectId: string
+  /**
+   * You must specify which dataset to use. You can find it in your sanity.json.
+   */
   dataset: string
 }
 
+/**
+ *
+ * @param supportPreview Whether to create a preview client (that won't use CDN, and supports credentials for viewing drafts). Defaults to false.
+ */
 export function useSanityClient(
-  config: ClientConfig & SanityProjectDetails,
+  config: ClientConfig & RequiredConfig,
   supportPreview = false
 ) {
   ensureInstance()
@@ -69,6 +79,10 @@ interface ImageOptions {
   fit?: FitMode
 }
 
+/**
+ *
+ * WARNING. Work in progress. API may change.
+ */
 export function useSanityImage(
   image: Ref<ResolvedSanityImage>,
   options?: Partial<ImageOptions>,
@@ -125,16 +139,35 @@ export function useSanityImage(
 type Query = () => string
 
 interface Result<T> {
+  /**
+   * An automatically synced and updated result of the Sanity query.
+   */
   data: Ref<T>
+  /**
+   * The status of the query. Can be 'server loaded', 'loading', 'client loaded' or 'error'.
+   */
   status: Ref<FetchStatus>
 }
 
 type Options = Omit<CacheOptions<any>, 'initialValue'> & {
+  /**
+   * Whether to listen to real-time updates from Sanity. You can also pass an object of options to pass to `client.listen`. Defaults to false.
+   */
   listen?: boolean | Record<string, any>
 }
 
+/**
+ *
+ * @param query A function that retuns a query string. If the return value changes, a new Sanity query will be run and the return value automatically updated.
+ */
 export function useSanityFetcher<T extends any>(query: Query): Result<T | null>
 
+/**
+ *
+ * @param query A function that retuns a query string. If the return value changes, a new Sanity query will be run and the return value automatically updated.
+ * @param initialValue The value to return before the Sanity client returns an actual result. Defaults to null.
+ * @param mapper A function that transforms the result from Sanity, before returning it to your component.
+ */
 export function useSanityFetcher<T extends any, R extends any = T>(
   query: Query,
   initialValue: R,

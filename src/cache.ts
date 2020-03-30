@@ -27,6 +27,9 @@ export type FetchStatus =
 
 export interface CacheOptions<K> {
   initialValue?: K
+  /**
+   * Whether to disable SSR fetching. Defaults to false.
+   */
   clientOnly?: boolean
 }
 
