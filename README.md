@@ -28,6 +28,8 @@
 
 ## Quick Start
 
+> This project requires usage of [`@vue/composition-api`](https://github.com/vuejs/composition-api). Make sure you've set that up correctly first.
+
 First install `vue-sanity`:
 
 ```bash
