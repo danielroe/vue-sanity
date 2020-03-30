@@ -7,11 +7,13 @@ import {
 } from 'vue-server-renderer'
 import path from 'path'
 
+import { compileWithWebpack } from './helpers/webpack'
+
 Vue.use(VueCompositionApi)
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-import { compileWithWebpack } from './helpers/webpack'
+jest.setTimeout(10000)
 
 function createRenderer(
   file: string,
