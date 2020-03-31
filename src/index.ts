@@ -187,11 +187,11 @@ export function useSanityFetcher(
       'You must call useSanityClient before using sanity resources in this project.'
     )
 
-  const computedQuery = computed(query)
+  const computedQuery = computed(() => minifier(query()).replace(/\n/g, ' '))
 
   const { data, status, setCache } = useCache(
     computedQuery,
-    query => client.fetch(minifier(query)).then(mapper),
+    query => client.fetch(query).then(mapper),
     {
       initialValue,
       ...options,
