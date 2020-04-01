@@ -1,3 +1,20 @@
+## [0.3.0](https://github.com/danielroe/vue-sanity/compare/v0.2.2...v0.3.0) (2020-04-01)
+
+
+### Features
+
+* add sanity-typed-queries helper function ([174f1f7](https://github.com/danielroe/vue-sanity/commit/174f1f71d58e7c35c58299702d569b703ac134ee))
+
+
+### Bug Fixes
+
+* compile to commonjs ([c017616](https://github.com/danielroe/vue-sanity/commit/c01761684e42ae34eb03cc05351ad099b82274b7))
+
+
+### Performance Improvements
+
+* minify queries before sending to cache ([ec31114](https://github.com/danielroe/vue-sanity/commit/ec3111428400d42d5e4de7961d55abd1e7be59da))
+
 ### [0.2.2](https://github.com/danielroe/vue-sanity/compare/v0.2.1...v0.2.2) (2020-03-30)
 
 ### [0.2.1](https://github.com/danielroe/vue-sanity/compare/v0.2.0...v0.2.1) (2020-03-27)
