@@ -6,7 +6,12 @@ import imageUrlBuilder from '@sanity/image-url'
 
 import { useCache, ensureInstance } from './cache'
 import { useSanityImage, imageBuilderSymbol } from './image'
-import { useSanityFetcher, clientSymbol, previewClientSymbol } from './query'
+import {
+  useSanityFetcher,
+  useSanityQuery,
+  clientSymbol,
+  previewClientSymbol,
+} from './query'
 
 Vue.use(CompositionApi)
 
@@ -48,4 +53,4 @@ export function useSanityClient(
   }
 }
 
-export { useCache, useSanityFetcher, useSanityImage }
+export { useCache, useSanityFetcher, useSanityImage, useSanityQuery }

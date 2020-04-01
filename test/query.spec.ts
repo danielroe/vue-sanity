@@ -1,8 +1,12 @@
-import { ref } from '@vue/composition-api'
+import Vue from 'vue'
+import CompositionApi, { ref } from '@vue/composition-api'
 import flushPromises from 'flush-promises'
+import { createSchema } from 'sanity-typed-queries'
 
-import { useSanityFetcher, useSanityClient } from '../src'
+import { useSanityFetcher, useSanityClient, useSanityQuery } from '../src'
 import { runInSetup } from './helpers/mount'
+
+Vue.use(CompositionApi)
 
 const config = {
   projectId: 'id',
@@ -153,6 +157,40 @@ describe('fetcher', () => {
     expect(mockListen).toHaveBeenCalledWith(
       'my-key-listen-options',
       listenOptions
+    )
+  })
+})
+
+describe('sanity-typed-queries helper', () => {
+  it('returns the expected data', async () => {
+    const { builder } = createSchema('author', {
+      name: {
+        type: 'string',
+        validation: Rule => Rule.required(),
+      },
+      tags: {
+        type: 'array',
+        of: [{ type: 'string' }, { type: 'number' }],
+      },
+      cost: {
+        type: 'number',
+      },
+      description: {
+        type: 'text',
+        rows: 2,
+        validation: Rule => Rule.required(),
+      },
+    })
+
+    const result = await runInSetup(() => {
+      useSanityClient(config)
+      const { data } = useSanityQuery(builder.pick(['description', 'cost']))
+      expect(data.value).toEqual([])
+      return { data }
+    })
+    expect(mockFetch).toHaveBeenCalled()
+    expect(result.value.data).toBe(
+      "return value-*[_type == 'author'] { cost, description }"
     )
   })
 })

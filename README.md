@@ -140,6 +140,27 @@ export default {
   - **listen**: true, false or an object of options to pass to `client.listen` (defaults to false)
   - **clientOnly**: whether to disable SSR data fetching (defaults to false).
 
+### useSanityQuery
+
+If you are using [`sanity-typed-queries`](https://github.com/danielroe/sanity-typed-queries) to define your schema, this is a helper function to reduce boilerplate and explicit typing.
+
+```ts
+import { useSanityQuery } from 'vue-sanity'
+import { builder } from './cms/schemas/author.js'
+
+export default {
+  setup() {
+    // title will be typed as Ref<string | null>, with null as a default value
+    const { data: title } = useSanityQuery(builder.pick('name').first())
+
+    // authors will be typed as Ref<string[]>, with an empty array as a default value
+    const { data: authors } = useSanityQuery(builder.pick('name'))
+
+    return { title, authors }
+  },
+}
+```
+
 #### Example
 
 ```ts

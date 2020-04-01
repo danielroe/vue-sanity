@@ -7,6 +7,7 @@ import {
 } from '@vue/composition-api'
 import minifier from 'minify-groq'
 import { SanityClient } from '@sanity/client'
+import { QueryBuilder } from 'sanity-typed-queries/lib/query/builder'
 
 import { useCache, CacheOptions, FetchStatus } from './cache'
 
@@ -98,4 +99,115 @@ export function useSanityFetcher(
   }
 
   return { data, status }
+}
+
+export function useSanityQuery<
+  Builder extends Pick<
+    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    'use'
+  >,
+  Schema,
+  TypeError,
+  Project extends boolean,
+  Exclude extends string,
+  SchemaType extends string
+>(
+  builder: Builder
+): Result<
+  ReturnType<Builder['use']>[1] extends Array<any>
+    ? ReturnType<Builder['use']>[1]
+    : ReturnType<Builder['use']>[1] | null
+>
+
+export function useSanityQuery<
+  Builder extends Pick<
+    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    'use'
+  >,
+  Schema,
+  TypeError,
+  Project extends boolean,
+  Exclude extends string,
+  SchemaType extends string
+>(
+  builder: Builder,
+  initialValue: null
+): Result<ReturnType<Builder['use']>[1] | null>
+
+export function useSanityQuery<
+  Builder extends Pick<
+    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    'use'
+  >,
+  Schema,
+  TypeError,
+  Project extends boolean,
+  Exclude extends string,
+  SchemaType extends string,
+  InitialValue
+>(
+  builder: Builder,
+  initialValue: InitialValue
+): Result<ReturnType<Builder['use']>[1] | InitialValue>
+
+export function useSanityQuery<
+  Builder extends Pick<
+    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    'use'
+  >,
+  Schema,
+  TypeError,
+  Project extends boolean,
+  Exclude extends string,
+  SchemaType extends string,
+  Mapper extends (result: ReturnType<Builder['use']>[1]) => any
+>(
+  builder: Builder,
+  initialValue: null,
+  mapper: Mapper,
+  options?: Options
+): Result<ReturnType<Mapper> | null>
+
+export function useSanityQuery<
+  Builder extends Pick<
+    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    'use'
+  >,
+  Schema,
+  TypeError,
+  Project extends boolean,
+  Exclude extends string,
+  SchemaType extends string,
+  InitialValue,
+  Mapper extends (result: ReturnType<Builder['use']>[1]) => any
+>(
+  builder: Builder,
+  initialValue: InitialValue,
+  mapper: Mapper,
+  options?: Options
+): Result<ReturnType<Mapper> | InitialValue>
+
+export function useSanityQuery<
+  Builder extends Pick<
+    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    'use'
+  >,
+  Schema,
+  TypeError,
+  Project extends boolean,
+  Exclude extends string,
+  SchemaType extends string
+>(
+  builder: Builder,
+  initialValue = null,
+  mapper = (result: any) => result,
+  options?: Options
+) {
+  const [query, type] = builder.use()
+  return useSanityFetcher<typeof type>(
+    () => query,
+    initialValue || type,
+    mapper,
+    options
+  )
 }
