@@ -1,3 +1,10 @@
+### [0.3.1](https://github.com/danielroe/vue-sanity/compare/v0.3.0...v0.3.1) (2020-04-01)
+
+
+### Bug Fixes
+
+* don't compile to cjs 🤦‍♂️ ([0dd72f7](https://github.com/danielroe/vue-sanity/commit/0dd72f7454f82e5d3203018575efaf4101095212))
+
 ## [0.3.0](https://github.com/danielroe/vue-sanity/compare/v0.2.2...v0.3.0) (2020-04-01)
 
 
