@@ -162,26 +162,25 @@ describe('fetcher', () => {
 })
 
 describe('sanity-typed-queries helper', () => {
+  const { builder } = defineDocument('author', {
+    name: {
+      type: 'string',
+      validation: Rule => Rule.required(),
+    },
+    tags: {
+      type: 'array',
+      of: [{ type: 'string' }, { type: 'number' }],
+    },
+    cost: {
+      type: 'number',
+    },
+    description: {
+      type: 'text',
+      rows: 2,
+      validation: Rule => Rule.required(),
+    },
+  })
   it('returns the expected data', async () => {
-    const { builder } = defineDocument('author', {
-      name: {
-        type: 'string',
-        validation: Rule => Rule.required(),
-      },
-      tags: {
-        type: 'array',
-        of: [{ type: 'string' }, { type: 'number' }],
-      },
-      cost: {
-        type: 'number',
-      },
-      description: {
-        type: 'text',
-        rows: 2,
-        validation: Rule => Rule.required(),
-      },
-    })
-
     const result = await runInSetup(() => {
       useSanityClient(config)
       const { data } = useSanityQuery(builder.pick(['description', 'cost']))
@@ -191,6 +190,21 @@ describe('sanity-typed-queries helper', () => {
     expect(mockFetch).toHaveBeenCalled()
     expect(result.value.data).toBe(
       "return value-*[_type == 'author'] { cost, description }"
+    )
+  })
+
+  it('works with a builder function', async () => {
+    const result = await runInSetup(() => {
+      useSanityClient(config)
+      const { data } = useSanityQuery(() => builder.pick(['description']))
+      expect(data.value).toEqual([])
+      return { data }
+    })
+    expect(mockFetch).toHaveBeenCalledWith(
+      `*[_type == 'author'] { description }`
+    )
+    expect(result.value.data).toBe(
+      "return value-*[_type == 'author'] { description }"
     )
   })
 })

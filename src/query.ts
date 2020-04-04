@@ -113,7 +113,7 @@ export function useSanityQuery<
   Project extends boolean,
   Exclude extends string
 >(
-  builder: Builder
+  builder: Builder | (() => Builder)
 ): Result<
   ReturnType<Builder['use']>[1] extends Array<any>
     ? ReturnType<Builder['use']>[1]
@@ -132,7 +132,7 @@ export function useSanityQuery<
   Project extends boolean,
   Exclude extends string
 >(
-  builder: Builder,
+  builder: Builder | (() => Builder),
   initialValue: null
 ): Result<ReturnType<Builder['use']>[1] | null>
 
@@ -149,7 +149,7 @@ export function useSanityQuery<
   Exclude extends string,
   InitialValue
 >(
-  builder: Builder,
+  builder: Builder | (() => Builder),
   initialValue: InitialValue
 ): Result<ReturnType<Builder['use']>[1] | InitialValue>
 
@@ -166,7 +166,7 @@ export function useSanityQuery<
   Exclude extends string,
   Mapper extends (result: ReturnType<Builder['use']>[1]) => any
 >(
-  builder: Builder,
+  builder: Builder | (() => Builder),
   initialValue: null,
   mapper: Mapper,
   options?: Options
@@ -186,7 +186,7 @@ export function useSanityQuery<
   InitialValue,
   Mapper extends (result: ReturnType<Builder['use']>[1]) => any
 >(
-  builder: Builder,
+  builder: Builder | (() => Builder),
   initialValue: InitialValue,
   mapper: Mapper,
   options?: Options
@@ -204,14 +204,17 @@ export function useSanityQuery<
   Project extends boolean,
   Exclude extends string
 >(
-  builder: Builder,
+  builder: Builder | (() => Builder),
   initialValue = null,
   mapper = (result: any) => result,
   options?: Options
 ) {
-  const [query, type] = builder.use()
+  const query =
+    'use' in builder ? () => builder.use()[0] : () => builder().use()[0]
+  const type = 'use' in builder ? builder.use()[1] : builder().use()[1]
+
   return useSanityFetcher<typeof type>(
-    () => query,
+    query,
     initialValue || type,
     mapper,
     options
