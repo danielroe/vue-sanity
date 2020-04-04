@@ -103,14 +103,15 @@ export function useSanityFetcher(
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
     'use'
   >,
   Schema,
+  Mappings extends Record<string, any>,
+  SchemaType extends string,
   TypeError,
   Project extends boolean,
-  Exclude extends string,
-  SchemaType extends string
+  Exclude extends string
 >(
   builder: Builder
 ): Result<
@@ -121,14 +122,15 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
     'use'
   >,
   Schema,
+  Mappings extends Record<string, any>,
+  SchemaType extends string,
   TypeError,
   Project extends boolean,
-  Exclude extends string,
-  SchemaType extends string
+  Exclude extends string
 >(
   builder: Builder,
   initialValue: null
@@ -136,14 +138,15 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
     'use'
   >,
   Schema,
+  Mappings extends Record<string, any>,
+  SchemaType extends string,
   TypeError,
   Project extends boolean,
   Exclude extends string,
-  SchemaType extends string,
   InitialValue
 >(
   builder: Builder,
@@ -152,14 +155,15 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
     'use'
   >,
   Schema,
+  Mappings extends Record<string, any>,
+  SchemaType extends string,
   TypeError,
   Project extends boolean,
   Exclude extends string,
-  SchemaType extends string,
   Mapper extends (result: ReturnType<Builder['use']>[1]) => any
 >(
   builder: Builder,
@@ -170,14 +174,15 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
     'use'
   >,
   Schema,
+  Mappings extends Record<string, any>,
+  SchemaType extends string,
   TypeError,
   Project extends boolean,
   Exclude extends string,
-  SchemaType extends string,
   InitialValue,
   Mapper extends (result: ReturnType<Builder['use']>[1]) => any
 >(
@@ -189,14 +194,15 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, TypeError, Project, Exclude, SchemaType>,
+    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
     'use'
   >,
   Schema,
+  Mappings extends Record<string, any>,
+  SchemaType extends string,
   TypeError,
   Project extends boolean,
-  Exclude extends string,
-  SchemaType extends string
+  Exclude extends string
 >(
   builder: Builder,
   initialValue = null,

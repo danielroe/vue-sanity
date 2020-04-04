@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import CompositionApi, { ref } from '@vue/composition-api'
 import flushPromises from 'flush-promises'
-import { createSchema } from 'sanity-typed-queries'
+import { defineDocument } from 'sanity-typed-queries'
 
 import { useSanityFetcher, useSanityClient, useSanityQuery } from '../src'
 import { runInSetup } from './helpers/mount'
@@ -163,7 +163,7 @@ describe('fetcher', () => {
 
 describe('sanity-typed-queries helper', () => {
   it('returns the expected data', async () => {
-    const { builder } = createSchema('author', {
+    const { builder } = defineDocument('author', {
       name: {
         type: 'string',
         validation: Rule => Rule.required(),

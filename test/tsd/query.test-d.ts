@@ -1,6 +1,6 @@
 import { expectType, expectError } from 'tsd'
 import { Ref } from '@vue/composition-api'
-import { createSchema } from 'sanity-typed-queries'
+import { defineDocument } from 'sanity-typed-queries'
 
 import { useSanityFetcher } from '../../src'
 import { useSanityQuery } from '../../src/query'
@@ -71,7 +71,7 @@ expectType<Ref<number | string>>(dataWithOptions)
  * Expect sanity-typed-queries type inference to work
  */
 
-const { builder } = createSchema('author', {
+const { builder } = defineDocument('author', {
   name: {
     type: 'string',
     validation: Rule => Rule.required(),
