@@ -4,10 +4,10 @@ module.exports = {
   coveragePathIgnorePatterns: ['test', '.babelrc.js'],
   coverageThreshold: {
     global: {
-      branches: 75,
-      functions: 95,
-      lines: 85,
-      statements: 83,
+      branches: 80,
+      functions: 100,
+      lines: 90,
+      statements: 90,
     },
   },
 }

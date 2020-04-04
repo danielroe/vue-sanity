@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import VueCompositionApi from '@vue/composition-api'
-import {
-  createBundleRenderer,
-  BundleRendererOptions,
-  BundleRenderer,
-} from 'vue-server-renderer'
-import path from 'path'
+/**
+ * @jest-environment node
+ */
 
-import { compileWithWebpack } from './helpers/webpack'
+import Vue from 'vue'
+import VueCompositionApi, { ref, createElement } from '@vue/composition-api'
+import { createRenderer } from 'vue-server-renderer'
+
+import { fetcher } from './helpers/utils'
+import { useCache } from '../src/cache'
 
 Vue.use(VueCompositionApi)
 Vue.config.productionTip = false
@@ -15,42 +15,19 @@ Vue.config.devtools = false
 
 jest.setTimeout(10000)
 
-function createRenderer(
-  file: string,
-  options: BundleRendererOptions,
-  cb: (renderer: BundleRenderer) => void
-) {
-  compileWithWebpack(
-    file,
-    {
-      target: 'node',
-      devtool: false,
-      output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.js',
-        libraryTarget: 'umd',
-      },
-    },
-    fs => {
-      const bundle = fs.readFileSync(
-        path.resolve(__dirname, './dist/bundle.js'),
-        'utf-8'
-      )
-      const renderer = createBundleRenderer(bundle, options)
-      cb(renderer)
-    }
-  )
-}
-
 describe('ssr', () => {
-  // eslint-disable-next-line
-  test('cache fetches data correctly on SSR', async done => {
-    createRenderer('app.ts', {}, renderer => {
-      renderer.renderToString({}, (err, res) => {
-        expect(err).toBeNull()
-        expect(res).toMatchSnapshot()
-        done()
-      })
+  test('cache fetches data correctly on SSR', async () => {
+    const app = new Vue({
+      setup() {
+        const { data, status } = useCache(ref('key'), () => fetcher('value'))
+
+        return () =>
+          createElement('div', {}, [
+            `data: ${data.value}, status: ${status.value}`,
+          ])
+      },
     })
+    const html = await createRenderer().renderToString(app)
+    expect(html).toMatchSnapshot()
   })
 })
