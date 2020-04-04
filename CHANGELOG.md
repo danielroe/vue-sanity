@@ -1,3 +1,10 @@
+## [0.4.0](https://github.com/danielroe/vue-sanity/compare/v0.3.1...v0.4.0) (2020-04-04)
+
+
+### Features
+
+* allow passing a builder function for dynamic queries ([f2d6ac5](https://github.com/danielroe/vue-sanity/commit/f2d6ac5c74e68c1413a4aecf437be754e108546f))
+
 ### [0.3.1](https://github.com/danielroe/vue-sanity/compare/v0.3.0...v0.3.1) (2020-04-01)
 
 
