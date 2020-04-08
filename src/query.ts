@@ -103,13 +103,12 @@ export function useSanityFetcher(
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
-  SchemaType extends string,
-  TypeError,
+  Type,
   Project extends boolean,
   Exclude extends string
 >(
@@ -122,13 +121,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
-  SchemaType extends string,
-  TypeError,
+  Type,
   Project extends boolean,
   Exclude extends string
 >(
@@ -138,13 +136,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
-  SchemaType extends string,
-  TypeError,
+  Type,
   Project extends boolean,
   Exclude extends string,
   InitialValue
@@ -155,13 +152,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
-  SchemaType extends string,
-  TypeError,
+  Type,
   Project extends boolean,
   Exclude extends string,
   Mapper extends (result: ReturnType<Builder['use']>[1]) => any
@@ -174,13 +170,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
-  SchemaType extends string,
-  TypeError,
+  Type,
   Project extends boolean,
   Exclude extends string,
   InitialValue,
@@ -194,13 +189,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, SchemaType, TypeError, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
-  SchemaType extends string,
-  TypeError,
+  Type,
   Project extends boolean,
   Exclude extends string
 >(
