@@ -127,3 +127,13 @@ const result6 = useSanityQuery(
   { clientOnly: true }
 )
 expectType<Ref<{ result: number } | null>>(result6.data)
+
+const result7 = useSanityQuery(
+  () => builder.pick('description').first(),
+  null,
+  result => ({
+    result: Number(result),
+  }),
+  { clientOnly: true }
+)
+expectType<Ref<{ result: number } | null>>(result7.data)
