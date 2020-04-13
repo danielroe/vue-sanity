@@ -114,15 +114,15 @@ describe('cache', () => {
   test('can trigger fetch manually', async () => {
     const key = ref('manualFetch')
     const data = await runInSetup(() => {
-      const { data, triggerFetch } = useCache(key, async newKey => newKey)
-      return { data, triggerFetch }
+      const { data, fetch } = useCache(key, async newKey => newKey)
+      return { data, fetch }
     })
     expect(data.value.data).toBe('manualFetch')
 
     key.value = 'change'
     expect(data.value.data).toBe(null)
 
-    await data.value.triggerFetch('triggered')
+    await data.value.fetch('triggered')
     key.value = 'triggered'
     expect(data.value.data).toBe('triggered')
   })
