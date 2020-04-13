@@ -69,7 +69,7 @@ export function useSanityFetcher(
 
   const computedQuery = computed(() => minifier(query()).replace(/\n/g, ' '))
 
-  const { data, status, setCache, error } = useCache(
+  const { data, status, setCache, error, fetch } = useCache(
     computedQuery,
     query => client.fetch(query).then(mapper),
     {
@@ -98,7 +98,7 @@ export function useSanityFetcher(
     })
   }
 
-  return { data, status, error }
+  return { data, status, error, fetch }
 }
 
 export function useSanityQuery<
