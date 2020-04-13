@@ -28,9 +28,17 @@ export type FetchStatus =
 export interface CacheOptions<K> {
   initialValue?: K
   /**
-   * Whether to disable SSR fetching. Defaults to false.
+   * Whether to disable SSR fetching. Defaults to false. Now replaced with strategy: 'client'
+   * @deprecated
    */
   clientOnly?: boolean
+  /**
+   * Strategy for fetching. Defaults to 'both'.
+   * 'server' will not refetch if the cache has been populated on SSR.
+   * 'client' will disable SSR fetching.
+   * 'both' will fetch on server and refetch when page is loaded.
+   */
+  strategy?: 'server' | 'client' | 'both'
 }
 
 export function useCache<T, K = null>(
@@ -44,7 +52,11 @@ export function useCache<T, K = null>(
   const status = ref<FetchStatus>('loading')
 
   let { initialValue } = options
-  if (!isServer && !options.clientOnly) {
+
+  const enableSSR =
+    !options.clientOnly && (!options.strategy || options.strategy !== 'client')
+
+  if (enableSSR && !isServer) {
     const prefetchState =
       (window as any).__VSANITY_STATE__ ||
       ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
@@ -64,18 +76,10 @@ export function useCache<T, K = null>(
 
   async function fetch(query = key.value) {
     setCache(query, (await fetcher(query)) || initialValue || null)
+    status.value = isServer ? 'server loaded' : 'client loaded'
   }
 
-  const refetching = ref(false)
-
-  async function triggerFetch(query?: string) {
-    if (refetching.value) return
-    refetching.value = true
-    await fetch(query)
-    status.value = 'client loaded'
-  }
-
-  if (!options.clientOnly && isServer) {
+  if (enableSSR && isServer) {
     if (instance.$ssrContext) {
       if (instance.$ssrContext.nuxt && !instance.$ssrContext.nuxt.vsanity) {
         instance.$ssrContext.nuxt.vsanity = {}
@@ -93,15 +97,19 @@ export function useCache<T, K = null>(
           instance.$ssrContext.vsanity[key.value] = cache[key.value]
         }
       }
-
-      status.value = 'server loaded'
     })
   }
 
   watch(key, async key => {
     try {
+      if (
+        options.strategy === 'server' &&
+        status.value === 'server loaded' &&
+        ![null, initialValue].includes(cache[key])
+      )
+        return
+
       await fetch(key)
-      status.value = 'client loaded'
     } catch (_) {
       status.value = 'error'
     }
@@ -114,7 +122,7 @@ export function useCache<T, K = null>(
 
   return {
     setCache,
-    triggerFetch,
+    triggerFetch: fetch,
     fetch,
     data,
     status,

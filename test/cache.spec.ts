@@ -61,6 +61,56 @@ describe('cache', () => {
     expect(data.value.status).toBe('client loaded')
   })
 
+  test('allows server-only strategy', async () => {
+    const data = await runInSetup(() => {
+      const key = ref('server-strategy')
+      ;(window as any).__NUXT__ = {
+        vsanity: {
+          'server-strategy': 'server',
+        },
+      }
+      const { data, status } = useCache(key, async key => key, {
+        strategy: 'server',
+      })
+      return { data, status }
+    })
+    expect(data.value.data).toBe('server')
+    expect(data.value.status).toBe('server loaded')
+  })
+
+  test('reloads on client when appropriate under server-only strategy', async () => {
+    const data = await runInSetup(() => {
+      const key = ref('server-strategy-without-data')
+      // eslint-disable-next-line
+      const { data, status } = useCache(key, async key => key, {
+        strategy: 'server',
+      })
+      return { data, status }
+    })
+    expect(data.value.data).toBe('server-strategy-without-data')
+    expect(data.value.status).toBe('client loaded')
+  })
+
+  test('allows client-only strategy', async () => {
+    const data = await runInSetup(() => {
+      const key = ref('client-strategy')
+      ;(window as any).__NUXT__ = {
+        vsanity: {
+          'client-strategy': 'grapefruit',
+        },
+      }
+      // eslint-disable-next-line
+      const { data, status } = useCache(key, async key => key, {
+        strategy: 'client',
+      })
+      expect(data.value).toBe(null)
+      expect(status.value).toBe('loading')
+      return { data, status }
+    })
+    expect(data.value.status).toBe('client loaded')
+    expect(data.value.data).toBe('client-strategy')
+  })
+
   test('can trigger fetch manually', async () => {
     const key = ref('manualFetch')
     const data = await runInSetup(() => {
