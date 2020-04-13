@@ -1,3 +1,18 @@
+### [0.4.2](https://github.com/danielroe/vue-sanity/compare/v0.4.1...v0.4.2) (2020-04-13)
+
+
+### Features
+
+* add 'client' and 'server' cache strategies ([22e9b50](https://github.com/danielroe/vue-sanity/commit/22e9b50dc55ecb2f19fe03b18eddf1b3e132aa1e))
+* allow providing a custom sanity client ([ceffd8f](https://github.com/danielroe/vue-sanity/commit/ceffd8f963acd0f1d08ccb0413999f29f6f29699))
+* expose any error received in fetching query ([cf388ae](https://github.com/danielroe/vue-sanity/commit/cf388ae1f9e129cd31b9088747a8cb36913eeec5))
+* expose manual fetcher for preloading cache ([7702713](https://github.com/danielroe/vue-sanity/commit/77027135362a39d3fe9cb1dcefa616d15c823480))
+
+
+### Bug Fixes
+
+* prefer fetch to (deprecated) triggerFetch ([851b91d](https://github.com/danielroe/vue-sanity/commit/851b91d17b55b8c44e2566d6eb2e4bd30b47db51))
+
 ### [0.4.1](https://github.com/danielroe/vue-sanity/compare/v0.4.0...v0.4.1) (2020-04-08)
 
 ## [0.4.0](https://github.com/danielroe/vue-sanity/compare/v0.3.1...v0.4.0) (2020-04-04)
