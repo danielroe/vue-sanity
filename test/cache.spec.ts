@@ -130,11 +130,12 @@ describe('cache', () => {
   test('sets error status correctly', async () => {
     const data = await runInSetup(() => {
       const key = ref('error')
-      const { status } = useCache(key, async () => {
+      const { status, error } = useCache(key, async () => {
         throw new Error('failure')
       })
-      return { status }
+      return { status, error }
     })
     expect(data.value.status).toBe('error')
+    expect(data.value.error).toBeInstanceOf(Error)
   })
 })

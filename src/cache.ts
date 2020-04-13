@@ -74,9 +74,15 @@ export function useCache<T, K = null>(
     Vue.set(cache, key, value)
   }
 
+  const error = ref(null)
   async function fetch(query = key.value) {
-    setCache(query, (await fetcher(query)) || initialValue || null)
-    status.value = isServer ? 'server loaded' : 'client loaded'
+    try {
+      setCache(query, (await fetcher(query)) || initialValue || null)
+      status.value = isServer ? 'server loaded' : 'client loaded'
+    } catch (e) {
+      error.value = e
+      status.value = 'error'
+    }
   }
 
   if (enableSSR && isServer) {
@@ -101,18 +107,14 @@ export function useCache<T, K = null>(
   }
 
   watch(key, async key => {
-    try {
-      if (
-        options.strategy === 'server' &&
-        status.value === 'server loaded' &&
-        ![null, initialValue].includes(cache[key])
-      )
-        return
+    if (
+      options.strategy === 'server' &&
+      status.value === 'server loaded' &&
+      ![null, initialValue].includes(cache[key])
+    )
+      return
 
-      await fetch(key)
-    } catch (_) {
-      status.value = 'error'
-    }
+    await fetch(key)
   })
 
   const data = computed(() => {
@@ -126,5 +128,6 @@ export function useCache<T, K = null>(
     fetch,
     data,
     status,
+    error,
   }
 }
