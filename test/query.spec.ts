@@ -3,7 +3,12 @@ import CompositionApi, { ref } from '@vue/composition-api'
 import flushPromises from 'flush-promises'
 import { defineDocument } from 'sanity-typed-queries'
 
-import { useSanityFetcher, useSanityClient, useSanityQuery } from '../src'
+import {
+  useCustomClient,
+  useSanityFetcher,
+  useSanityClient,
+  useSanityQuery,
+} from '../src'
 import { runInSetup } from './helpers/mount'
 
 Vue.use(CompositionApi)
@@ -61,6 +66,39 @@ describe('fetcher', () => {
     })
     // eslint-disable-next-line
     expect(console.error).toBeCalled()
+  })
+  test('allows custom client to be provided', async () => {
+    const result = await runInSetup(() => {
+      useCustomClient({ fetch: async t => `fetched-${t}` })
+      const { data } = useSanityFetcher(() => `query`)
+      return { data }
+    })
+    expect(result.value.data).toBe('fetched-query')
+  })
+  test('does not listen with a custom client', async () => {
+    const mockListen = jest.fn()
+    const customClient = new Proxy(
+      {
+        fetch: async t => `fetched-${t}`,
+      },
+      {
+        get(target, p) {
+          if (p === 'listen') return mockListen
+          return target[p]
+        },
+      }
+    )
+    await runInSetup(() => {
+      useCustomClient(customClient)
+      const { data } = useSanityFetcher(
+        () => `query`,
+        null,
+        q => q,
+        { listen: true }
+      )
+      return { data }
+    })
+    expect(mockListen).toHaveBeenCalledTimes(0)
   })
   test('fetches query when slug updates', async () => {
     const slug = ref('key')

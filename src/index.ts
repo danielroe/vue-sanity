@@ -9,6 +9,7 @@ import { useSanityImage, imageBuilderSymbol } from './image'
 import {
   useSanityFetcher,
   useSanityQuery,
+  Client,
   clientSymbol,
   previewClientSymbol,
 } from './query'
@@ -51,6 +52,11 @@ export function useSanityClient(
     })
     provide(previewClientSymbol, previewClient)
   }
+}
+
+export function useCustomClient(client: Client) {
+  ensureInstance()
+  provide(clientSymbol, client)
 }
 
 export { useCache, useSanityFetcher, useSanityImage, useSanityQuery }

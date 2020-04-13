@@ -11,7 +11,12 @@ import { QueryBuilder } from 'sanity-typed-queries/lib/query/builder'
 
 import { useCache, CacheOptions, FetchStatus } from './cache'
 
-export const clientSymbol: InjectionKey<SanityClient> = Symbol('Sanity client')
+export interface Client {
+  fetch: (query: string) => Promise<any>
+  [key: string]: any
+}
+
+export const clientSymbol: InjectionKey<Client> = Symbol('Sanity client')
 export const previewClientSymbol: InjectionKey<SanityClient> = Symbol(
   'Sanity client for previews'
 )
@@ -79,23 +84,24 @@ export function useSanityFetcher(
   )
 
   if (options && options.listen) {
-    const previewClient = inject(previewClientSymbol) || client
+    const previewClient = inject(previewClientSymbol, client as SanityClient)
+    if ('listen' in previewClient) {
+      const listenOptions =
+        typeof options.listen === 'boolean' ? undefined : options.listen
 
-    const listenOptions =
-      typeof options.listen === 'boolean' ? undefined : options.listen
+      watch(computedQuery, query => {
+        const subscription = previewClient
+          .listen(query, listenOptions)
+          .subscribe(event => setCache(query, event.result))
 
-    watch(computedQuery, query => {
-      const subscription = previewClient
-        .listen(query, listenOptions)
-        .subscribe(event => setCache(query, event.result))
-
-      const unwatch = watch(computedQuery, newQuery => {
-        if (newQuery !== query) {
-          subscription.unsubscribe()
-          unwatch()
-        }
+        const unwatch = watch(computedQuery, newQuery => {
+          if (newQuery !== query) {
+            subscription.unsubscribe()
+            unwatch()
+          }
+        })
       })
-    })
+    }
   }
 
   return { data, status, error, fetch }
