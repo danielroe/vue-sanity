@@ -10,8 +10,10 @@ import {
   useSanityFetcher,
   useSanityQuery,
   Client,
+  Options,
   clientSymbol,
   previewClientSymbol,
+  optionsSymbol,
 } from './query'
 
 Vue.use(CompositionApi)
@@ -33,7 +35,8 @@ interface RequiredConfig {
  */
 export function useSanityClient(
   config: ClientConfig & RequiredConfig,
-  supportPreview = false
+  supportPreview = false,
+  defaultOptions: Options = {}
 ) {
   ensureInstance()
 
@@ -42,6 +45,7 @@ export function useSanityClient(
 
   provide(clientSymbol, client)
   provide(imageBuilderSymbol, imageBuilder)
+  provide(optionsSymbol, defaultOptions)
 
   if (supportPreview) {
     const previewClient = sanityClient({
@@ -54,9 +58,10 @@ export function useSanityClient(
   }
 }
 
-export function useCustomClient(client: Client) {
+export function useCustomClient(client: Client, defaultOptions: Options = {}) {
   ensureInstance()
   provide(clientSymbol, client)
+  provide(optionsSymbol, defaultOptions)
 }
 
 export { useCache, useSanityFetcher, useSanityImage, useSanityQuery }

@@ -101,6 +101,10 @@ export default {
 
   In addition to the config you would normally pass to `@sanity/client`, you can pass a boolean as a second parameter for whether to create a preview client. (Used currently only when listening to real-time data updating.)
 
+- `defaultOptions`
+
+  You may also pass an object of options that will be passed to any queries you make using `useSanityFetcher`, although of course they will be overridden by any specific options you pass to `useSanityFetcher`.
+
 #### Example
 
 ```ts
@@ -138,7 +142,10 @@ export default {
   You can also provide an object of additional options.
 
   - **listen**: true, false or an object of options to pass to `client.listen` (defaults to false)
-  - **clientOnly**: whether to disable SSR data fetching (defaults to false).
+  - **strategy**: strategy for fetching. Defaults to 'both'.
+    - `:server`: will not refetch if the cache has been populated on SSR
+    - `:client`: will disable SSR fetching entirely
+    - `:both`: will fetch on server and refetch when page is loaded
 
 ### useSanityQuery
 

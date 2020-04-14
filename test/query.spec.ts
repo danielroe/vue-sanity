@@ -67,6 +67,26 @@ describe('fetcher', () => {
     // eslint-disable-next-line
     expect(console.error).toBeCalled()
   })
+
+  test('allows default options to be set', async () => {
+    const results = await runInSetup(() => {
+      useSanityClient(config, true, {
+        strategy: 'server',
+      })
+
+      const key = ref('default-server')
+      ;(window as any).__NUXT__ = {
+        vsanity: {
+          'default-server': 'server',
+        },
+      }
+      const { data, status } = useSanityFetcher(() => key.value)
+      return { data, status }
+    })
+    expect(results.value.data).toBe('server')
+    expect(results.value.status).toBe('server loaded')
+  })
+
   test('allows custom client to be provided', async () => {
     const result = await runInSetup(() => {
       useCustomClient({ fetch: async t => `fetched-${t}` })

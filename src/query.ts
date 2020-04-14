@@ -20,6 +20,9 @@ export const clientSymbol: InjectionKey<Client> = Symbol('Sanity client')
 export const previewClientSymbol: InjectionKey<SanityClient> = Symbol(
   'Sanity client for previews'
 )
+export const optionsSymbol: InjectionKey<Options> = Symbol(
+  'Default query options'
+)
 
 type Query = () => string
 
@@ -34,7 +37,7 @@ interface Result<T> {
   status: Ref<FetchStatus>
 }
 
-type Options = Omit<CacheOptions<any>, 'initialValue'> & {
+export type Options = Omit<CacheOptions<any>, 'initialValue'> & {
   /**
    * Whether to listen to real-time updates from Sanity. You can also pass an object of options to pass to `client.listen`. Defaults to false.
    */
@@ -64,9 +67,16 @@ export function useSanityFetcher(
   query: Query,
   initialValue = null,
   mapper = (result: any) => result,
-  options?: Options
+  queryOptions?: Options
 ) {
   const client = inject(clientSymbol)
+  const defaultOptions = inject(optionsSymbol, {})
+
+  const options = {
+    ...defaultOptions,
+    initialValue,
+    ...queryOptions,
+  }
   if (!client)
     throw new Error(
       'You must call useSanityClient before using sanity resources in this project.'
@@ -77,13 +87,10 @@ export function useSanityFetcher(
   const { data, status, setCache, error, fetch } = useCache(
     computedQuery,
     query => client.fetch(query).then(mapper),
-    {
-      initialValue,
-      ...options,
-    }
+    options
   )
 
-  if (options && options.listen) {
+  if (options.listen) {
     const previewClient = inject(previewClientSymbol, client as SanityClient)
     if ('listen' in previewClient) {
       const listenOptions =
