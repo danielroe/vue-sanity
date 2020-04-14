@@ -1,3 +1,10 @@
+### [0.4.3](https://github.com/danielroe/vue-sanity/compare/v0.4.2...v0.4.3) (2020-04-14)
+
+
+### Features
+
+* allow default options to be set ([2a2d631](https://github.com/danielroe/vue-sanity/commit/2a2d631150ba487b64b09976a69a93f70be8bcbd))
+
 ### [0.4.2](https://github.com/danielroe/vue-sanity/compare/v0.4.1...v0.4.2) (2020-04-13)
 
 
