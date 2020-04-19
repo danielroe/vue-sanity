@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import CompositionApi, { provide } from '@vue/composition-api'
 
-import type { ClientConfig } from '@sanity/client'
+import { ClientConfig } from '@sanity/client'
 
 import { useCache, ensureInstance } from './cache'
 import { useSanityImage, imageBuilderSymbol } from './image'
