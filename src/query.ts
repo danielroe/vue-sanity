@@ -99,7 +99,7 @@ export function useSanityFetcher(
       watch(computedQuery, query => {
         const subscription = previewClient
           .listen(query, listenOptions)
-          .subscribe(event => setCache(query, event.result))
+          .subscribe(event => event.result && setCache(query, event.result))
 
         const unwatch = watch(computedQuery, newQuery => {
           if (newQuery !== query) {
