@@ -1,3 +1,15 @@
+### [0.4.4](https://github.com/danielroe/vue-sanity/compare/v0.4.3...v0.4.4) (2020-04-19)
+
+
+### Bug Fixes
+
+* don't set undefined values in listener ([d8a009d](https://github.com/danielroe/vue-sanity/commit/d8a009df45be92158156e4b825ffb3174c07308f))
+
+
+### Performance Improvements
+
+* import @sanity/client and @sanity/cli dynamically ([ebef54d](https://github.com/danielroe/vue-sanity/commit/ebef54d22870170081fa5792cbf8bc607482dcfd))
+
 ### [0.4.3](https://github.com/danielroe/vue-sanity/compare/v0.4.2...v0.4.3) (2020-04-14)
 
 
