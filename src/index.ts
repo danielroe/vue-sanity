@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import CompositionApi, { provide } from '@vue/composition-api'
 
-import sanityClient, { ClientConfig } from '@sanity/client'
-import imageUrlBuilder from '@sanity/image-url'
+import type { ClientConfig } from '@sanity/client'
 
 import { useCache, ensureInstance } from './cache'
 import { useSanityImage, imageBuilderSymbol } from './image'
@@ -39,6 +38,10 @@ export function useSanityClient(
   defaultOptions: Options = {}
 ) {
   ensureInstance()
+  // eslint-disable-next-line
+  const sanityClient = require('@sanity/client')
+  // eslint-disable-next-line
+  const imageUrlBuilder = require('@sanity/image-url')
 
   const client = sanityClient(config)
   const imageBuilder = imageUrlBuilder(config)
