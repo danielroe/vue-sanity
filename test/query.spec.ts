@@ -77,7 +77,7 @@ describe('fetcher', () => {
       const key = ref('default-server')
       ;(window as any).__NUXT__ = {
         vsanity: {
-          'default-server': 'server',
+          'default-server': ['server', 'server loaded'],
         },
       }
       const { data, status } = useSanityFetcher(() => key.value)

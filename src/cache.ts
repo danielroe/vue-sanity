@@ -11,7 +11,9 @@ import CompositionApi, {
 
 Vue.use(CompositionApi)
 
-const cache = reactive<Record<string, any>>({})
+type CacheEntry<T> = [T, FetchStatus]
+
+const cache = reactive<Record<string, CacheEntry<any>>>({})
 
 export function ensureInstance() {
   const instance = getCurrentInstance()
@@ -49,39 +51,57 @@ export function useCache<T, K = null>(
   const instance = ensureInstance()
   const isServer = instance.$isServer
 
-  const status = ref<FetchStatus>('loading')
-
-  let { initialValue } = options
+  let { initialValue = null } = options
 
   const enableSSR =
     !options.clientOnly && (!options.strategy || options.strategy !== 'client')
+
+  function initialiseCache(
+    key: string,
+    value: any = initialValue,
+    status: FetchStatus = 'loading'
+  ) {
+    Vue.set(cache, key, [value, status])
+  }
 
   if (enableSSR && !isServer) {
     const prefetchState =
       (window as any).__VSANITY_STATE__ ||
       ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
     if (prefetchState && prefetchState[key.value]) {
-      initialValue = prefetchState[key.value]
-      status.value = 'server loaded'
+      initialValue = prefetchState[key.value][0]
+      initialiseCache(
+        key.value,
+        prefetchState[key.value][0],
+        prefetchState[key.value][1]
+      )
     }
   }
 
-  function initialiseKey(key: string) {
-    if (!cache[key]) Vue.set(cache, key, initialValue || null)
-  }
-
-  function setCache(key: string, value: any) {
-    Vue.set(cache, key, value)
+  function setCache(
+    key: string,
+    value: any = (cache[key] && cache[key][0]) || initialValue,
+    status: FetchStatus = (cache[key] && cache[key][1]) || 'loading'
+  ) {
+    if (!cache[key]) {
+      initialiseCache(key, value, status)
+    } else {
+      Vue.set(cache[key], 0, value)
+      Vue.set(cache[key], 1, status)
+    }
   }
 
   const error = ref(null)
   async function fetch(query = key.value) {
     try {
-      setCache(query, (await fetcher(query)) || initialValue || null)
-      status.value = isServer ? 'server loaded' : 'client loaded'
+      setCache(
+        query,
+        await fetcher(query),
+        isServer ? 'server loaded' : 'client loaded'
+      )
     } catch (e) {
       error.value = e
-      status.value = 'error'
+      setCache(query, undefined, 'error')
     }
   }
 
@@ -106,20 +126,25 @@ export function useCache<T, K = null>(
     })
   }
 
+  const data = computed(() => {
+    if (!cache[key.value]) return initialValue as K
+
+    return (cache[key.value] && cache[key.value][0]) as T
+  })
+
+  const status = computed(() => {
+    if (!cache[key.value]) return 'loading'
+
+    return cache[key.value][1]
+  })
+
   watch(key, async key => {
-    if (
-      options.strategy === 'server' &&
-      status.value === 'server loaded' &&
-      ![null, initialValue].includes(cache[key])
-    )
+    if (!cache[key]) initialiseCache(key)
+
+    if (options.strategy === 'server' && status.value === 'server loaded')
       return
 
     await fetch(key)
-  })
-
-  const data = computed(() => {
-    initialiseKey(key.value)
-    return (cache[key.value] || initialValue || null) as T | K
   })
 
   return {

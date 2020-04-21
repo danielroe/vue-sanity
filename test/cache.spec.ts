@@ -49,7 +49,7 @@ describe('cache', () => {
       const key = ref('SSR value')
       ;(window as any).__NUXT__ = {
         vsanity: {
-          'SSR value': 'grapefruit',
+          'SSR value': ['grapefruit', 'server loaded'],
         },
       }
       // eslint-disable-next-line
@@ -66,7 +66,7 @@ describe('cache', () => {
       const key = ref('server-strategy')
       ;(window as any).__NUXT__ = {
         vsanity: {
-          'server-strategy': 'server',
+          'server-strategy': ['server', 'server loaded'],
         },
       }
       const { data, status } = useCache(key, async key => key, {
@@ -96,7 +96,7 @@ describe('cache', () => {
       const key = ref('client-strategy')
       ;(window as any).__NUXT__ = {
         vsanity: {
-          'client-strategy': 'grapefruit',
+          'client-strategy': ['grapefruit', 'server loaded'],
         },
       }
       // eslint-disable-next-line
