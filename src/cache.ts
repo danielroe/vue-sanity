@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import CompositionApi, {
   Ref,
-  ref,
   reactive,
   watch,
   computed,
@@ -11,7 +10,10 @@ import CompositionApi, {
 
 Vue.use(CompositionApi)
 
-type CacheEntry<T> = [T, FetchStatus]
+/**
+ * Cached data, status of fetch, timestamp of last fetch, error
+ */
+type CacheEntry<T> = [T, FetchStatus, number, any]
 
 const cache = reactive<Record<string, CacheEntry<any>>>({})
 
@@ -41,6 +43,12 @@ export interface CacheOptions<K> {
    * 'both' will fetch on server and refetch when page is loaded.
    */
   strategy?: 'server' | 'client' | 'both'
+  /**
+   * Whether to de-duplicate fetches. If set to true, additional fetches will not run unless made after
+   * the previous request errors or succeeds. If set to a number, additional fetches will run, but only after this
+   * many milliseconds after the previous fetch began.
+   */
+  deduplicate?: boolean | number
 }
 
 export function useCache<T, K = null>(
@@ -51,17 +59,17 @@ export function useCache<T, K = null>(
   const instance = ensureInstance()
   const isServer = instance.$isServer
 
-  let { initialValue = null } = options
+  let { initialValue = null, deduplicate = false } = options
 
   const enableSSR =
     !options.clientOnly && (!options.strategy || options.strategy !== 'client')
 
   function initialiseCache(
     key: string,
-    value: any = initialValue,
+    value: any,
     status: FetchStatus = 'loading'
   ) {
-    Vue.set(cache, key, [value, status])
+    Vue.set(cache, key, [value, status, new Date().getTime()])
   }
 
   if (enableSSR && !isServer) {
@@ -81,18 +89,29 @@ export function useCache<T, K = null>(
   function setCache(
     key: string,
     value: any = (cache[key] && cache[key][0]) || initialValue,
-    status: FetchStatus = (cache[key] && cache[key][1]) || 'loading'
+    status: FetchStatus = (cache[key] && cache[key][1]) || 'loading',
+    error: any = null
   ) {
     if (!cache[key]) {
       initialiseCache(key, value, status)
     } else {
       Vue.set(cache[key], 0, value)
       Vue.set(cache[key], 1, status)
+      Vue.set(cache[key], 2, new Date().getTime())
+      Vue.set(cache[key], 3, error)
     }
   }
 
-  const error = ref(null)
-  async function fetch(query = key.value) {
+  async function fetch(query = key.value, force?: boolean) {
+    if (
+      !force &&
+      deduplicate &&
+      cache[query][1] === 'loading' &&
+      (deduplicate === true ||
+        deduplicate < new Date().getTime() - cache[query][2])
+    )
+      return
+
     try {
       setCache(
         query,
@@ -100,8 +119,7 @@ export function useCache<T, K = null>(
         isServer ? 'server loaded' : 'client loaded'
       )
     } catch (e) {
-      error.value = e
-      setCache(query, undefined, 'error')
+      setCache(query, undefined, 'error', e)
     }
   }
 
@@ -138,13 +156,20 @@ export function useCache<T, K = null>(
     return cache[key.value][1]
   })
 
+  const error = computed(() => {
+    if (!cache[key.value]) return null
+
+    return cache[key.value][3]
+  })
+
   watch(key, async key => {
-    if (!cache[key]) initialiseCache(key)
+    let emptyCache = !cache[key]
+    if (emptyCache) initialiseCache(key, initialValue)
 
     if (options.strategy === 'server' && status.value === 'server loaded')
       return
 
-    await fetch(key)
+    await fetch(key, emptyCache)
   })
 
   return {

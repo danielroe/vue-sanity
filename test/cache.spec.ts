@@ -49,7 +49,7 @@ describe('cache', () => {
       const key = ref('SSR value')
       ;(window as any).__NUXT__ = {
         vsanity: {
-          'SSR value': ['grapefruit', 'server loaded'],
+          'SSR value': ['grapefruit', 'server loaded', 1000],
         },
       }
       // eslint-disable-next-line
@@ -66,7 +66,7 @@ describe('cache', () => {
       const key = ref('server-strategy')
       ;(window as any).__NUXT__ = {
         vsanity: {
-          'server-strategy': ['server', 'server loaded'],
+          'server-strategy': ['server', 'server loaded', 1000],
         },
       }
       const { data, status } = useCache(key, async key => key, {
@@ -96,7 +96,7 @@ describe('cache', () => {
       const key = ref('client-strategy')
       ;(window as any).__NUXT__ = {
         vsanity: {
-          'client-strategy': ['grapefruit', 'server loaded'],
+          'client-strategy': ['grapefruit', 'server loaded', 1000],
         },
       }
       // eslint-disable-next-line
@@ -137,5 +137,37 @@ describe('cache', () => {
     })
     expect(data.value.status).toBe('error')
     expect(data.value.error).toBeInstanceOf(Error)
+  })
+
+  test('deduplicates requests', async () => {
+    const key = ref('deduplicating')
+    let number = 0
+    const result = await runInSetup(() => {
+      const { status, fetch } = useCache(
+        key,
+        async newKey => {
+          number++
+          return newKey
+        },
+        {
+          deduplicate: true,
+        }
+      )
+      useCache(
+        key,
+        async newKey => {
+          number++
+          return newKey
+        },
+        {
+          deduplicate: true,
+        }
+      )
+      return { status, fetch }
+    })
+    expect(number).toBe(1)
+    expect(result.value.status).toBe('client loaded')
+    await result.value.fetch()
+    expect(number).toBe(2)
   })
 })
