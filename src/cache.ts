@@ -24,8 +24,9 @@ export function ensureInstance() {
 }
 
 export type FetchStatus =
-  | 'server loaded'
+  | 'initialised'
   | 'loading'
+  | 'server loaded'
   | 'client loaded'
   | 'error'
 
@@ -59,17 +60,19 @@ export function useCache<T, K = null>(
   const instance = ensureInstance()
   const isServer = instance.$isServer
 
-  let { initialValue = null, deduplicate = false } = options
+  const { deduplicate = false, strategy = 'both', clientOnly = false } = options
+  let { initialValue = null } = options
 
-  const enableSSR =
-    !options.clientOnly && (!options.strategy || options.strategy !== 'client')
+  const enableSSR = !clientOnly && strategy !== 'client'
 
   function initialiseCache(
     key: string,
     value: any,
-    status: FetchStatus = 'loading'
+    status: FetchStatus = 'initialised',
+    time = new Date().getTime(),
+    error = null
   ) {
-    Vue.set(cache, key, [value, status, new Date().getTime()])
+    Vue.set(cache, key, [value, status, time, error])
   }
 
   if (enableSSR && !isServer) {
@@ -80,26 +83,28 @@ export function useCache<T, K = null>(
       initialValue = prefetchState[key.value][0]
       initialiseCache(
         key.value,
-        prefetchState[key.value][0],
-        prefetchState[key.value][1]
+        ...(prefetchState[key.value] as CacheEntry<any>)
       )
     }
+  }
+
+  function verifyKey(key: string) {
+    const emptyCache = !(key in cache)
+    if (emptyCache) initialiseCache(key, initialValue)
+    return emptyCache || cache[key][1] === 'initialised'
   }
 
   function setCache(
     key: string,
     value: any = (cache[key] && cache[key][0]) || initialValue,
-    status: FetchStatus = (cache[key] && cache[key][1]) || 'loading',
+    status: FetchStatus = cache[key] && cache[key][1],
     error: any = null
   ) {
-    if (!cache[key]) {
-      initialiseCache(key, value, status)
-    } else {
-      Vue.set(cache[key], 0, value)
-      Vue.set(cache[key], 1, status)
-      Vue.set(cache[key], 2, new Date().getTime())
-      Vue.set(cache[key], 3, error)
-    }
+    if (!(key in cache)) initialiseCache(key, value, status)
+    Vue.set(cache[key], 0, value)
+    Vue.set(cache[key], 1, status)
+    Vue.set(cache[key], 2, new Date().getTime())
+    Vue.set(cache[key], 3, error)
   }
 
   async function fetch(query = key.value, force?: boolean) {
@@ -113,6 +118,8 @@ export function useCache<T, K = null>(
       return
 
     try {
+      setCache(query, undefined, 'loading')
+
       setCache(
         query,
         await fetcher(query),
@@ -133,7 +140,7 @@ export function useCache<T, K = null>(
     }
 
     onServerPrefetch(async () => {
-      await fetch()
+      await fetch(key.value, true)
       if (instance.$ssrContext) {
         if (instance.$ssrContext.nuxt) {
           instance.$ssrContext.nuxt.vsanity[key.value] = cache[key.value]
@@ -145,31 +152,27 @@ export function useCache<T, K = null>(
   }
 
   const data = computed(() => {
-    if (!cache[key.value]) return initialValue as K
+    verifyKey(key.value)
 
-    return (cache[key.value] && cache[key.value][0]) as T
+    return (cache[key.value] && cache[key.value][0]) as T | K
   })
 
   const status = computed(() => {
-    if (!cache[key.value]) return 'loading'
+    verifyKey(key.value)
 
     return cache[key.value][1]
   })
 
   const error = computed(() => {
-    if (!cache[key.value]) return null
+    verifyKey(key.value)
 
     return cache[key.value][3]
   })
 
   watch(key, async key => {
-    let emptyCache = !cache[key]
-    if (emptyCache) initialiseCache(key, initialValue)
+    if (strategy === 'server' && status.value === 'server loaded') return
 
-    if (options.strategy === 'server' && status.value === 'server loaded')
-      return
-
-    await fetch(key, emptyCache)
+    await fetch(key, verifyKey(key))
   })
 
   return {

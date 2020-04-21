@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import CompositionApi, { ref } from '@vue/composition-api'
+import CompositionApi, { ref, watch } from '@vue/composition-api'
 
 import { useCache } from '../src/cache'
 import { runInSetup } from './helpers/mount'
@@ -55,7 +55,7 @@ describe('cache', () => {
       // eslint-disable-next-line
       const { data, status } = useCache(key, async () => {})
       expect(data.value).toBe('grapefruit')
-      expect(status.value).toBe('server loaded')
+      expect(status.value).toBe('loading')
       return { data, status }
     })
     expect(data.value.status).toBe('client loaded')
@@ -169,5 +169,20 @@ describe('cache', () => {
     expect(result.value.status).toBe('client loaded')
     await result.value.fetch()
     expect(number).toBe(2)
+  })
+
+  test('is reactive', async () => {
+    const key = ref('reactive')
+    const mockWatcher = jest.fn()
+
+    await runInSetup(() => {
+      const { data } = useCache(key, async newKey => newKey)
+      watch(data, mockWatcher)
+      expect(mockWatcher).toHaveBeenCalledTimes(1)
+      key.value = 'new reactive'
+      return { data }
+    })
+
+    expect(mockWatcher).toHaveBeenCalledTimes(2)
   })
 })
