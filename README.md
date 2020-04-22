@@ -141,11 +141,12 @@ export default {
 
   You can also provide an object of additional options.
 
-  - **listen**: true, false or an object of options to pass to `client.listen` (defaults to false)
-  - **strategy**: strategy for fetching. Defaults to 'both'.
+  - **listen**: true, false or an object of options to pass to `client.listen` (defaults to `false`)
+  - **strategy**: strategy for fetching. Defaults to `both`.
     - `:server`: will not refetch if the cache has been populated on SSR
     - `:client`: will disable SSR fetching entirely
     - `:both`: will fetch on server and refetch when page is loaded
+  - **deduplicate**: Whether to de-duplicate identical fetches. If set to `true`, additional fetches will not run unless made after the previous request errors or succeeds. If set to a number, additional fetches will run, but only after this many milliseconds after the previous fetch began.
 
 ### useSanityQuery
 

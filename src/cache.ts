@@ -45,7 +45,7 @@ export interface CacheOptions<K> {
    */
   strategy?: 'server' | 'client' | 'both'
   /**
-   * Whether to de-duplicate fetches. If set to true, additional fetches will not run unless made after
+   * Whether to de-duplicate identical fetches. If set to `true`, additional fetches will not run unless made after
    * the previous request errors or succeeds. If set to a number, additional fetches will run, but only after this
    * many milliseconds after the previous fetch began.
    */
