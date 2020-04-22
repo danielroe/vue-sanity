@@ -1,3 +1,17 @@
+## [0.5.0](https://github.com/danielroe/vue-sanity/compare/v0.4.4...v0.5.0) (2020-04-22)
+
+
+### Features
+
+* store indivdual errors and allow query deduping ([3eba128](https://github.com/danielroe/vue-sanity/commit/3eba12817b9ba4a34157104a66bbca396f4f9347))
+* store individual query status ([3710eb2](https://github.com/danielroe/vue-sanity/commit/3710eb28b58d686a91f8b821132a87e3b527e899))
+
+
+### Bug Fixes
+
+* add reactivity fixes for deduped cache ([5c30acc](https://github.com/danielroe/vue-sanity/commit/5c30acc117eea9c89593d60bb3d3e5bf175c570d))
+* don't pollute initial value from ssr fetch ([4f64182](https://github.com/danielroe/vue-sanity/commit/4f64182cc6338227ff31abf676642fc1603611e7))
+
 ### [0.4.4](https://github.com/danielroe/vue-sanity/compare/v0.4.3...v0.4.4) (2020-04-19)
 
 
