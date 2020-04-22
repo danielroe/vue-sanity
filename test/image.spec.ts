@@ -9,6 +9,7 @@ Vue.use(CompositionApi)
 const config = {
   projectId: 'id',
   dataset: 'production',
+  useCdn: true,
 }
 
 ;(global.console.error as any) = jest.fn()

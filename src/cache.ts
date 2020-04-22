@@ -60,8 +60,12 @@ export function useCache<T, K = null>(
   const instance = ensureInstance()
   const isServer = instance.$isServer
 
-  const { deduplicate = false, strategy = 'both', clientOnly = false } = options
-  let { initialValue = null } = options
+  const {
+    initialValue = null,
+    deduplicate = false,
+    strategy = 'both',
+    clientOnly = false,
+  } = options
 
   const enableSSR = !clientOnly && strategy !== 'client'
 
@@ -80,7 +84,6 @@ export function useCache<T, K = null>(
       (window as any).__VSANITY_STATE__ ||
       ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
     if (prefetchState && prefetchState[key.value]) {
-      initialValue = prefetchState[key.value][0]
       initialiseCache(
         key.value,
         ...(prefetchState[key.value] as CacheEntry<any>)
@@ -140,8 +143,11 @@ export function useCache<T, K = null>(
     }
 
     onServerPrefetch(async () => {
-      await fetch(key.value, true)
-      if (instance.$ssrContext) {
+      await fetch(key.value, verifyKey(key.value))
+      if (
+        instance.$ssrContext &&
+        !['loading', 'initialised'].includes(cache[key.value][1])
+      ) {
         if (instance.$ssrContext.nuxt) {
           instance.$ssrContext.nuxt.vsanity[key.value] = cache[key.value]
         } else {
