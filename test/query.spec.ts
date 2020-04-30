@@ -8,7 +8,7 @@ import {
   useSanityFetcher,
   useSanityClient,
   useSanityQuery,
-} from '../src'
+} from '..'
 import { runInSetup } from './helpers/mount'
 
 Vue.use(CompositionApi)

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import CompositionApi, { ref, watch } from '@vue/composition-api'
 
-import { useCache } from '../src/cache'
+import { useCache } from '..'
 import { runInSetup } from './helpers/mount'
 
 Vue.use(CompositionApi)
