@@ -57,7 +57,11 @@ export function useSanityImage(
           srcset: [
             ...widths.map(
               width =>
-                `${getImageUrl(image.value, width, options || {})} ${width}w`
+                `${getImageUrl(
+                  image.value as Required<ResolvedSanityImage>,
+                  width,
+                  options || {}
+                )} ${width}w`
             ),
             `${image.value.url} ${image.value.dimensions.width}w`,
           ].join(', '),
@@ -67,7 +71,11 @@ export function useSanityImage(
           srcset: [
             ...widths.map(
               width =>
-                `${getImageUrl(image.value, width, options || {})} ${width}w`
+                `${getImageUrl(
+                  image.value as Required<ResolvedSanityImage>,
+                  width,
+                  options || {}
+                )} ${width}w`
             ),
           ].join(', '),
           placeholder: '',
