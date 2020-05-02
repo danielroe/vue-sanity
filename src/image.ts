@@ -45,7 +45,6 @@ export function useSanityImage(
     return (builder as ImageUrlBuilder)
       .image(image.url)
       .width(Math.round(width))
-      .height(Math.round(Number(width / image.dimensions.aspectRatio)))
       .quality(quality)
       .fit(fit)
       .url()
@@ -67,12 +66,20 @@ export function useSanityImage(
             `${image.value.url} ${image.value.dimensions.width}w`,
           ].join(', '),
           placeholder: '',
-          sizes: [
-            ...widths.map(width => `(max-width: ${width + 100}px) ${width}px`),
-            `${image.value.dimensions.width}px`,
-          ].join(', '),
         }
-      : {}),
+      : {
+          srcset: [
+            ...widths.map(
+              width =>
+                `${getImageUrl(
+                  image.value as Required<ResolvedSanityImage>,
+                  width,
+                  options || {}
+                )} ${width}w`
+            ),
+          ].join(', '),
+          placeholder: '',
+        }),
   }))
 
   return result

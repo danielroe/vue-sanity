@@ -2,7 +2,7 @@ import Vue from 'vue'
 import CompositionApi, { ref } from '@vue/composition-api'
 
 import { runInSetup } from './helpers/mount'
-import { useSanityImage, useSanityClient } from '../src'
+import { useSanityImage, useSanityClient } from '..'
 
 Vue.use(CompositionApi)
 

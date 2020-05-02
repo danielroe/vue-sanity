@@ -3,14 +3,15 @@
 exports[`image builder produces relevant image url 1`] = `
 Object {
   "placeholder": "",
-  "sizes": "(max-width: 400px) 300px, (max-width: 700px) 600px, (max-width: 1300px) 1200px, (max-width: 2020px) 1920px, 3px",
   "src": "https://cdn.sanity.io/images/siteid/production/imageid-100x100.jpg",
-  "srcset": "https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?rect=0,33,100,33&w=300&h=100&q=82&fit=min 300w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?rect=0,33,100,33&w=600&h=200&q=82&fit=min 600w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?rect=0,33,100,33&w=1200&h=400&q=82&fit=min 1200w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?rect=0,33,100,33&w=1920&h=640&q=82&fit=min 1920w, https://cdn.sanity.io/images/siteid/production/imageid-100x100.jpg 3w",
+  "srcset": "https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=300&q=82&fit=min 300w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=600&q=82&fit=min 600w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=1200&q=82&fit=min 1200w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=1920&q=82&fit=min 1920w, https://cdn.sanity.io/images/siteid/production/imageid-100x100.jpg 3w",
 }
 `;
 
 exports[`image builder works without dimensions 1`] = `
 Object {
+  "placeholder": "",
   "src": "https://cdn.sanity.io/images/siteid/production/imageid-100x100.jpg",
+  "srcset": "https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=300&q=82&fit=min 300w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=600&q=82&fit=min 600w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=1200&q=82&fit=min 1200w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=1920&q=82&fit=min 1920w",
 }
 `;

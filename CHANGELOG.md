@@ -1,3 +1,13 @@
+### [0.5.3](https://github.com/danielroe/vue-sanity/compare/v0.5.2...v0.5.3) (2020-04-30)
+
+
+### Bug Fixes
+
+* remove srcset reliance on image dimensions ([#39](https://github.com/danielroe/vue-sanity/issues/39)) ([791b024](https://github.com/danielroe/vue-sanity/commit/791b024df9bb991e6afb23d4682001c311c64e9b))
+* restore correct types and update snapshot ([529d405](https://github.com/danielroe/vue-sanity/commit/529d405571c6b20293e92fa57461056477351f3d))
+
+### [0.5.2](https://github.com/danielroe/vue-sanity/compare/v0.5.1...v0.5.2) (2020-04-29)
+
 ### [0.5.1](https://github.com/danielroe/vue-sanity/compare/v0.5.0...v0.5.1) (2020-04-26)
 
 ## [0.5.0](https://github.com/danielroe/vue-sanity/compare/v0.4.4...v0.5.0) (2020-04-22)

@@ -7,7 +7,7 @@ import VueCompositionApi, { ref, createElement } from '@vue/composition-api'
 import { createRenderer } from 'vue-server-renderer'
 
 import { fetcher } from './helpers/utils'
-import { useCache } from '../src/cache'
+import { useCache } from '..'
 
 Vue.use(VueCompositionApi)
 Vue.config.productionTip = false

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import CompositionApi from '@vue/composition-api'
 
-import { useSanityClient } from '../src'
+import { useSanityClient } from '..'
 import { runInSetup } from './helpers/mount'
 
 Vue.config.productionTip = false
