@@ -1,3 +1,10 @@
+### [0.5.4](https://github.com/danielroe/vue-sanity/compare/v0.5.3...v0.5.4) (2020-05-02)
+
+
+### Bug Fixes
+
+* remove iife build ([89336af](https://github.com/danielroe/vue-sanity/commit/89336afa5dba9fe869bd5d5d65e077357d7ed645))
+
 ### [0.5.3](https://github.com/danielroe/vue-sanity/compare/v0.5.2...v0.5.3) (2020-04-30)
 
 
