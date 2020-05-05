@@ -8216,10 +8216,10 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sanity-typed-queries@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.3.tgz#46910f9bde1c71e27e1d9d667504783702eef8bc"
-  integrity sha512-e5u9v+dHjpwX26ET1OAKfrj3ANgCw20tNmZ4LqExJ7PkBnRwNrl5GvqCyBIDp+WsMXzbFZrhwu3a+7pQ+dYLYg==
+sanity-typed-queries@^0.6.4:
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.4.tgz#cef0cb01f3f526c027061ac5aaf301426dcf55c1"
+  integrity sha512-NqxSrmjVw/fG/lw80zrUXubzisM2PLTh0qoua9KWVTEOLOQPjWpcFgc0xyp/ckMkbY2FfqxmIncqShe7HERhhg==
 
 saxes@^5.0.0:
   version "5.0.1"
