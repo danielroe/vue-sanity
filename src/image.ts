@@ -47,11 +47,12 @@ export function useSanityImage(
       .width(Math.round(width))
       .quality(quality)
       .fit(fit)
+      .auto('format')
       .url()
   }
 
   const result = computed(() => ({
-    src: image.value.url,
+    src: image.value.url + '?auto=format',
     ...(image.value.dimensions
       ? {
           srcset: [
@@ -63,7 +64,7 @@ export function useSanityImage(
                   options || {}
                 )} ${width}w`
             ),
-            `${image.value.url} ${image.value.dimensions.width}w`,
+            `${image.value.url + '?auto=format'} ${image.value.dimensions.width}w`,
           ].join(', '),
           placeholder: '',
         }
