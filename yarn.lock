@@ -3737,10 +3737,10 @@ eslint-formatter-pretty@^1.3.0:
     plur "^2.1.2"
     string-width "^2.0.0"
 
-eslint-plugin-jest@^23.9.0:
-  version "23.9.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.9.0.tgz#7f4932eceb7ca487d171898fb9d55c05e6b36701"
-  integrity sha512-8mt5xJQIFh33W5nE7vCikkDTE4saTo08V91KjU6yI5sLQ9e8Jkp1OXkWJoIHLheFqY5OXIZdAjZmNYHSJ3IpzQ==
+eslint-plugin-jest@^23.10.0:
+  version "23.10.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.10.0.tgz#4738c7ca9e6513da50f4e99d7b161c1f82fa8e8f"
+  integrity sha512-cHC//nesojSO1MLxVmFJR/bUaQQG7xvMHQD8YLbsQzevR41WKm8paKDUv2wMHlUy5XLZUmNcWuflOi4apS8D+Q==
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
 
@@ -8138,10 +8138,10 @@ rollup-plugin-typescript2@^0.27.0:
     resolve "1.15.1"
     tslib "1.11.1"
 
-rollup@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.8.1.tgz#bb88f06c00f588437cb397fb933589e0878f3b46"
-  integrity sha512-j4aRMIpr0LT5JogYQ0tkznjgKglI11fipTAUgpkhB14imdnlOfD30LDk1cRX2GWaFI0+i8ryW+k8+heVwcoyug==
+rollup@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.8.2.tgz#08427a8eb118e6e4ac8d80eba22774bc1d059c81"
+  integrity sha512-LRzMcB8V1M69pSvf6uCbR+W9OPCy5FuxcIwqioWg5RKidrrqKbzjJF9pEGXceaMVkbptNFZgIVJlUokCU0sfng==
   optionalDependencies:
     fsevents "~2.1.2"
 
@@ -8216,10 +8216,10 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sanity-typed-queries@^0.6.5:
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.5.tgz#6a1661b59aed46dffcc3517f27f2637dc75fdc6c"
-  integrity sha512-CdZ10AKl9ay69QoiYrrGukZFj+ajEeN6qT20lcIszuK9fO/9cOZ1RAGJh3VOdPP1gbADIXuwx7rww3nvBsPpvA==
+sanity-typed-queries@^0.6.7:
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.7.tgz#7cf862b602a1a8213f5e2255c67a334504000cad"
+  integrity sha512-V0t3h5hqNR3loRezzeVN/CZA0lD278MVZsZmOdLxuV7vrgx4aVGBC8QWkhsiLLB3A6GRhfBqD5hVtGsX4BVUAw==
 
 saxes@^5.0.0:
   version "5.0.1"
