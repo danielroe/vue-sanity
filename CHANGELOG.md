@@ -1,3 +1,14 @@
+## [0.6.0](https://github.com/danielroe/vue-sanity/compare/v0.5.5...v0.6.0) (2020-06-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* There are a number of breaking changes in the latest upstream composition-api. See https://github.com/vuejs/composition-api/releases/tag/v0.6.0 for details.
+
+### Features
+
+* upgrade to `@vue/composition-api` v0.6.1 ([23df28e](https://github.com/danielroe/vue-sanity/commit/23df28e614ae8d57041fb3a3fd7320613bf77995))
+
 ### [0.5.5](https://github.com/danielroe/vue-sanity/compare/v0.5.4...v0.5.5) (2020-05-05)
 
 ### [0.5.4](https://github.com/danielroe/vue-sanity/compare/v0.5.3...v0.5.4) (2020-05-02)

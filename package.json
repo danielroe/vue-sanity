@@ -1,6 +1,6 @@
 {
   "name": "vue-sanity",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "description": "Sanity integration for VueJS",
   "license": "MIT",
   "repository": "danielroe/vue-sanity",
