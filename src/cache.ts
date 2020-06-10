@@ -175,11 +175,15 @@ export function useCache<T, K = null>(
     return cache[key.value][3]
   })
 
-  watch(key, async key => {
-    if (strategy === 'server' && status.value === 'server loaded') return
+  watch(
+    key,
+    async key => {
+      if (strategy === 'server' && status.value === 'server loaded') return
 
-    await fetch(key, verifyKey(key))
-  })
+      await fetch(key, verifyKey(key))
+    },
+    { immediate: true }
+  )
 
   return {
     setCache,

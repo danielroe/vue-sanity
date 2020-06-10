@@ -177,7 +177,7 @@ describe('cache', () => {
 
     await runInSetup(() => {
       const { data } = useCache(key, async newKey => newKey)
-      watch(data, mockWatcher)
+      watch(data, mockWatcher, { immediate: true })
       expect(mockWatcher).toHaveBeenCalledTimes(1)
       key.value = 'new reactive'
       return { data }

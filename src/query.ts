@@ -96,18 +96,26 @@ export function useSanityFetcher(
       const listenOptions =
         typeof options.listen === 'boolean' ? undefined : options.listen
 
-      watch(computedQuery, query => {
-        const subscription = previewClient
-          .listen(query, listenOptions)
-          .subscribe(event => event.result && setCache(query, event.result))
+      watch(
+        computedQuery,
+        query => {
+          const subscription = previewClient
+            .listen(query, listenOptions)
+            .subscribe(event => event.result && setCache(query, event.result))
 
-        const unwatch = watch(computedQuery, newQuery => {
-          if (newQuery !== query) {
-            subscription.unsubscribe()
-            unwatch()
-          }
-        })
-      })
+          const unwatch = watch(
+            computedQuery,
+            newQuery => {
+              if (newQuery !== query) {
+                subscription.unsubscribe()
+                unwatch()
+              }
+            },
+            { immediate: true }
+          )
+        },
+        { immediate: true }
+      )
     }
   }
 
