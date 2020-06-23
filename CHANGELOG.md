@@ -1,3 +1,5 @@
+### [0.6.1](https://github.com/danielroe/vue-sanity/compare/v0.6.0...v0.6.1) (2020-06-23)
+
 ## [0.6.0](https://github.com/danielroe/vue-sanity/compare/v0.5.5...v0.6.0) (2020-06-10)
 
 
