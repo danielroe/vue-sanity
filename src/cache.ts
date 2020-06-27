@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import CompositionApi, {
+import {
   Ref,
   reactive,
   watch,
@@ -7,8 +7,6 @@ import CompositionApi, {
   onServerPrefetch,
   getCurrentInstance,
 } from '@vue/composition-api'
-
-Vue.use(CompositionApi)
 
 /**
  * Cached data, status of fetch, timestamp of last fetch, error

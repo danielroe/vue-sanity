@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import CompositionApi, { provide } from '@vue/composition-api'
+import { provide } from '@vue/composition-api'
 
 import { ClientConfig } from '@sanity/client'
 
@@ -14,8 +13,6 @@ import {
   previewClientSymbol,
   optionsSymbol,
 } from './query'
-
-Vue.use(CompositionApi)
 
 interface RequiredConfig {
   /**

@@ -1,4 +1,6 @@
 module.exports = {
+  preset: '@siroc/jest-preset',
+  setupFiles: ['<rootDir>/test/helpers/setup.ts'],
   verbose: true,
   collectCoverage: true,
   coveragePathIgnorePatterns: ['test', '.babelrc.js'],
