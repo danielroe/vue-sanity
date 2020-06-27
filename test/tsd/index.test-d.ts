@@ -1,6 +1,6 @@
 import { expectError } from 'tsd'
 
-import { useSanityClient } from '../../src'
+import { useSanityClient } from '../..'
 
 /**
  * Need to provide both dataset & projectId

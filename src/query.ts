@@ -6,8 +6,8 @@ import {
   Ref,
 } from '@vue/composition-api'
 import minifier from 'minify-groq'
-import { SanityClient } from '@sanity/client'
-import { QueryBuilder } from 'sanity-typed-queries/lib/query/builder'
+import type { SanityClient } from '@sanity/client'
+import type { QueryBuilder } from 'sanity-typed-queries'
 
 import { useCache, CacheOptions, FetchStatus } from './cache'
 

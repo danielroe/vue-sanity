@@ -2,8 +2,7 @@ import { expectType, expectError } from 'tsd'
 import { Ref } from '@vue/composition-api'
 import { defineDocument } from 'sanity-typed-queries'
 
-import { useSanityFetcher } from '../../src'
-import { useSanityQuery } from '../../src/query'
+import { useSanityFetcher, useSanityQuery } from '../..'
 
 /**
  * Require a function passed
