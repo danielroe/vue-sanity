@@ -7244,7 +7244,7 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sanity-typed-queries@^0.6.10:
+sanity-typed-queries@^0.6.9:
   version "0.6.10"
   resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.10.tgz#7f92f81aa3398cc85570d54f36dde1c1a8f53be3"
   integrity sha512-ceEASY6TlKGD2uiyskSAJVN1WVWu52+nEtKRfR8tLG7r8RLd3TE6VnkRVXUsHszyFOnujJYxuEbZNmQMHS1mnA==
