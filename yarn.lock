@@ -7244,10 +7244,10 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sanity-typed-queries@^0.6.8:
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.8.tgz#60f64bc9e9238926fe446940b1640ea84d495a01"
-  integrity sha512-vs20mknUdGdMrvvMCbUiTC7Ou2zkMIc4o0++AtfXPFz1V/0zJwhvbnGsFgrvCXxndLjflaePq1YZsecZJhGuLA==
+sanity-typed-queries@^0.6.9:
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.9.tgz#93e9d6f938cf95d2e1072a2c6bf2d63d89d1ef60"
+  integrity sha512-2NjxwvwwTpEHr+7R1nC1oBCsej3pq0g2Sro5JUNkY/gsYP+WVA8UrLoxjYE7/m0sBiQDWV8mW26+GP2kz0mpiQ==
 
 saxes@^5.0.0:
   version "5.0.1"
