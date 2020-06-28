@@ -1,3 +1,10 @@
+## [0.7.0](https://github.com/danielroe/vue-sanity/compare/v0.6.2...v0.7.0) (2020-06-28)
+
+
+### Features
+
+* allow direct access to `fetch` ([464b31b](https://github.com/danielroe/vue-sanity/commit/464b31bd6713a21957c297fcc2fa03ea180a2b7d))
+
 ### [0.6.2](https://github.com/danielroe/vue-sanity/compare/v0.6.1...v0.6.2) (2020-06-27)
 
 ### [0.6.1](https://github.com/danielroe/vue-sanity/compare/v0.6.0...v0.6.1) (2020-06-23)
