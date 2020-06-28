@@ -40,7 +40,7 @@ interface SetCacheOptions<T, K> {
   value?: T | K
   status?: FetchStatus
   error?: any
-  promise?: Promise<T | K>
+  promise?: Promise<T> | null
   time?: number
 }
 
@@ -140,7 +140,9 @@ export function useCache<T, K = null>(
       (deduplicate === true ||
         deduplicate < new Date().getTime() - cache[query]?.[2])
     )
-      return Promise.resolve(cache[query][4] || initialValue) as Promise<T>
+      return cache[query][4] instanceof Promise
+        ? (cache[query][4] as Promise<T>)
+        : (Promise.resolve(cache[query][0]) as Promise<T>)
 
     const promise = fetcher(query)
     setCache({ key: query, status: 'loading', promise })
@@ -151,6 +153,7 @@ export function useCache<T, K = null>(
           key: query,
           value,
           status: serverInstance ? 'server loaded' : 'client loaded',
+          promise: null,
         })
       )
       .catch(error => setCache({ key: query, status: 'error', error }))
@@ -174,9 +177,9 @@ export function useCache<T, K = null>(
       } catch {}
       if (ctx && !['loading', 'initialised'].includes(cache[key.value]?.[1])) {
         if (ctx.nuxt) {
-          ctx.nuxt.vsanity[key.value] = cache[key.value]
+          ctx.nuxt.vsanity[key.value] = cache[key.value].slice(0, 3)
         } else {
-          ctx.vsanity[key.value] = cache[key.value]
+          ctx.vsanity[key.value] = cache[key.value].slice(0, 3)
         }
       }
     })
