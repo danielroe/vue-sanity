@@ -1,3 +1,10 @@
+### [0.7.1](https://github.com/danielroe/vue-sanity/compare/v0.7.0...v0.7.1) (2020-06-28)
+
+
+### Bug Fixes
+
+* don't send promises from server ([67eabce](https://github.com/danielroe/vue-sanity/commit/67eabce1e4374ec6dc2a64f76424d9f76bb08fb3))
+
 ## [0.7.0](https://github.com/danielroe/vue-sanity/compare/v0.6.2...v0.7.0) (2020-06-28)
 
 
