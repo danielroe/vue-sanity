@@ -1,10 +1,7 @@
-import Vue from 'vue'
-import CompositionApi, { ref, watch } from '@vue/composition-api'
+import { ref, watch } from '@vue/composition-api'
 
-import { useCache } from '..'
+import { useCache } from '../src'
 import { runInSetup } from './helpers/mount'
-
-Vue.use(CompositionApi)
 
 jest.setTimeout(10000)
 

@@ -35,6 +35,14 @@ interface Result<T> {
    * The status of the query. Can be 'server loaded', 'loading', 'client loaded' or 'error'.
    */
   status: Ref<FetchStatus>
+  /**
+   * An error returned in the course of fetching
+   */
+  error: any
+  /**
+   * Get result directly from fetcher (integrates with cache)
+   */
+  fetch: () => Promise<T>
 }
 
 export type Options = Omit<CacheOptions<any>, 'initialValue'> & {
@@ -101,7 +109,10 @@ export function useSanityFetcher(
         query => {
           const subscription = previewClient
             .listen(query, listenOptions)
-            .subscribe(event => event.result && setCache(query, event.result))
+            .subscribe(
+              event =>
+                event.result && setCache({ key: query, value: event.result })
+            )
 
           const unwatch = watch(
             computedQuery,

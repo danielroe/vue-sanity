@@ -1,10 +1,7 @@
-import Vue from 'vue'
-import CompositionApi, { ref } from '@vue/composition-api'
+import { ref } from '@vue/composition-api'
 
 import { runInSetup } from './helpers/mount'
-import { useSanityImage, useSanityClient } from '..'
-
-Vue.use(CompositionApi)
+import { useSanityImage, useSanityClient } from '../src'
 
 const config = {
   projectId: 'id',

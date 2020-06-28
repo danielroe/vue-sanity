@@ -11,7 +11,7 @@ import {
 /**
  * Cached data, status of fetch, timestamp of last fetch, error
  */
-type CacheEntry<T> = [T, FetchStatus, number, any]
+type CacheEntry<T> = [T, FetchStatus, number, any, Promise<T>]
 
 const cache = reactive<Record<string, CacheEntry<any>>>({})
 
@@ -21,12 +21,28 @@ export function ensureInstance() {
   return instance
 }
 
+export function getServerInstance() {
+  const instance = getCurrentInstance()
+
+  if (instance?.$isServer) return instance
+  return false
+}
+
 export type FetchStatus =
   | 'initialised'
   | 'loading'
   | 'server loaded'
   | 'client loaded'
   | 'error'
+
+interface SetCacheOptions<T, K> {
+  key: string
+  value?: T | K
+  status?: FetchStatus
+  error?: any
+  promise?: Promise<T | K>
+  time?: number
+}
 
 export interface CacheOptions<K> {
   initialValue?: K
@@ -55,9 +71,6 @@ export function useCache<T, K = null>(
   fetcher: (key: string) => Promise<T>,
   options: CacheOptions<K> = {}
 ) {
-  const instance = ensureInstance()
-  const isServer = instance.$isServer
-
   const {
     initialValue = null,
     deduplicate = false,
@@ -67,89 +80,103 @@ export function useCache<T, K = null>(
 
   const enableSSR = !clientOnly && strategy !== 'client'
 
-  function initialiseCache(
-    key: string,
-    value: any,
-    status: FetchStatus = 'initialised',
+  function initialiseCache({
+    key,
+    value,
+    error = null,
+    status = 'initialised',
     time = new Date().getTime(),
-    error = null
-  ) {
+  }: SetCacheOptions<T, K>) {
     Vue.set(cache, key, [value, status, time, error])
   }
 
-  if (enableSSR && !isServer) {
+  const serverInstance = getServerInstance()
+  if (enableSSR && !serverInstance) {
     const prefetchState =
       (window as any).__VSANITY_STATE__ ||
       ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
     if (prefetchState && prefetchState[key.value]) {
-      initialiseCache(
-        key.value,
-        ...(prefetchState[key.value] as CacheEntry<any>)
-      )
+      const [value, status, time, error] = prefetchState[
+        key.value
+      ] as CacheEntry<T>
+
+      initialiseCache({
+        key: key.value,
+        value,
+        status,
+        time,
+        error,
+      })
     }
   }
 
   function verifyKey(key: string) {
     const emptyCache = !(key in cache)
-    if (emptyCache) initialiseCache(key, initialValue)
+    if (emptyCache) initialiseCache({ key, value: initialValue as K })
     return emptyCache || cache[key][1] === 'initialised'
   }
 
-  function setCache(
-    key: string,
-    value: any = (cache[key] && cache[key][0]) || initialValue,
-    status: FetchStatus = cache[key] && cache[key][1],
-    error: any = null
-  ) {
-    if (!(key in cache)) initialiseCache(key, value, status)
+  function setCache({
+    key,
+    value = cache[key]?.[0] || initialValue,
+    status = cache[key]?.[1],
+    error = null,
+    promise = cache[key]?.[4],
+  }: SetCacheOptions<T, K>) {
+    if (!(key in cache)) initialiseCache({ key, value, status })
+
     Vue.set(cache[key], 0, value)
     Vue.set(cache[key], 1, status)
     Vue.set(cache[key], 2, new Date().getTime())
     Vue.set(cache[key], 3, error)
+    Vue.set(cache[key], 4, promise)
   }
 
-  async function fetch(query = key.value, force?: boolean) {
+  function fetch(query = key.value, force?: boolean) {
     if (
       !force &&
       deduplicate &&
-      cache[query][1] === 'loading' &&
+      cache[query]?.[1] === 'loading' &&
       (deduplicate === true ||
-        deduplicate < new Date().getTime() - cache[query][2])
+        deduplicate < new Date().getTime() - cache[query]?.[2])
     )
-      return
+      return Promise.resolve(cache[query][4] || initialValue) as Promise<T>
 
-    try {
-      setCache(query, undefined, 'loading')
+    const promise = fetcher(query)
+    setCache({ key: query, status: 'loading', promise })
 
-      setCache(
-        query,
-        await fetcher(query),
-        isServer ? 'server loaded' : 'client loaded'
+    promise
+      .then(value =>
+        setCache({
+          key: query,
+          value,
+          status: serverInstance ? 'server loaded' : 'client loaded',
+        })
       )
-    } catch (e) {
-      setCache(query, undefined, 'error', e)
-    }
+      .catch(error => setCache({ key: query, status: 'error', error }))
+    return promise
   }
 
-  if (enableSSR && isServer) {
-    if (instance.$ssrContext) {
-      if (instance.$ssrContext.nuxt && !instance.$ssrContext.nuxt.vsanity) {
-        instance.$ssrContext.nuxt.vsanity = {}
-      } else if (!instance.$ssrContext.vsanity) {
-        instance.$ssrContext.vsanity = {}
+  if (enableSSR && serverInstance) {
+    const ctx = serverInstance.$ssrContext
+    if (ctx) {
+      if (ctx.nuxt && !ctx.nuxt.vsanity) {
+        ctx.nuxt.vsanity = {}
+      } else if (!ctx.vsanity) {
+        ctx.vsanity = {}
       }
     }
 
     onServerPrefetch(async () => {
-      await fetch(key.value, verifyKey(key.value))
-      if (
-        instance.$ssrContext &&
-        !['loading', 'initialised'].includes(cache[key.value][1])
-      ) {
-        if (instance.$ssrContext.nuxt) {
-          instance.$ssrContext.nuxt.vsanity[key.value] = cache[key.value]
+      try {
+        await fetch(key.value, verifyKey(key.value))
+        // eslint-disable-next-line
+      } catch {}
+      if (ctx && !['loading', 'initialised'].includes(cache[key.value]?.[1])) {
+        if (ctx.nuxt) {
+          ctx.nuxt.vsanity[key.value] = cache[key.value]
         } else {
-          instance.$ssrContext.vsanity[key.value] = cache[key.value]
+          ctx.vsanity[key.value] = cache[key.value]
         }
       }
     })
@@ -175,10 +202,10 @@ export function useCache<T, K = null>(
 
   watch(
     key,
-    async key => {
+    key => {
       if (strategy === 'server' && status.value === 'server loaded') return
 
-      await fetch(key, verifyKey(key))
+      fetch(key, verifyKey(key))
     },
     { immediate: true }
   )

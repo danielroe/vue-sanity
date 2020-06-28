@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import CompositionApi, { ref } from '@vue/composition-api'
+import { ref } from '@vue/composition-api'
 import flushPromises from 'flush-promises'
 import { defineDocument } from 'sanity-typed-queries'
 
@@ -8,10 +7,9 @@ import {
   useSanityFetcher,
   useSanityClient,
   useSanityQuery,
-} from '..'
+  fetch as _fetch,
+} from '../src'
 import { runInSetup } from './helpers/mount'
-
-Vue.use(CompositionApi)
 
 const config = {
   projectId: 'id',
@@ -85,6 +83,25 @@ describe('fetcher', () => {
     })
     expect(results.value.data).toBe('server')
     expect(results.value.status).toBe('server loaded')
+  })
+
+  test('allows direct access to client', async () => {
+    const result = await runInSetup(() => {
+      useCustomClient({ fetch: async t => `fetched-${t}` })
+      const data = _fetch('test')
+      return { data }
+    })
+    expect(await result.value.data).toBe('fetched-test')
+    const errored = await runInSetup(() => {
+      let data = false
+      try {
+        _fetch('test')
+      } catch {
+        data = true
+      }
+      return { data }
+    })
+    expect(errored.value.data).toBe(true)
   })
 
   test('allows custom client to be provided', async () => {

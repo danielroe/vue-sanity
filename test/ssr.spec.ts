@@ -3,13 +3,12 @@
  */
 
 import Vue from 'vue'
-import VueCompositionApi, { ref, createElement } from '@vue/composition-api'
+import { ref, createElement } from '@vue/composition-api'
 import { createRenderer } from 'vue-server-renderer'
 
 import { fetcher } from './helpers/utils'
-import { useCache } from '..'
+import { useCache } from '../src'
 
-Vue.use(VueCompositionApi)
 Vue.config.productionTip = false
 Vue.config.devtools = false
 

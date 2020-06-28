@@ -1,18 +1,18 @@
-import { provide } from '@vue/composition-api'
+import { provide, inject } from '@vue/composition-api'
 
 import { ClientConfig } from '@sanity/client'
 
 import { useCache, ensureInstance } from './cache'
+import type { FetchStatus, CacheOptions } from './cache'
 import { useSanityImage, imageBuilderSymbol } from './image'
 import {
   useSanityFetcher,
   useSanityQuery,
-  Client,
-  Options,
   clientSymbol,
   previewClientSymbol,
   optionsSymbol,
 } from './query'
+import type { Client, Options } from './query'
 
 interface RequiredConfig {
   /**
@@ -64,4 +64,15 @@ export function useCustomClient(client: Client, defaultOptions: Options = {}) {
   provide(optionsSymbol, defaultOptions)
 }
 
+export function fetch(query: string) {
+  ensureInstance()
+  const client = inject(clientSymbol)
+  if (!client)
+    throw new Error(
+      'You must call useSanityClient before using sanity resources in this project.'
+    )
+  return client.fetch(query)
+}
+
 export { useCache, useSanityFetcher, useSanityImage, useSanityQuery }
+export type { Options, FetchStatus, CacheOptions }
