@@ -13,7 +13,7 @@ expectError(useSanityFetcher('query'))
  * Require a function passed
  */
 const { data: noTyping } = useSanityFetcher(() => '')
-expectType<Ref<any>>(noTyping)
+expectType<Ref<unknown>>(noTyping)
 
 const { data: stringOrNull } = useSanityFetcher<string>(() => '')
 expectType<Ref<string | null>>(stringOrNull)
