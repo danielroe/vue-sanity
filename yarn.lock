@@ -7019,10 +7019,10 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sanity-typed-queries@^0.6.10:
-  version "0.6.10"
-  resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.10.tgz#7f92f81aa3398cc85570d54f36dde1c1a8f53be3"
-  integrity sha512-ceEASY6TlKGD2uiyskSAJVN1WVWu52+nEtKRfR8tLG7r8RLd3TE6VnkRVXUsHszyFOnujJYxuEbZNmQMHS1mnA==
+sanity-typed-queries@^0.6.11:
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/sanity-typed-queries/-/sanity-typed-queries-0.6.11.tgz#5ee52a6707752fcedac72ee8f74513df1dcd64ab"
+  integrity sha512-uLNuUw+JNbZLK6HbVgw9v3qfY4QtJ+hE6Sa6zdTc1UU52eAen6KMR9zFix5l/kvJrJ1ntVsRaY1d7WwO09fCkQ==
 
 saxes@^5.0.0:
   version "5.0.1"
