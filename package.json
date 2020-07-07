@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^1.1.4",
-    "@types/jest": "^26.0.3",
+    "@types/jest": "^26.0.4",
     "@types/jsdom": "^16.2.3",
     "@types/memory-fs": "^0.3.2",
     "@vue/composition-api": "^0.6.7",
