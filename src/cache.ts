@@ -175,7 +175,11 @@ export function useCache<T, K = null>(
         await fetch(key.value, verifyKey(key.value))
         // eslint-disable-next-line
       } catch {}
-      if (ctx && !['loading', 'initialised'].includes(cache[key.value]?.[1])) {
+      if (
+        ctx &&
+        cache[key.value] &&
+        !['loading', 'initialised'].includes(cache[key.value]?.[1])
+      ) {
         if (ctx.nuxt) {
           ctx.nuxt.vsanity[key.value] = cache[key.value].slice(0, 3)
         } else {
