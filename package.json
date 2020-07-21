@@ -60,7 +60,7 @@
     "@types/memory-fs": "^0.3.2",
     "@vue/composition-api": "^0.6.7",
     "@vue/test-utils": "^1.0.3",
-    "codecov": "^3.7.0",
+    "codecov": "^3.7.1",
     "flush-promises": "^1.0.2",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
