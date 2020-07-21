@@ -1,3 +1,10 @@
+### [0.7.2](https://github.com/danielroe/vue-sanity/compare/v0.7.1...v0.7.2) (2020-07-21)
+
+
+### Bug Fixes
+
+* test that cache exists before adding to ssrContext ([c7ffbce](https://github.com/danielroe/vue-sanity/commit/c7ffbce027539b16ad29cb39fe23a2fecace8b06))
+
 ### [0.7.1](https://github.com/danielroe/vue-sanity/compare/v0.7.0...v0.7.1) (2020-06-28)
 
 
