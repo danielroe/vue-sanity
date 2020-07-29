@@ -1,3 +1,14 @@
+## [0.8.0](https://github.com/danielroe/vue-sanity/compare/v0.7.2...v0.8.0) (2020-07-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* if you are using `@sanity/client` or `@sanity/image-url` you will need to specify this dependency explicitly in your `package.json`
+
+### Performance Improvements
+
+* remove explicit dependency on sanity clients ([21beebf](https://github.com/danielroe/vue-sanity/commit/21beebfda0ed6c997dcf7641e641ec133e029547))
+
 ### [0.7.2](https://github.com/danielroe/vue-sanity/compare/v0.7.1...v0.7.2) (2020-07-21)
 
 
