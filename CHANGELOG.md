@@ -1,3 +1,10 @@
+## [0.8.0](https://github.com/danielroe/vue-sanity/compare/v0.7.2...v0.8.0) (2020-07-29)
+
+
+### Performance Improvements
+
+* remove explicit dependency on sanity clients ([85ff8a3](https://github.com/danielroe/vue-sanity/commit/85ff8a3bbe72ceb734f089fad5d8c2514092c45b))
+
 ### [0.7.2](https://github.com/danielroe/vue-sanity/compare/v0.7.1...v0.7.2) (2020-07-21)
 
 
