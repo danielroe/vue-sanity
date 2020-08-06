@@ -57,7 +57,7 @@
     "@sanity/image-url": "^0.140.19",
     "@siroc/eslint-config": "^0.2.0",
     "@siroc/jest-preset": "^0.2.0",
-    "@types/jest": "^26.0.8",
+    "@types/jest": "^26.0.9",
     "@types/jsdom": "^16.2.3",
     "@types/memory-fs": "^0.3.2",
     "@vue/composition-api": "^0.6.7",
