@@ -25,7 +25,7 @@ export const optionsSymbol: InjectionKey<Options> = Symbol(
   'Default query options'
 )
 
-type Query = string | (() => string)
+type Query = string | (() => string | null | undefined | false)
 
 interface Result<T> {
   /**
@@ -94,7 +94,7 @@ export function useSanityFetcher(
   const computedQuery =
     typeof query === 'string'
       ? minifier(query).replace(/\n/g, ' ')
-      : computed(() => minifier(query()).replace(/\n/g, ' '))
+      : computed(() => minifier(query() || '').replace(/\n/g, ' '))
 
   const { data, status, setCache, error, fetch } = useCache(
     computedQuery,
