@@ -1,3 +1,20 @@
+## [0.9.0](https://github.com/danielroe/vue-sanity/compare/v0.7.2...v0.9.0) (2020-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* if you are using `@sanity/client` or `@sanity/image-url` you will need to specify this dependency explicitly in your `package.json`
+
+### Features
+
+* ⚡️ allow passing a string rather than a factory function ([4eb40ef](https://github.com/danielroe/vue-sanity/commit/4eb40efc78cf738fcb6d21b8ad86ae639eb797c7))
+* ⚡️ allow short-circuiting queries ([dcfa82d](https://github.com/danielroe/vue-sanity/commit/dcfa82d323a4ef9a6cc58fe0433143c28291475d))
+
+
+### Performance Improvements
+
+* remove explicit dependency on sanity clients ([21beebf](https://github.com/danielroe/vue-sanity/commit/21beebfda0ed6c997dcf7641e641ec133e029547))
+
 ## [0.8.0](https://github.com/danielroe/vue-sanity/compare/v0.7.2...v0.8.0) (2020-07-29)
 
 
