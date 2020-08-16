@@ -1,3 +1,10 @@
+### [0.9.1](https://github.com/danielroe/vue-sanity/compare/v0.9.0...v0.9.1) (2020-08-16)
+
+
+### Bug Fixes
+
+* allow query functions to return falsy values ([3053c4a](https://github.com/danielroe/vue-sanity/commit/3053c4a3de1e97abeae6dbb564160ad0ed8f2e12))
+
 ## [0.9.0](https://github.com/danielroe/vue-sanity/compare/v0.7.2...v0.9.0) (2020-08-16)
 
 
