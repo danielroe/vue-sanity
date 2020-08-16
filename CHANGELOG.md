@@ -1,3 +1,11 @@
+## [0.10.0](https://github.com/danielroe/vue-sanity/compare/v0.9.1...v0.10.0) (2020-08-16)
+
+
+### Bug Fixes
+
+* resolve falsy queries with `initialValue` ([4ae4d82](https://github.com/danielroe/vue-sanity/commit/4ae4d82590bbd8c835bea57a104b244d9cf6b9ff))
+* uses cache if deduplicate is set ([cdc26d1](https://github.com/danielroe/vue-sanity/commit/cdc26d1e3ff5312b56c54eff7e3aeaab75e21dba))
+
 ### [0.9.1](https://github.com/danielroe/vue-sanity/compare/v0.9.0...v0.9.1) (2020-08-16)
 
 
