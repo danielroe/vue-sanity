@@ -152,6 +152,22 @@ describe('fetcher', () => {
     await flushPromises()
     expect(mockFetch).toHaveBeenCalledWith(`my-new-key`)
   })
+  test("doesn't fetch with falsy query", async () => {
+    const slug = ref('key')
+
+    await runInSetup(() => {
+      useSanityClient(config)
+      useSanityFetcher(() => slug.value && `my-${slug.value}`)
+
+      return {}
+    })
+    expect(mockFetch).toHaveBeenCalledWith(`my-key`)
+    mockFetch.mockClear()
+
+    slug.value = ''
+    await flushPromises()
+    expect(mockFetch).toHaveBeenCalledTimes(0)
+  })
 
   test('status updates correctly', async () => {
     const data = await runInSetup(() => {
