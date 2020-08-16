@@ -138,9 +138,13 @@ export function useCache<T, K = null>(
   function fetch(query = unwrap(key), force?: boolean) {
     if (
       !force &&
+      cache[query] &&
+      cache[query][1] !== 'error' &&
+      (cache[query][0] !== initialValue ||
+        cache[query][4] instanceof Promise) &&
       deduplicate &&
       (deduplicate === true ||
-        deduplicate < new Date().getTime() - cache[query]?.[2])
+        deduplicate < new Date().getTime() - cache[query][2])
     )
       return cache[query][4] instanceof Promise
         ? (cache[query][4] as Promise<T>)
