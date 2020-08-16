@@ -3,7 +3,7 @@
  */
 
 import Vue from 'vue'
-import { ref, createElement } from '@vue/composition-api'
+import { ref, h } from '@vue/composition-api'
 import { createRenderer } from 'vue-server-renderer'
 
 import { fetcher } from './helpers/utils'
@@ -21,9 +21,7 @@ describe('ssr', () => {
         const { data, status } = useCache(ref('key'), () => fetcher('value'))
 
         return () =>
-          createElement('div', {}, [
-            `data: ${data.value}, status: ${status.value}`,
-          ])
+          h('div', {}, [`data: ${data.value}, status: ${status.value}`])
       },
     })
     const html = await createRenderer().renderToString(app)
