@@ -79,8 +79,11 @@ import { useSanityFetcher } from 'vue-sanity'
 
 export default {
   setup() {
+    const { data: title } = useSanityFetcher('*[_type == "article"][0].title')
+
+    // OR use a factory function
     const { data: title } = useSanityFetcher(
-      () => `*[_type == "article"][0].title`
+      () => `*[slug.current == ${slug.value}][0].title`
     )
 
     return { title }
