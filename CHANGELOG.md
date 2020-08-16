@@ -1,3 +1,10 @@
+### [0.10.1](https://github.com/danielroe/vue-sanity/compare/v0.10.0...v0.10.1) (2020-08-16)
+
+
+### Bug Fixes
+
+* don't deduplicate failed fetches ([1d0c78b](https://github.com/danielroe/vue-sanity/commit/1d0c78b0443db83b9636f835930629c9fee6a602))
+
 ## [0.10.0](https://github.com/danielroe/vue-sanity/compare/v0.9.1...v0.10.0) (2020-08-16)
 
 
