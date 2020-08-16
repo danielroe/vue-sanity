@@ -136,7 +136,7 @@ describe('cache', () => {
     expect(data.value.error).toBeInstanceOf(Error)
   })
 
-  test('deduplicates requests', async () => {
+  test('uses cache and deduplicates requests', async () => {
     const key = ref('deduplicating')
     let number = 0
     const result = await runInSetup(() => {
@@ -165,7 +165,44 @@ describe('cache', () => {
     expect(number).toBe(1)
     expect(result.value.status).toBe('client loaded')
     await result.value.fetch()
-    expect(number).toBe(2)
+    expect(number).toBe(1)
+  })
+
+  test('does not use cache if enough time passes', async () => {
+    const key = ref('deduplicating')
+    let number = 0
+    const result = await runInSetup(() => {
+      const { status, fetch } = useCache(
+        key,
+        async newKey => {
+          number++
+          return newKey
+        },
+        {
+          deduplicate: 10,
+        }
+      )
+      useCache(
+        key,
+        async newKey => {
+          number++
+          return newKey
+        },
+        {
+          deduplicate: true,
+        }
+      )
+      return { status, fetch }
+    })
+    expect(number).toBe(1)
+    expect(result.value.status).toBe('client loaded')
+    await new Promise(resolve =>
+      setTimeout(async () => {
+        await result.value.fetch()
+        resolve()
+      }, 20)
+    )
+    expect(number).toBe(1)
   })
 
   test('is reactive', async () => {

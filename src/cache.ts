@@ -139,7 +139,6 @@ export function useCache<T, K = null>(
     if (
       !force &&
       deduplicate &&
-      cache[query]?.[1] === 'loading' &&
       (deduplicate === true ||
         deduplicate < new Date().getTime() - cache[query]?.[2])
     )
