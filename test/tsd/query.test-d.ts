@@ -5,9 +5,9 @@ import { defineDocument } from 'sanity-typed-queries'
 import { useSanityFetcher, useSanityQuery } from '../..'
 
 /**
- * Require a function passed
+ * Require a function or string passed
  */
-expectError(useSanityFetcher('query'))
+expectError(useSanityFetcher(32))
 
 /**
  * Require a function passed
