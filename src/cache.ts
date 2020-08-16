@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import {
-  Ref,
-  reactive,
-  watch,
   computed,
-  onServerPrefetch,
   getCurrentInstance,
+  isRef,
+  onServerPrefetch,
+  reactive,
+  Ref,
+  watch,
 } from '@vue/composition-api'
 
 /**
@@ -14,6 +15,8 @@ import {
 type CacheEntry<T> = [T, FetchStatus, number, any, Promise<T>]
 
 const cache = reactive<Record<string, CacheEntry<any>>>({})
+
+const unwrap = <T>(val: Ref<T> | T) => (isRef(val) ? val.value : val)
 
 export function ensureInstance() {
   const instance = getCurrentInstance()
@@ -67,7 +70,7 @@ export interface CacheOptions<K> {
 }
 
 export function useCache<T, K = null>(
-  key: Ref<string>,
+  key: string | Ref<string>,
   fetcher: (key: string) => Promise<T>,
   options: CacheOptions<K> = {}
 ) {
@@ -95,13 +98,13 @@ export function useCache<T, K = null>(
     const prefetchState =
       (window as any).__VSANITY_STATE__ ||
       ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
-    if (prefetchState && prefetchState[key.value]) {
+    if (prefetchState && prefetchState[unwrap(key)]) {
       const [value, status, time, error] = prefetchState[
-        key.value
+        unwrap(key)
       ] as CacheEntry<T>
 
       initialiseCache({
-        key: key.value,
+        key: unwrap(key),
         value,
         status,
         time,
@@ -132,7 +135,7 @@ export function useCache<T, K = null>(
     Vue.set(cache[key], 4, promise)
   }
 
-  function fetch(query = key.value, force?: boolean) {
+  function fetch(query = unwrap(key), force?: boolean) {
     if (
       !force &&
       deduplicate &&
@@ -172,50 +175,54 @@ export function useCache<T, K = null>(
 
     onServerPrefetch(async () => {
       try {
-        await fetch(key.value, verifyKey(key.value))
+        await fetch(unwrap(key), verifyKey(unwrap(key)))
         // eslint-disable-next-line
       } catch {}
       if (
         ctx &&
-        cache[key.value] &&
-        !['loading', 'initialised'].includes(cache[key.value]?.[1])
+        cache[unwrap(key)] &&
+        !['loading', 'initialised'].includes(cache[unwrap(key)]?.[1])
       ) {
         if (ctx.nuxt) {
-          ctx.nuxt.vsanity[key.value] = cache[key.value].slice(0, 3)
+          ctx.nuxt.vsanity[unwrap(key)] = cache[unwrap(key)].slice(0, 3)
         } else {
-          ctx.vsanity[key.value] = cache[key.value].slice(0, 3)
+          ctx.vsanity[unwrap(key)] = cache[unwrap(key)].slice(0, 3)
         }
       }
     })
   }
 
   const data = computed(() => {
-    verifyKey(key.value)
+    verifyKey(unwrap(key))
 
-    return (cache[key.value] && cache[key.value][0]) as T | K
+    return (cache[unwrap(key)] && cache[unwrap(key)][0]) as T | K
   })
 
   const status = computed(() => {
-    verifyKey(key.value)
+    verifyKey(unwrap(key))
 
-    return cache[key.value][1]
+    return cache[unwrap(key)][1]
   })
 
   const error = computed(() => {
-    verifyKey(key.value)
+    verifyKey(unwrap(key))
 
-    return cache[key.value][3]
+    return cache[unwrap(key)][3]
   })
 
-  watch(
-    key,
-    key => {
-      if (strategy === 'server' && status.value === 'server loaded') return
+  if (isRef(key)) {
+    watch(
+      key,
+      key => {
+        if (strategy === 'server' && status.value === 'server loaded') return
 
-      fetch(key, verifyKey(key))
-    },
-    { immediate: true }
-  )
+        fetch(key, verifyKey(key))
+      },
+      { immediate: true }
+    )
+  } else if (strategy !== 'server' || status.value !== 'server loaded') {
+    fetch(key, verifyKey(key))
+  }
 
   return {
     setCache,

@@ -4,6 +4,7 @@ import {
   watch,
   InjectionKey,
   Ref,
+  isRef,
 } from '@vue/composition-api'
 import minifier from 'minify-groq'
 import type { SanityClient } from '@sanity/client'
@@ -24,7 +25,7 @@ export const optionsSymbol: InjectionKey<Options> = Symbol(
   'Default query options'
 )
 
-type Query = () => string
+type Query = string | (() => string)
 
 interface Result<T> {
   /**
@@ -54,7 +55,7 @@ export type Options = Omit<CacheOptions<any>, 'initialValue'> & {
 
 /**
  *
- * @param query A function that retuns a query string. If the return value changes, a new Sanity query will be run and the return value automatically updated.
+ * @param query A string, or a function that retuns a query string. If the return value changes, a new Sanity query will be run and the return value automatically updated.
  */
 export function useSanityFetcher<T extends any>(query: Query): Result<T | null>
 
@@ -90,7 +91,10 @@ export function useSanityFetcher(
       'You must call useSanityClient before using sanity resources in this project.'
     )
 
-  const computedQuery = computed(() => minifier(query()).replace(/\n/g, ' '))
+  const computedQuery =
+    typeof query === 'string'
+      ? minifier(query).replace(/\n/g, ' ')
+      : computed(() => minifier(query()).replace(/\n/g, ' '))
 
   const { data, status, setCache, error, fetch } = useCache(
     computedQuery,
@@ -104,29 +108,37 @@ export function useSanityFetcher(
       const listenOptions =
         typeof options.listen === 'boolean' ? undefined : options.listen
 
-      watch(
-        computedQuery,
-        query => {
-          const subscription = previewClient
-            .listen(query, listenOptions)
-            .subscribe(
-              event =>
-                event.result && setCache({ key: query, value: event.result })
-            )
+      const subscribe = (query: string) =>
+        previewClient.listen(query, listenOptions).subscribe(
+          event =>
+            event.result &&
+            setCache({
+              key: query,
+              value: event.result,
+            })
+        )
+      if (isRef(computedQuery)) {
+        watch(
+          computedQuery,
+          query => {
+            const subscription = subscribe(query)
 
-          const unwatch = watch(
-            computedQuery,
-            newQuery => {
-              if (newQuery !== query) {
-                subscription.unsubscribe()
-                unwatch()
-              }
-            },
-            { immediate: true }
-          )
-        },
-        { immediate: true }
-      )
+            const unwatch = watch(
+              computedQuery,
+              newQuery => {
+                if (newQuery !== query) {
+                  subscription.unsubscribe()
+                  unwatch()
+                }
+              },
+              { immediate: true }
+            )
+          },
+          { immediate: true }
+        )
+      } else {
+        subscribe(computedQuery)
+      }
     }
   }
 

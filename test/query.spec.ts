@@ -152,6 +152,22 @@ describe('fetcher', () => {
     await flushPromises()
     expect(mockFetch).toHaveBeenCalledWith(`my-new-key`)
   })
+  test('allows passing a query string', async () => {
+    const slug = ref('key')
+
+    await runInSetup(() => {
+      useSanityClient(config)
+      useSanityFetcher(slug.value)
+
+      return {}
+    })
+    expect(mockFetch).toHaveBeenCalledWith(`key`)
+    mockFetch.mockClear()
+
+    slug.value = ''
+    await flushPromises()
+    expect(mockFetch).toHaveBeenCalledTimes(0)
+  })
   test("doesn't fetch with falsy query", async () => {
     const slug = ref('key')
 
@@ -229,6 +245,27 @@ describe('fetcher', () => {
     key.value = 'new-sub'
     await flushPromises()
     expect(mockUnsubscribe).toHaveBeenCalled()
+  })
+
+  test('subscribes to a sanity resource with a single query string', async () => {
+    const key = ref('preview-subscription')
+    await runInSetup(() => {
+      useSanityClient(config, true)
+
+      const { data } = useSanityFetcher(
+        `my-key-${key.value}`,
+        'apple',
+        q => q,
+        { listen: true }
+      )
+      return { data }
+    })
+    expect(mockSubscribe).toHaveBeenCalled()
+    expect(mockListen).toHaveBeenCalled()
+
+    key.value = 'new-sub'
+    await flushPromises()
+    expect(mockUnsubscribe).toHaveBeenCalledTimes(0)
   })
 
   test('passes relevant options to listener', async () => {
