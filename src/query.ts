@@ -98,7 +98,8 @@ export function useSanityFetcher(
 
   const { data, status, setCache, error, fetch } = useCache(
     computedQuery,
-    query => (query ? client.fetch(query).then(mapper) : Promise.resolve(null)),
+    query =>
+      query ? client.fetch(query).then(mapper) : Promise.resolve(initialValue),
     options
   )
 
