@@ -72,7 +72,7 @@
     "release-it": "13.6.7",
     "siroc": "^0.3.0",
     "tsd": "^0.13.1",
-    "typescript": "^3.9.7",
+    "typescript": "^4.0.2",
     "vue": "2",
     "vue-server-renderer": "^2.6.11",
     "yorkie": "^2.0.0"
