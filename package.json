@@ -32,7 +32,7 @@
     "build": "yarn clean && yarn compile",
     "clean": "rm -rf lib/*",
     "compile": "siroc build",
-    "lint": "run-s lint:all:*",
+    "lint": "yarn lint:all:eslint && yarn lint:all:prettier",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts}\"",
     "lint:eslint": "eslint --fix",
@@ -40,9 +40,13 @@
     "prepare": "yarn build",
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
-    "test": "run-s test:*",
-    "test:types": "tsd",
+    "test": "yarn test:unit",
     "test:unit": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "resolutions": {
     "minimist": ">=1.2.5"
@@ -52,6 +56,11 @@
     "sanity-typed-queries": "^0.6.11"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-typescript": "^7.10.4",
+    "@babel/runtime": "^7.11.2",
     "@release-it/conventional-changelog": "^1.1.4",
     "@sanity/client": "^1.150.1",
     "@sanity/image-url": "^0.140.19",
@@ -60,34 +69,31 @@
     "@types/jest": "^26.0.10",
     "@types/jsdom": "^16.2.3",
     "@types/memory-fs": "^0.3.2",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
     "@vue/composition-api": "^1.0.0-beta.11",
     "@vue/test-utils": "^1.0.5",
     "codecov": "^3.7.2",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "expect-type": "^0.7.9",
     "flush-promises": "^1.0.2",
+    "husky": "^4.2.5",
     "jest": "^26.4.2",
     "lint-staged": "^10.2.13",
     "memory-fs": "^0.5.0",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.1",
     "release-it": "13.7.0",
     "siroc": "^0.3.1",
-    "tsd": "^0.13.1",
     "typescript": "^4.0.2",
     "vue": "2.6.12",
     "vue-server-renderer": "^2.6.12",
-    "yorkie": "^2.0.0"
+    "vue-template-compiler": "^2.6.12"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^0.6.7",
+    "@vue/composition-api": "^1.0.0-beta.11",
     "vue": "^2"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "tsd": {
-    "directory": "test/tsd",
-    "compilerOptions": {
-      "rootDir": "."
-    }
   }
 }

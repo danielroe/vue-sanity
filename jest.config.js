@@ -3,7 +3,7 @@ module.exports = {
   setupFiles: ['<rootDir>/test/helpers/setup.ts'],
   verbose: true,
   collectCoverage: true,
-  coveragePathIgnorePatterns: ['test', '.babelrc.js'],
+  coveragePathIgnorePatterns: ['test', '.babelrc.js', 'lib'],
   coverageThreshold: {
     global: {
       branches: 80,
