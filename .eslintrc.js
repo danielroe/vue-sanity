@@ -4,10 +4,11 @@ module.exports = {
   },
   plugins: ['jest'],
   rules: {
-    '@typescript-eslint/no-inferrable-types': 1,
-    '@typescript-eslint/explicit-function-return-type': 0,
-    '@typescript-eslint/no-explicit-any': 0,
-    '@typescript-eslint/explicit-module-boundary-types': 0,
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-inferrable-types': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   extends: ['@siroc'],
 }
