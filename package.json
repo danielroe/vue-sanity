@@ -61,7 +61,7 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
-    "@release-it/conventional-changelog": "^1.1.4",
+    "@release-it/conventional-changelog": "^2.0.0",
     "@sanity/client": "^1.150.1",
     "@sanity/image-url": "^0.140.19",
     "@siroc/eslint-config": "^0.2.0",
