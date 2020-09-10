@@ -2633,9 +2633,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/test-utils@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "@vue/test-utils@npm:1.0.5"
+"@vue/test-utils@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@vue/test-utils@npm:1.1.0"
   dependencies:
     dom-event-types: ^1.0.0
     lodash: ^4.17.15
@@ -2643,7 +2643,7 @@ __metadata:
   peerDependencies:
     vue: 2.x
     vue-template-compiler: ^2.x
-  checksum: 15ed213ca34cfe25492b6ec2444ae1b1856411f51d2740f87fed64693376ff114c057d80581d4ca9b7100632741403552efb130e77778b468d8fd93a8ea1cff9
+  checksum: 88f05ba4c8cb5494da6a1fdcf370f2b202370e6e7fd5f1633b1553e3c776f085aa8eebffe9aae7782dbf7f13384bb36a0babad1a4a97ed0ab0991d35a0688e57
   languageName: node
   linkType: hard
 
@@ -11014,7 +11014,7 @@ typescript@^4.0.2:
     "@typescript-eslint/eslint-plugin": ^4.1.0
     "@typescript-eslint/parser": ^4.1.0
     "@vue/composition-api": ^1.0.0-beta.11
-    "@vue/test-utils": ^1.0.5
+    "@vue/test-utils": ^1.1.0
     codecov: ^3.7.2
     eslint: ^7.8.1
     eslint-config-prettier: ^6.11.0
