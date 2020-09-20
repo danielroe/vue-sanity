@@ -4618,14 +4618,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^24.0.1":
-  version: 24.0.1
-  resolution: "eslint-plugin-jest@npm:24.0.1"
+"eslint-plugin-jest@npm:^24.0.2":
+  version: 24.0.2
+  resolution: "eslint-plugin-jest@npm:24.0.2"
   dependencies:
     "@typescript-eslint/experimental-utils": ^4.0.1
   peerDependencies:
     eslint: ">=5"
-  checksum: bebdd671949e3fbe537eea8ff5b485827d1c3e024bd22bb44f338502a5c5e0f520adc5d60454d7882ccd24cae9e76f8bb51dfb43596545631e2943c44e02d30f
+  checksum: 738cfac3d8b7b6d10f4b6a0b3cb2ea6dce2c14164012ca09b552df5bd4ff32b0d88d681b9a064a347df6dea80296de13097e1fab881d977472641f85f57ea387
   languageName: node
   linkType: hard
 
@@ -4918,10 +4918,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect-type@npm:^0.7.9":
-  version: 0.7.9
-  resolution: "expect-type@npm:0.7.9"
-  checksum: c9c64bec4ec51b3e22c897b94b83857695d3a76c12186065fa6774c83904a35a879a4f70e3d86ee7e95d4d206b03796402b041160fc31936895929bb44ba0f61
+"expect-type@npm:^0.7.10":
+  version: 0.7.10
+  resolution: "expect-type@npm:0.7.10"
+  checksum: 551ee2a65a649bd6d88af1fcbbebf7099014c2ad6ab1b1a55b5c0c7a544e799b5457f988a4cf9bf74fe047d302f55044a2d209f1d4bd45de582c9f20e651378f
   languageName: node
   linkType: hard
 
@@ -10767,6 +10767,16 @@ typescript@^4.0.2:
   languageName: node
   linkType: hard
 
+typescript@^4.0.3:
+  version: 4.0.3
+  resolution: "typescript@npm:4.0.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 5c892e132756a83d22030d7fb38be47cde27613f71d233dbe7faf79e4a92852c5146bfddcaf8c2da1a37d35ae8bf7b8c888fdcd763d5ad184cea6b21e7466838
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@^4.0.2#builtin<compat/typescript>":
   version: 4.0.2
   resolution: "typescript@patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=5b02a2"
@@ -10774,6 +10784,16 @@ typescript@^4.0.2:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: b8b689ef994cce4fe59950d56ddfffce3c4bdda8edb85b72e752d4a6d27bf7df8a318e76ccde25cbe6e642058f2f4ccf47187db4b243bbc98278a2844db9461b
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.0.3#builtin<compat/typescript>":
+  version: 4.0.3
+  resolution: "typescript@patch:typescript@npm%3A4.0.3#builtin<compat/typescript>::version=4.0.3&hash=5b02a2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 72db87d09f728c83062d64b5e12ed52effb6278963b6bc5c006219b22c104e02b8ce80164261de554923d3c47d894a1ca937ed542328caccb83ebaedeae98a69
   languageName: node
   linkType: hard
 
@@ -11027,9 +11047,9 @@ typescript@^4.0.2:
     codecov: ^3.7.2
     eslint: ^7.9.0
     eslint-config-prettier: ^6.11.0
-    eslint-plugin-jest: ^24.0.1
+    eslint-plugin-jest: ^24.0.2
     eslint-plugin-prettier: ^3.1.4
-    expect-type: ^0.7.9
+    expect-type: ^0.7.10
     flush-promises: ^1.0.2
     husky: ^4.3.0
     jest: ^26.4.2
@@ -11040,7 +11060,7 @@ typescript@^4.0.2:
     release-it: 14.0.3
     sanity-typed-queries: ^0.6.11
     siroc: ^0.3.1
-    typescript: ^4.0.2
+    typescript: ^4.0.3
     vue: 2.6.12
     vue-server-renderer: ^2.6.12
     vue-template-compiler: ^2.6.12
