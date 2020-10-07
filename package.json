@@ -62,7 +62,7 @@
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
     "@release-it/conventional-changelog": "^2.0.0",
-    "@sanity/client": "^1.150.7",
+    "@sanity/client": "^2.0.1",
     "@sanity/image-url": "^0.140.19",
     "@siroc/eslint-config": "^0.2.0",
     "@siroc/jest-preset": "^0.2.0",
