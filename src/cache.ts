@@ -6,6 +6,7 @@ import {
   onServerPrefetch,
   reactive,
   Ref,
+  set,
   watch,
 } from '@vue/composition-api'
 
@@ -90,7 +91,7 @@ export function useCache<T, K = null>(
     status = 'initialised',
     time = new Date().getTime(),
   }: SetCacheOptions<T, K>) {
-    Vue.set(cache, key, [value, status, time, error])
+    set(cache, key, [value, status, time, error])
   }
 
   const serverInstance = getServerInstance()
@@ -128,11 +129,11 @@ export function useCache<T, K = null>(
   }: SetCacheOptions<T, K>) {
     if (!(key in cache)) initialiseCache({ key, value, status })
 
-    Vue.set(cache[key], 0, value)
-    Vue.set(cache[key], 1, status)
-    Vue.set(cache[key], 2, new Date().getTime())
-    Vue.set(cache[key], 3, error)
-    Vue.set(cache[key], 4, promise)
+    set(cache[key], 0, value)
+    set(cache[key], 1, status)
+    set(cache[key], 2, new Date().getTime())
+    set(cache[key], 3, error)
+    set(cache[key], 4, promise)
   }
 
   function fetch(query = unwrap(key), force?: boolean) {
