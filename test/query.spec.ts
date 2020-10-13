@@ -185,6 +185,22 @@ describe('fetcher', () => {
     expect(mockFetch).toHaveBeenCalledTimes(0)
   })
 
+  test('returns correct initial value with falsy query', async () => {
+    const result = await runInSetup(() => {
+      useSanityClient(config)
+      const { data: dataArray } = useSanityFetcher(() => false, [])
+      const { data: dataDefault } = useSanityFetcher(() => false)
+
+      return {
+        dataArray,
+        dataDefault,
+      }
+    })
+    expect(result.value.dataArray).toEqual([])
+    expect(result.value.dataDefault).toEqual(null)
+    expect(mockFetch).toHaveBeenCalledTimes(0)
+  })
+
   test('status updates correctly', async () => {
     const data = await runInSetup(() => {
       useSanityClient(config)
