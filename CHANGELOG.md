@@ -1,3 +1,10 @@
+### [0.10.4](https://github.com/danielroe/vue-sanity/compare/v0.10.3...v0.10.4) (2020-10-13)
+
+
+### Bug Fixes
+
+* correctly return initial value for falsy queries ([43c94f5](https://github.com/danielroe/vue-sanity/commit/43c94f58d89e216cc5f3a4b99ec0d6b8182b94b6))
+
 ### [0.10.3](https://github.com/danielroe/vue-sanity/compare/v0.10.2...v0.10.3) (2020-10-10)
 
 ### [0.10.2](https://github.com/danielroe/vue-sanity/compare/v0.10.1...v0.10.2) (2020-09-30)
