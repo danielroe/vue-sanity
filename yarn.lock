@@ -10770,7 +10770,7 @@ typescript@^4.0.3:
     vue-server-renderer: ^2.6.12
     vue-template-compiler: ^2.6.12
   peerDependencies:
-    "@vue/composition-api": ^1.0.0-beta.16
+    "@vue/composition-api": ^1.0.0-beta.17
     vue: ^2
   languageName: unknown
   linkType: soft
