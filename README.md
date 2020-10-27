@@ -29,21 +29,21 @@
 - 🗄 **Caching:** Query results are cached.
 - 💪 **TypeScript**: Written in TypeScript.
 - 📡 **Real-time**: Supports previews using Sanity listening mode.
-- 🖇 **Composition API**: Vue3 support coming soon.
-- 📝 **SSR support**: Compatible with server-side rendering with Nuxt and vanilla Vue.
+- 🖇 **Vue 3 support**: This branch supports Vue 3.
+- 📝 **SSR support**: Coming soon (once Nuxt 3 is released).
 
 ## Quick Start
 
-> This project requires usage of [`@vue/composition-api`](https://github.com/vuejs/composition-api). Make sure you've set that up correctly first.
+> This branch of `vue-sanity` is designed to be used with Vue 3.
 
 First install `vue-sanity`:
 
 ```bash
-yarn add vue-sanity
+yarn add vue-sanity@next
 
 # or npm
 
-npm install vue-sanity --save
+npm install vue-sanity@next --save
 ```
 
 Now configure Sanity in your root component:
@@ -145,10 +145,6 @@ export default {
   You can also provide an object of additional options.
 
   - **listen**: true, false or an object of options to pass to `client.listen` (defaults to `false`)
-  - **strategy**: strategy for fetching. Defaults to `both`.
-    - `:server`: will not refetch if the cache has been populated on SSR
-    - `:client`: will disable SSR fetching entirely
-    - `:both`: will fetch on server and refetch when page is loaded
   - **deduplicate**: Whether to de-duplicate identical fetches. If set to `true`, additional fetches will not run unless made after the previous request errors or succeeds. If set to a number, additional fetches will run, but only after this many milliseconds after the previous fetch began.
 
 ### useSanityQuery
@@ -189,7 +185,6 @@ export default {
       // options
       {
         listen: true,
-        clientOnly: true,
       }
     )
 

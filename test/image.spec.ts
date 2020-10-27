@@ -1,4 +1,4 @@
-import { ref } from '@vue/composition-api'
+import { ref } from 'vue'
 
 import { runInSetup } from './helpers/mount'
 import { useSanityImage, useSanityClient } from '../src'
@@ -21,12 +21,16 @@ describe('image builder', () => {
     },
   }
   test('errors without proper config', async () => {
+    let error
     await runInSetup(() => {
-      useSanityImage(ref(image))
+      try {
+        useSanityImage(ref(image))
+      } catch (e) {
+        error = e
+      }
       return {}
     })
-    // eslint-disable-next-line
-    expect(console.error).toBeCalled()
+    expect(error).toBeDefined()
   })
 
   test('errors when run outside of setup', async () => {
@@ -46,7 +50,7 @@ describe('image builder', () => {
       return { result }
     })
 
-    const result = data.value.result
+    const result = data.result
 
     expect(result).toMatchSnapshot()
   })
@@ -58,7 +62,7 @@ describe('image builder', () => {
       return { result }
     })
 
-    const result = data.value.result
+    const result = data.result
 
     expect(result).toMatchSnapshot()
   })

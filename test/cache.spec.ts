@@ -1,4 +1,4 @@
-import { ref, watch } from '@vue/composition-api'
+import { ref, watch } from 'vue'
 
 import { useCache } from '../src'
 import { runInSetup } from './helpers/mount'
@@ -15,7 +15,7 @@ describe('cache', () => {
       return { data }
     })
 
-    expect(data.value.data).toBe(null)
+    expect(data.data).toBe(null)
   })
   test('initialises with default when one is given', async () => {
     const data = await runInSetup(() => {
@@ -28,7 +28,7 @@ describe('cache', () => {
       return { data }
     })
 
-    expect(data.value.data).toBe('orange')
+    expect(data.data).toBe('orange')
   })
 
   test('calls fetcher immediately', async () => {
@@ -38,74 +38,7 @@ describe('cache', () => {
       return { data }
     })
 
-    expect(data.value.data).toBe('cherry')
-  })
-
-  test('sets initial value from SSR', async () => {
-    const data = await runInSetup(() => {
-      const key = ref('SSR value')
-      ;(window as any).__NUXT__ = {
-        vsanity: {
-          'SSR value': ['grapefruit', 'server loaded', 1000],
-        },
-      }
-      // eslint-disable-next-line
-      const { data, status } = useCache(key, async () => {})
-      expect(data.value).toBe('grapefruit')
-      expect(status.value).toBe('loading')
-      return { data, status }
-    })
-    expect(data.value.status).toBe('client loaded')
-  })
-
-  test('allows server-only strategy', async () => {
-    const data = await runInSetup(() => {
-      const key = ref('server-strategy')
-      ;(window as any).__NUXT__ = {
-        vsanity: {
-          'server-strategy': ['server', 'server loaded', 1000],
-        },
-      }
-      const { data, status } = useCache(key, async key => key, {
-        strategy: 'server',
-      })
-      return { data, status }
-    })
-    expect(data.value.data).toBe('server')
-    expect(data.value.status).toBe('server loaded')
-  })
-
-  test('reloads on client when appropriate under server-only strategy', async () => {
-    const data = await runInSetup(() => {
-      const key = ref('server-strategy-without-data')
-      // eslint-disable-next-line
-      const { data, status } = useCache(key, async key => key, {
-        strategy: 'server',
-      })
-      return { data, status }
-    })
-    expect(data.value.data).toBe('server-strategy-without-data')
-    expect(data.value.status).toBe('client loaded')
-  })
-
-  test('allows client-only strategy', async () => {
-    const data = await runInSetup(() => {
-      const key = ref('client-strategy')
-      ;(window as any).__NUXT__ = {
-        vsanity: {
-          'client-strategy': ['grapefruit', 'server loaded', 1000],
-        },
-      }
-      // eslint-disable-next-line
-      const { data, status } = useCache(key, async key => key, {
-        strategy: 'client',
-      })
-      expect(data.value).toBe(null)
-      expect(status.value).toBe('loading')
-      return { data, status }
-    })
-    expect(data.value.status).toBe('client loaded')
-    expect(data.value.data).toBe('client-strategy')
+    expect(data.data).toBe('cherry')
   })
 
   test('can trigger fetch manually', async () => {
@@ -114,14 +47,14 @@ describe('cache', () => {
       const { data, fetch } = useCache(key, async newKey => newKey)
       return { data, fetch }
     })
-    expect(data.value.data).toBe('manualFetch')
+    expect(data.data).toBe('manualFetch')
 
     key.value = 'change'
-    expect(data.value.data).toBe(null)
+    expect(data.data).toBe(null)
 
-    await data.value.fetch('triggered')
+    await data.fetch('triggered')
     key.value = 'triggered'
-    expect(data.value.data).toBe('triggered')
+    expect(data.data).toBe('triggered')
   })
 
   test('sets error status correctly', async () => {
@@ -132,8 +65,8 @@ describe('cache', () => {
       })
       return { status, error }
     })
-    expect(data.value.status).toBe('error')
-    expect(data.value.error).toBeInstanceOf(Error)
+    expect(data.status).toBe('error')
+    expect(data.error).toBeInstanceOf(Error)
   })
 
   test('uses cache and deduplicates requests', async () => {
@@ -163,8 +96,8 @@ describe('cache', () => {
       return { status, fetch }
     })
     expect(number).toBe(1)
-    expect(result.value.status).toBe('client loaded')
-    await result.value.fetch()
+    expect(result.status).toBe('client loaded')
+    await result.fetch()
     expect(number).toBe(1)
   })
 
@@ -195,10 +128,10 @@ describe('cache', () => {
       return { status, fetch }
     })
     expect(number).toBe(1)
-    expect(result.value.status).toBe('client loaded')
+    expect(result.status).toBe('client loaded')
     await new Promise(resolve =>
       setTimeout(async () => {
-        await result.value.fetch()
+        await result.fetch()
         resolve()
       }, 20)
     )

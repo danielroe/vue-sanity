@@ -1,4 +1,4 @@
-import { ref } from '@vue/composition-api'
+import { ref } from 'vue'
 import flushPromises from 'flush-promises'
 import { defineDocument } from 'sanity-typed-queries'
 
@@ -58,31 +58,16 @@ describe('fetcher', () => {
     expect(error).toBeDefined()
   })
   test('errors when client is not injected', async () => {
+    let error
     await runInSetup(() => {
-      useSanityFetcher(() => `my-error`)
+      try {
+        useSanityFetcher(() => `my-error`)
+      } catch (e) {
+        error = e
+      }
       return {}
     })
-    // eslint-disable-next-line
-    expect(console.error).toBeCalled()
-  })
-
-  test('allows default options to be set', async () => {
-    const results = await runInSetup(() => {
-      useSanityClient(config, true, {
-        strategy: 'server',
-      })
-
-      const key = ref('default-server')
-      ;(window as any).__NUXT__ = {
-        vsanity: {
-          'default-server': ['server', 'server loaded'],
-        },
-      }
-      const { data, status } = useSanityFetcher(() => key.value)
-      return { data, status }
-    })
-    expect(results.value.data).toBe('server')
-    expect(results.value.status).toBe('server loaded')
+    expect(error).toBeDefined()
   })
 
   test('allows direct access to client', async () => {
@@ -91,7 +76,7 @@ describe('fetcher', () => {
       const data = _fetch('test')
       return { data }
     })
-    expect(await result.value.data).toBe('fetched-test')
+    expect(await result.data).toBe('fetched-test')
     const errored = await runInSetup(() => {
       let data = false
       try {
@@ -101,7 +86,7 @@ describe('fetcher', () => {
       }
       return { data }
     })
-    expect(errored.value.data).toBe(true)
+    expect(errored.data).toBe(true)
   })
 
   test('allows custom client to be provided', async () => {
@@ -110,7 +95,7 @@ describe('fetcher', () => {
       const { data } = useSanityFetcher(() => `query`)
       return { data }
     })
-    expect(result.value.data).toBe('fetched-query')
+    expect(result.data).toBe('fetched-query')
   })
   test('does not listen with a custom client', async () => {
     const mockListen = jest.fn()
@@ -196,8 +181,8 @@ describe('fetcher', () => {
         dataDefault,
       }
     })
-    expect(result.value.dataArray).toEqual([])
-    expect(result.value.dataDefault).toEqual(null)
+    expect(result.dataArray).toEqual([])
+    expect(result.dataDefault).toEqual(null)
     expect(mockFetch).toHaveBeenCalledTimes(0)
   })
 
@@ -208,7 +193,7 @@ describe('fetcher', () => {
       const { status } = useSanityFetcher(() => `my-key-status`, 'apple')
       return { status }
     })
-    expect(data.value.status).toEqual('client loaded')
+    expect(data.status).toEqual('client loaded')
   })
 
   test('data updates correctly', async () => {
@@ -218,7 +203,7 @@ describe('fetcher', () => {
       const { data } = useSanityFetcher(() => `my-key-data`, 'apple')
       return { data }
     })
-    expect(data.value.data).toEqual('return value-my-key-data')
+    expect(data.data).toEqual('return value-my-key-data')
   })
 
   test('subscribes to a sanity resource', async () => {
@@ -332,7 +317,7 @@ describe('sanity-typed-queries helper', () => {
       return { data }
     })
     expect(mockFetch).toHaveBeenCalled()
-    expect(result.value.data).toBe(
+    expect(result.data).toBe(
       "return value-*[_type == 'author'] { description, cost }"
     )
   })
@@ -347,7 +332,7 @@ describe('sanity-typed-queries helper', () => {
     expect(mockFetch).toHaveBeenCalledWith(
       `*[_type == 'author'] { description }`
     )
-    expect(result.value.data).toBe(
+    expect(result.data).toBe(
       "return value-*[_type == 'author'] { description }"
     )
   })

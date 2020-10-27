@@ -1,5 +1,5 @@
 import { expectTypeOf } from 'expect-type'
-import { Ref } from '@vue/composition-api'
+import { h, Ref } from 'vue'
 import { defineDocument } from 'sanity-typed-queries'
 
 import { mount } from '@vue/test-utils'
@@ -31,8 +31,11 @@ jest.mock('@sanity/client', () => {
 describe('useSanityFetcher', () => {
   it('requires a function or string passed', async () => {
     await runInSetup(() => {
-      // @ts-expect-error
-      useSanityFetcher(32)
+      try {
+        // @ts-expect-error
+        useSanityFetcher(32)
+        // eslint-disable-next-line
+      } catch {}
     })
 
     expect(true).toBeTruthy()
@@ -45,9 +48,9 @@ describe('useSanityFetcher', () => {
           projectId: 'test',
         })
       },
-      render(h) {
+      render() {
         return h({
-          render(h) {
+          render() {
             return h('div')
           },
           setup() {

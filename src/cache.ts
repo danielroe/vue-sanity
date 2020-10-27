@@ -2,18 +2,16 @@ import {
   computed,
   getCurrentInstance,
   isRef,
-  onServerPrefetch,
   reactive,
   Ref,
-  set,
   unref,
   watch,
-} from '@vue/composition-api'
+} from 'vue'
 
 /**
  * Cached data, status of fetch, timestamp of last fetch, error
  */
-type CacheEntry<T> = [T, FetchStatus, number, any, Promise<T>]
+type CacheEntry<T> = [T, FetchStatus, number, any, Promise<T> | null]
 
 const cache = reactive<Record<string, CacheEntry<any>>>({})
 
@@ -23,19 +21,7 @@ export function ensureInstance() {
   return instance
 }
 
-export function getServerInstance() {
-  const instance = getCurrentInstance()
-
-  if (instance?.$isServer) return instance
-  return false
-}
-
-export type FetchStatus =
-  | 'initialised'
-  | 'loading'
-  | 'server loaded'
-  | 'client loaded'
-  | 'error'
+export type FetchStatus = 'initialised' | 'loading' | 'client loaded' | 'error'
 
 interface SetCacheOptions<T, K> {
   key: string
@@ -54,12 +40,10 @@ export interface CacheOptions<K> {
    */
   clientOnly?: boolean
   /**
-   * Strategy for fetching. Defaults to 'both'.
-   * 'server' will not refetch if the cache has been populated on SSR.
-   * 'client' will disable SSR fetching.
-   * 'both' will fetch on server and refetch when page is loaded.
+   * Strategy for fetching. Defaults to 'client'.
+   * 'client' will disable SSR fetching. (not yet supported by vue-sanity@next)
    */
-  strategy?: 'server' | 'client' | 'both'
+  strategy?: 'client'
   /**
    * Whether to de-duplicate identical fetches. If set to `true`, additional fetches will not run unless made after
    * the previous request errors or succeeds. If set to a number, additional fetches will run, but only after this
@@ -73,14 +57,7 @@ export function useCache<T, K = null>(
   fetcher: (key: string) => Promise<T>,
   options: CacheOptions<K> = {}
 ) {
-  const {
-    initialValue = null,
-    deduplicate = false,
-    strategy = 'both',
-    clientOnly = false,
-  } = options
-
-  const enableSSR = !clientOnly && strategy !== 'client'
+  const { initialValue = null, deduplicate = false } = options
 
   function initialiseCache({
     key,
@@ -89,27 +66,7 @@ export function useCache<T, K = null>(
     status = 'initialised',
     time = new Date().getTime(),
   }: SetCacheOptions<T, K>) {
-    set(cache, key, [value, status, time, error])
-  }
-
-  const serverInstance = getServerInstance()
-  const k = unref(key)
-
-  if (enableSSR && !serverInstance) {
-    const prefetchState =
-      (window as any).__VSANITY_STATE__ ||
-      ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
-    if (prefetchState && prefetchState[k]) {
-      const [value, status, time, error] = prefetchState[k] as CacheEntry<T>
-
-      initialiseCache({
-        key: k,
-        value,
-        status,
-        time,
-        error,
-      })
-    }
+    cache[key] = [value, status, time, error, null]
   }
 
   function verifyKey(key: string) {
@@ -123,15 +80,15 @@ export function useCache<T, K = null>(
     value = cache[key]?.[0] || initialValue,
     status = cache[key]?.[1],
     error = null,
-    promise = cache[key]?.[4],
+    promise = cache[key]?.[4] || null,
   }: SetCacheOptions<T, K>) {
     if (!(key in cache)) initialiseCache({ key, value, status })
 
-    set(cache[key], 0, value)
-    set(cache[key], 1, status)
-    set(cache[key], 2, new Date().getTime())
-    set(cache[key], 3, error)
-    set(cache[key], 4, promise)
+    cache[key][0] = value
+    cache[key][1] = status
+    cache[key][2] = new Date().getTime()
+    cache[key][3] = error
+    cache[key][4] = promise
   }
 
   function fetch(query = unref(key), force?: boolean) {
@@ -158,42 +115,12 @@ export function useCache<T, K = null>(
         setCache({
           key: query,
           value,
-          status: serverInstance ? 'server loaded' : 'client loaded',
+          status: 'client loaded',
           promise: null,
         })
       )
       .catch(error => setCache({ key: query, status: 'error', error }))
     return promise
-  }
-
-  if (enableSSR && serverInstance) {
-    const ctx = serverInstance.$ssrContext
-    if (ctx) {
-      if (ctx.nuxt && !ctx.nuxt.vsanity) {
-        ctx.nuxt.vsanity = {}
-      } else if (!ctx.vsanity) {
-        ctx.vsanity = {}
-      }
-    }
-
-    onServerPrefetch(async () => {
-      const k = unref(key)
-      try {
-        await fetch(k, verifyKey(k))
-        // eslint-disable-next-line
-      } catch {}
-      if (
-        ctx &&
-        cache[k] &&
-        !['loading', 'initialised'].includes(cache[k]?.[1])
-      ) {
-        if (ctx.nuxt) {
-          ctx.nuxt.vsanity[k] = cache[k].slice(0, 3)
-        } else {
-          ctx.vsanity[k] = cache[k].slice(0, 3)
-        }
-      }
-    })
   }
 
   const data = computed(() => {
@@ -207,7 +134,7 @@ export function useCache<T, K = null>(
 
   const status = computed(() => {
     const k = unref(key)
-    if (!k) return 'server loaded'
+    if (!k) return 'initialised'
 
     verifyKey(k)
 
@@ -227,13 +154,11 @@ export function useCache<T, K = null>(
     watch(
       key,
       key => {
-        if (strategy === 'server' && status.value === 'server loaded') return
-
         fetch(key, verifyKey(key))
       },
       { immediate: true }
     )
-  } else if (strategy !== 'server' || status.value !== 'server loaded') {
+  } else {
     fetch(key, verifyKey(key))
   }
 

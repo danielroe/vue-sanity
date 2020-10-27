@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ssr cache fetches data correctly on SSR 1`] = `"<div data-server-rendered=\\"true\\">data: value, status: server loaded</div>"`;

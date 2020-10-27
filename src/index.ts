@@ -1,4 +1,4 @@
-import { provide, inject } from '@vue/composition-api'
+import { provide, inject } from 'vue'
 
 import { ClientConfig } from '@sanity/client'
 

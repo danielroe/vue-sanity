@@ -1,13 +1,5 @@
-import Vue from 'vue'
-import CompositionApi from '@vue/composition-api'
-
 import { useSanityClient } from '../src'
 import { runInSetup } from './helpers/mount'
-
-Vue.config.productionTip = false
-Vue.config.devtools = false
-
-Vue.use(CompositionApi)
 
 jest.mock('@sanity/client')
 // eslint-disable-next-line

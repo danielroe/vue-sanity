@@ -1,11 +1,4 @@
-import {
-  computed,
-  inject,
-  watch,
-  InjectionKey,
-  Ref,
-  isRef,
-} from '@vue/composition-api'
+import { computed, inject, watch, InjectionKey, Ref, isRef } from 'vue'
 import minifier from 'minify-groq'
 import type { SanityClient } from '@sanity/client'
 import type { QueryBuilder } from 'sanity-typed-queries'

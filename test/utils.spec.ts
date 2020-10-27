@@ -1,4 +1,4 @@
-import { ensureInstance, getServerInstance } from '../src/cache'
+import { ensureInstance } from '../src/cache'
 import { runInSetup } from './helpers/mount'
 
 describe('ensureInstance', () => {
@@ -8,7 +8,7 @@ describe('ensureInstance', () => {
       return { vm }
     })
 
-    expect(data.value.vm).toBeDefined()
+    expect(data.vm).toBeDefined()
   })
   it('errors when called out of setup', async () => {
     let error = false
@@ -19,16 +19,5 @@ describe('ensureInstance', () => {
     }
 
     expect(error).toBe(true)
-  })
-})
-
-describe('getServerInstance', () => {
-  it('returns false when not on server', async () => {
-    const data = await runInSetup(() => {
-      const vm = getServerInstance()
-      return { vm }
-    })
-
-    expect(data.value.vm).toBe(false)
   })
 })
