@@ -10757,7 +10757,7 @@ __metadata:
     vue-server-renderer: ^2.6.12
     vue-template-compiler: ^2.6.12
   peerDependencies:
-    "@vue/composition-api": ^1.0.0-beta.17
+    "@vue/composition-api": ^1.0.0-beta.18
     vue: ^2
   languageName: unknown
   linkType: soft
