@@ -1747,18 +1747,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@sanity/client@npm:2.0.1"
+"@sanity/client@npm:^2.0.9":
+  version: 2.0.9
+  resolution: "@sanity/client@npm:2.0.9"
   dependencies:
     "@sanity/eventsource": 2.0.1
-    "@sanity/generate-help-url": 2.0.1
-    "@sanity/observable": 2.0.1
+    "@sanity/generate-help-url": 2.0.9
+    "@sanity/observable": 2.0.9
     deep-assign: ^2.0.0
     get-it: ^5.0.3
     make-error: ^1.3.0
     object-assign: ^4.1.1
-  checksum: 613ef1a02328ebe6a694a289a68c42dadbb6731a161caa4520a094c87dea006cba1ad48159862d431d1b80374041bd22a9301ef0c93ab413a09143c4489d9ed2
+  checksum: c18af48e760d031048f953ebb86088655ff0ef0566efa2738272f0200696e43337767f21a84327518ca89e9ddde7059512bae0141858ef0c93e5db212f8ddc2b
   languageName: node
   linkType: hard
 
@@ -1789,10 +1789,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/generate-help-url@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@sanity/generate-help-url@npm:2.0.1"
-  checksum: 8fef68bc0244b13730b12818e6fc94134832f6ab6df4f86d768e2d7967fa5bb7a2ad235b95d889a77e3d87c3e0d15669f33b681559637fe6365981c804083126
+"@sanity/generate-help-url@npm:2.0.9":
+  version: 2.0.9
+  resolution: "@sanity/generate-help-url@npm:2.0.9"
+  checksum: 10db06bc13859c712127e6ee8a38987607ef3285a90040a51989650b516e950449895d3bb946703a16df929a46a0036cbd78b2d9d420cb970379652092d5b35c
   languageName: node
   linkType: hard
 
@@ -1815,13 +1815,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/observable@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@sanity/observable@npm:2.0.1"
+"@sanity/observable@npm:2.0.9":
+  version: 2.0.9
+  resolution: "@sanity/observable@npm:2.0.9"
   dependencies:
     object-assign: ^4.1.1
     rxjs: ^6.5.3
-  checksum: 0978e24da0402d1be5348e628c560264ee25ad7ca89fc05ded76018c18b3ee04f899ed82e2a51eb315dec0a87b4b094b32ab5acdf58ba22a1aa431abf50cab2a
+  checksum: f982afaf4fe24d65328bcb587ff291ffaf27f7e613218739436c9907fbd4bc78f10da97206c12bff654807123b6816eacb229296d155878f4a41879eb863fb30
   languageName: node
   linkType: hard
 
@@ -10732,7 +10732,7 @@ __metadata:
     "@babel/preset-typescript": ^7.12.1
     "@babel/runtime": ^7.12.5
     "@release-it/conventional-changelog": ^2.0.0
-    "@sanity/client": ^2.0.1
+    "@sanity/client": ^2.0.9
     "@sanity/image-url": ^0.140.19
     "@siroc/eslint-config": ^0.2.0
     "@siroc/jest-preset": ^0.2.0
