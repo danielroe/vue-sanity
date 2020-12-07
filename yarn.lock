@@ -2412,14 +2412,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/composition-api@npm:1.0.0-beta.20":
-  version: 1.0.0-beta.20
-  resolution: "@vue/composition-api@npm:1.0.0-beta.20"
+"@vue/composition-api@npm:1.0.0-beta.21":
+  version: 1.0.0-beta.21
+  resolution: "@vue/composition-api@npm:1.0.0-beta.21"
   dependencies:
     tslib: ^2.0.1
   peerDependencies:
     vue: ">= 2.5 < 3"
-  checksum: 8c8725537ad6872b07f714fa91f6a2e4ffe35190ea6c90743be15db7b0d1a9020c6ba5f0e515283a45a7e285aa2eceb727c4f0410d846381f3a806e107242c8f
+  checksum: 0643563979879cad05092d570fa0964328337f50dbb112eef080354916678076cbc5e665c44c471b25d319372f8cda6252a1e81b177879171d75ec832bfeeb88
   languageName: node
   linkType: hard
 
@@ -10770,7 +10770,7 @@ typescript@^4.1.2:
     "@types/memory-fs": ^0.3.2
     "@typescript-eslint/eslint-plugin": ^4.9.0
     "@typescript-eslint/parser": ^4.9.0
-    "@vue/composition-api": 1.0.0-beta.20
+    "@vue/composition-api": 1.0.0-beta.21
     "@vue/test-utils": ^1.1.1
     codecov: ^3.8.1
     eslint: ^7.15.0
@@ -10793,7 +10793,7 @@ typescript@^4.1.2:
     vue-server-renderer: ^2.6.12
     vue-template-compiler: ^2.6.12
   peerDependencies:
-    "@vue/composition-api": 1.0.0-beta.20
+    "@vue/composition-api": 1.0.0-beta.21
     vue: ^2
   languageName: unknown
   linkType: soft
