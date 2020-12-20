@@ -1,3 +1,4 @@
+import { VueConstructor } from 'vue'
 import {
   computed,
   getCurrentInstance,
@@ -20,13 +21,14 @@ const cache = reactive<Record<string, CacheEntry<any>>>({})
 export function ensureInstance() {
   const instance = getCurrentInstance()
   if (!instance) throw new Error('You must call this from within a component')
-  return instance
+  return instance.proxy as InstanceType<VueConstructor>
 }
 
 export function getServerInstance() {
   const instance = getCurrentInstance()
 
-  if (instance?.$isServer) return instance
+  if (instance?.proxy.$isServer)
+    return instance.proxy as InstanceType<VueConstructor>
   return false
 }
 
