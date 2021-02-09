@@ -3588,18 +3588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-conventionalcommits@npm:^4.4.0":
-  version: 4.4.0
-  resolution: "conventional-changelog-conventionalcommits@npm:4.4.0"
-  dependencies:
-    compare-func: ^2.0.0
-    lodash: ^4.17.15
-    q: ^1.5.1
-  checksum: ceafd0f505b7e1ec1c090c5f0bcd36a44aa53dcb8979667b24aa7aeada5a81585c088a11a1227b50ea1f3717e18f5aede3318ae8ebff9daed6af9a7c4b5f0aaf
-  languageName: node
-  linkType: hard
-
-"conventional-changelog-conventionalcommits@npm:^4.5.0":
+"conventional-changelog-conventionalcommits@npm:^4.4.0, conventional-changelog-conventionalcommits@npm:^4.5.0":
   version: 4.5.0
   resolution: "conventional-changelog-conventionalcommits@npm:4.5.0"
   dependencies:
@@ -9354,10 +9343,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sanity-typed-queries@npm:^0.7.4":
-  version: 0.7.4
-  resolution: "sanity-typed-queries@npm:0.7.4"
-  checksum: 3028c7a567345b6b6867f09ab766f1e7c3a45a5a6b3e2fec646d5a6815d6384c9d20c3de362f3002b120533dafc9ffd259573361730cddfbb8a958dafb321411
+"sanity-typed-queries@npm:^0.7.5":
+  version: 0.7.5
+  resolution: "sanity-typed-queries@npm:0.7.5"
+  checksum: 00fa12380432a5cc4acd94b918a00e0dd6ffb74db75cb186a11d3846fd57c4bf433430682b8a09fd87a23d5224f9e3781f04c02a7240e466088aa4b5ad9c1814
   languageName: node
   linkType: hard
 
@@ -10747,7 +10736,7 @@ typescript@^4.1.3:
     minify-groq: ^1.0.0
     prettier: ^2.2.1
     release-it: 14.3.0
-    sanity-typed-queries: ^0.7.4
+    sanity-typed-queries: ^0.7.5
     semver: ^7.3.4
     siroc: ^0.6.3
     typescript: ^4.1.3
