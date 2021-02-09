@@ -9343,7 +9343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sanity-typed-queries@npm:^0.7.5":
+"sanity-typed-queries@npm:^0.7.4":
   version: 0.7.5
   resolution: "sanity-typed-queries@npm:0.7.5"
   checksum: 00fa12380432a5cc4acd94b918a00e0dd6ffb74db75cb186a11d3846fd57c4bf433430682b8a09fd87a23d5224f9e3781f04c02a7240e466088aa4b5ad9c1814
@@ -10736,7 +10736,7 @@ typescript@^4.1.3:
     minify-groq: ^1.0.0
     prettier: ^2.2.1
     release-it: 14.3.0
-    sanity-typed-queries: ^0.7.5
+    sanity-typed-queries: ^0.7.4
     semver: ^7.3.4
     siroc: ^0.6.3
     typescript: ^4.1.3

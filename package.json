@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "minify-groq": "^1.0.0",
-    "sanity-typed-queries": "^0.7.5"
+    "sanity-typed-queries": "^0.7.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
