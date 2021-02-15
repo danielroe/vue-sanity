@@ -9534,9 +9534,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"siroc@npm:^0.6.5":
-  version: 0.6.5
-  resolution: "siroc@npm:0.6.5"
+"siroc@npm:^0.6.6":
+  version: 0.6.6
+  resolution: "siroc@npm:0.6.6"
   dependencies:
     "@rollup/plugin-alias": ^3.1.2
     "@rollup/plugin-commonjs": ^17.1.0
@@ -9562,7 +9562,7 @@ __metadata:
   bin:
     siroc: bin/cli.js
     siroc-runner: bin/runtime.js
-  checksum: 60efe17d9efffbcde229ce0205a56b888223fdb7b2a2d417751e3e1175866522575d2f24053871db90577e75ea6282bcba62286f37396f53929f02b16b6bb734
+  checksum: 0a61567007a7ef7b3a41d4979b183a8352246744415ec286e2adb3658ac1fccdb6b5b64c5d8db6bc107dc52ee4c70433028128f295896cc4a0b7c671c101116d
   languageName: node
   linkType: hard
 
@@ -10762,7 +10762,7 @@ typescript@^4.1.5:
     release-it: 14.4.0
     sanity-typed-queries: ^0.7.5
     semver: ^7.3.4
-    siroc: ^0.6.5
+    siroc: ^0.6.6
     typescript: ^4.1.5
     vue: 2.6.12
     vue-server-renderer: ^2.6.12
