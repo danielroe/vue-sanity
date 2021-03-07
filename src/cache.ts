@@ -179,6 +179,7 @@ export function useCache<T, K = null>(
     }
 
     if (Vue2) {
+      // eslint-disable-next-line
       const { onServerPrefetch } = require('vue-demi')
 
       onServerPrefetch(async () => {
