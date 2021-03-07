@@ -10734,6 +10734,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vue-demi@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "vue-demi@npm:0.7.1"
+  peerDependencies:
+    "@vue/composition-api": ^1.0.0-beta.1
+    vue: ^2.6.0 || >=3.0.0-rc.1
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+  bin:
+    vue-demi-fix: bin/vue-demi-fix.js
+    vue-demi-switch: bin/vue-demi-switch.js
+  checksum: 95e3a6a17dbad438daca358d9184a0e662a289603e6e5dfa6b7f8fc3d4e1eda2005317fc6b58f37ebf62842d506ee59c6fc5a7d41d1ed5b49a15a6169acbb695
+  languageName: node
+  linkType: hard
+
 "vue-sanity@workspace:.":
   version: 0.0.0-use.local
   resolution: "vue-sanity@workspace:."
@@ -10775,11 +10791,15 @@ __metadata:
     siroc: ^0.7.0
     typescript: ^4.2.3
     vue: 2.6.12
+    vue-demi: ^0.7.1
     vue-server-renderer: ^2.6.12
     vue-template-compiler: ^2.6.12
   peerDependencies:
     "@vue/composition-api": 1.0.0-rc.3
-    vue: ^2
+    vue: ^2.0.0 || >=3.0.0-rc.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
   languageName: unknown
   linkType: soft
 
