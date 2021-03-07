@@ -1,3 +1,14 @@
+### [0.10.5](https://github.com/danielroe/vue-sanity/compare/v0.10.4...v0.10.5) (2021-03-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade deps
+
+### Miscellaneous Chores
+
+* upgrade deps ([0512fc8](https://github.com/danielroe/vue-sanity/commit/0512fc8cc1d9521096c7f621afa78c21f73cf872))
+
 ### [0.10.4](https://github.com/danielroe/vue-sanity/compare/v0.10.3...v0.10.4) (2020-10-13)
 
 
