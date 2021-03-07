@@ -1,4 +1,4 @@
-import { Ref, inject, computed, InjectionKey } from '@vue/composition-api'
+import { Ref, inject, computed, InjectionKey } from 'vue-demi'
 
 import {
   FitMode,

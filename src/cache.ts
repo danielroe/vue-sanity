@@ -1,15 +1,16 @@
-import { VueConstructor } from 'vue'
+import type { VueConstructor } from 'vue'
 import {
   computed,
   getCurrentInstance,
   isRef,
-  onServerPrefetch,
   reactive,
   Ref,
   set,
   unref,
   watch,
-} from '@vue/composition-api'
+  onServerPrefetch,
+  Vue2,
+} from 'vue-demi'
 
 /**
  * Cached data, status of fetch, timestamp of last fetch, error
