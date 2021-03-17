@@ -1,15 +1,15 @@
-import { VueConstructor } from 'vue'
+import type { VueConstructor } from 'vue'
 import {
   computed,
   getCurrentInstance,
   isRef,
-  onServerPrefetch,
   reactive,
   Ref,
   set,
   unref,
   watch,
-} from '@vue/composition-api'
+  Vue2,
+} from 'vue-demi'
 
 /**
  * Cached data, status of fetch, timestamp of last fetch, error
@@ -178,24 +178,29 @@ export function useCache<T, K = null>(
       }
     }
 
-    onServerPrefetch(async () => {
-      const k = unref(key)
-      try {
-        await fetch(k, verifyKey(k))
-        // eslint-disable-next-line
-      } catch {}
-      if (
-        ctx &&
-        cache[k] &&
-        !['loading', 'initialised'].includes(cache[k]?.[1])
-      ) {
-        if (ctx.nuxt) {
-          ctx.nuxt.vsanity[k] = cache[k].slice(0, 3)
-        } else {
-          ctx.vsanity[k] = cache[k].slice(0, 3)
+    if (Vue2) {
+      // eslint-disable-next-line
+      const { onServerPrefetch } = require('vue-demi')
+
+      onServerPrefetch(async () => {
+        const k = unref(key)
+        try {
+          await fetch(k, verifyKey(k))
+          // eslint-disable-next-line
+        } catch {}
+        if (
+          ctx &&
+          cache[k] &&
+          !['loading', 'initialised'].includes(cache[k]?.[1])
+        ) {
+          if (ctx.nuxt) {
+            ctx.nuxt.vsanity[k] = cache[k].slice(0, 3)
+          } else {
+            ctx.vsanity[k] = cache[k].slice(0, 3)
+          }
         }
-      }
-    })
+      })
+    }
   }
 
   const data = computed(() => {
