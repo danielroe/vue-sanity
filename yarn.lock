@@ -1778,9 +1778,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sanity/client@npm:^2.2.6":
-  version: 2.2.6
-  resolution: "@sanity/client@npm:2.2.6"
+"@sanity/client@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "@sanity/client@npm:2.7.1"
   dependencies:
     "@sanity/eventsource": 2.2.6
     "@sanity/generate-help-url": 2.2.6
@@ -1789,7 +1789,7 @@ __metadata:
     get-it: ^5.0.3
     make-error: ^1.3.0
     object-assign: ^4.1.1
-  checksum: 5ebe5c1046770feec03d8d498b31af74d15b5e3f78b02a0a5ea1796d270ee640ec0a0a2135d4f7180ee9f0442cfcb46c93fe890858c9a4b03472e7ef590fb9b0
+  checksum: 8a843bdcba5580c7d717e0433b29b0df6124623f8010e2dc47070640f847fd4c0704525f64f5cfaa04f35432d79a99cdf971276a3e9055ce69c7091e94a4b75d
   languageName: node
   linkType: hard
 
@@ -10817,7 +10817,7 @@ typescript@^4.2.3:
     "@babel/preset-typescript": ^7.13.0
     "@babel/runtime": ^7.13.10
     "@release-it/conventional-changelog": ^2.0.1
-    "@sanity/client": ^2.2.6
+    "@sanity/client": ^2.7.1
     "@sanity/image-url": ^0.140.22
     "@siroc/eslint-config": ^0.2.0
     "@siroc/jest-preset": ^0.2.0
