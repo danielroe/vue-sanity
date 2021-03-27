@@ -74,7 +74,7 @@
     "@siroc/eslint-config": "^0.2.0",
     "@siroc/jest-preset": "^0.2.0",
     "@types/jest": "^26.0.22",
-    "@types/jsdom": "^16.2.8",
+    "@types/jsdom": "^16.2.9",
     "@types/memory-fs": "^0.3.3",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",

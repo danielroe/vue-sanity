@@ -2059,14 +2059,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsdom@npm:^16.2.8":
-  version: 16.2.8
-  resolution: "@types/jsdom@npm:16.2.8"
+"@types/jsdom@npm:^16.2.9":
+  version: 16.2.9
+  resolution: "@types/jsdom@npm:16.2.9"
   dependencies:
     "@types/node": "*"
     "@types/parse5": "*"
     "@types/tough-cookie": "*"
-  checksum: 13ac63f3ba6cf470bddf1e91ad6945d8155ee7271a50eda4f8a9a6d4d43ffee8388d9a626c1e38f7160d4fc40968d3db52f435a5ad16bf03988559ca77497603
+  checksum: 0f9799664a0abd6e772bffb20e3568f0667c1ec2f77566a94843fae2ec5f13bf9fc8d174d77ad12afcbe24f0a1bc9623966eebe7c2605a3968639bb15e9c0bfc
   languageName: node
   linkType: hard
 
@@ -10820,7 +10820,7 @@ typescript@^4.2.3:
     "@siroc/eslint-config": ^0.2.0
     "@siroc/jest-preset": ^0.2.0
     "@types/jest": ^26.0.22
-    "@types/jsdom": ^16.2.8
+    "@types/jsdom": ^16.2.9
     "@types/memory-fs": ^0.3.3
     "@typescript-eslint/eslint-plugin": ^4.19.0
     "@typescript-eslint/parser": ^4.19.0
