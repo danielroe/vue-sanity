@@ -2074,14 +2074,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsdom@npm:^16.2.9":
-  version: 16.2.9
-  resolution: "@types/jsdom@npm:16.2.9"
+"@types/jsdom@npm:^16.2.10":
+  version: 16.2.10
+  resolution: "@types/jsdom@npm:16.2.10"
   dependencies:
     "@types/node": "*"
     "@types/parse5": "*"
     "@types/tough-cookie": "*"
-  checksum: 0f9799664a0abd6e772bffb20e3568f0667c1ec2f77566a94843fae2ec5f13bf9fc8d174d77ad12afcbe24f0a1bc9623966eebe7c2605a3968639bb15e9c0bfc
+  checksum: 9e39f1d2d00e7373222da490a78f11e66a8ea19e3b08ed9b223bcd8da0ce6eb15aabd670d36996a727291d4a917366a8340353a5adef83b4c714fed6e61e786f
   languageName: node
   linkType: hard
 
@@ -4464,9 +4464,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^24.3.2":
-  version: 24.3.2
-  resolution: "eslint-plugin-jest@npm:24.3.2"
+"eslint-plugin-jest@npm:^24.3.3":
+  version: 24.3.3
+  resolution: "eslint-plugin-jest@npm:24.3.3"
   dependencies:
     "@typescript-eslint/experimental-utils": ^4.0.1
   peerDependencies:
@@ -4475,7 +4475,7 @@ __metadata:
   peerDependenciesMeta:
     "@typescript-eslint/eslint-plugin":
       optional: true
-  checksum: caf92f0bab6800bbf1fcfa8d75e1b7ad2bfb77914abdf1f0c33ac2b0d3b15c48cbec7b36a828931048f71dc181bbda9ede1d74b9a153f92029de0680644d1d14
+  checksum: 1f016d4f0a79ac09dfbf9cf15bdaed831f71317a5eacc4640f34f39e9789127e9b3e59c449e9e20851be9c439a5e8317a6c9d62ca1e1b51e089c69c738596462
   languageName: node
   linkType: hard
 
@@ -10856,7 +10856,7 @@ typescript@^4.2.3:
     "@siroc/eslint-config": ^0.2.0
     "@siroc/jest-preset": ^0.2.0
     "@types/jest": ^26.0.22
-    "@types/jsdom": ^16.2.9
+    "@types/jsdom": ^16.2.10
     "@types/memory-fs": ^0.3.3
     "@typescript-eslint/eslint-plugin": ^4.20.0
     "@typescript-eslint/parser": ^4.20.0
@@ -10866,7 +10866,7 @@ typescript@^4.2.3:
     conventional-changelog-conventionalcommits: ^4.5.0
     eslint: ^7.23.0
     eslint-config-prettier: ^8.1.0
-    eslint-plugin-jest: ^24.3.2
+    eslint-plugin-jest: ^24.3.3
     eslint-plugin-prettier: ^3.3.1
     expect-type: ^0.11.0
     flush-promises: ^1.0.2
