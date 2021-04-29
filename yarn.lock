@@ -2047,13 +2047,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^26.0.22":
-  version: 26.0.22
-  resolution: "@types/jest@npm:26.0.22"
+"@types/jest@npm:^26.0.23":
+  version: 26.0.23
+  resolution: "@types/jest@npm:26.0.23"
   dependencies:
     jest-diff: ^26.0.0
     pretty-format: ^26.0.0
-  checksum: 4c98ed058522f6cc74bcb47b8b7b104b77b2d4e42e087171f3d2d3ae5338c21f43ec26f2a186bc229c1bd72c3f776ad07faba837f0ec27f22cf94e154516c0b3
+  checksum: a015676b78bdc51be6f6315acef10d9106ea8064e3e49143bca3c75b834b61285b45c5f5ccfd049a80107f1e2869a9183cdb5be85816c073ea8dd05852fafdc6
   languageName: node
   linkType: hard
 
@@ -2410,14 +2410,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/composition-api@npm:1.0.0-rc.7":
-  version: 1.0.0-rc.7
-  resolution: "@vue/composition-api@npm:1.0.0-rc.7"
+"@vue/composition-api@npm:1.0.0-rc.8":
+  version: 1.0.0-rc.8
+  resolution: "@vue/composition-api@npm:1.0.0-rc.8"
   dependencies:
     tslib: ^2.2.0
   peerDependencies:
     vue: ">= 2.5 < 3"
-  checksum: b209b486bcc528f48d3ef8081d0b0b67aaad4ca39e66089fa43d479189697013bab2535fa7808f4ed5edcfee40854a0f5d6f637ad16bc781098eb678339bef00
+  checksum: 89b3971714951c8cd44417a02cda6d79026746175a86648eccec9f57de42e54be9ca7ba32416618ba6d34cd297cfb81f5d9677795fbb946e5f1a0ec88fdcd539
   languageName: node
   linkType: hard
 
@@ -10840,12 +10840,12 @@ __metadata:
     "@sanity/image-url": ^0.140.22
     "@siroc/eslint-config": ^0.2.0
     "@siroc/jest-preset": ^0.2.0
-    "@types/jest": ^26.0.22
+    "@types/jest": ^26.0.23
     "@types/jsdom": ^16.2.10
     "@types/memory-fs": ^0.3.3
     "@typescript-eslint/eslint-plugin": ^4.22.0
     "@typescript-eslint/parser": ^4.22.0
-    "@vue/composition-api": 1.0.0-rc.7
+    "@vue/composition-api": 1.0.0-rc.8
     "@vue/test-utils": ^1.1.4
     codecov: ^3.8.1
     conventional-changelog-conventionalcommits: ^4.5.0
@@ -10871,7 +10871,7 @@ __metadata:
     vue-server-renderer: ^2.6.12
     vue-template-compiler: ^2.6.12
   peerDependencies:
-    "@vue/composition-api": 1.0.0-rc.6
+    "@vue/composition-api": 1.0.0-rc.8
     vue: ^2
   languageName: unknown
   linkType: soft

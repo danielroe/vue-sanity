@@ -70,12 +70,12 @@
     "@sanity/image-url": "^0.140.22",
     "@siroc/eslint-config": "^0.2.0",
     "@siroc/jest-preset": "^0.2.0",
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^26.0.23",
     "@types/jsdom": "^16.2.10",
     "@types/memory-fs": "^0.3.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
-    "@vue/composition-api": "1.0.0-rc.7",
+    "@vue/composition-api": "1.0.0-rc.8",
     "@vue/test-utils": "^1.1.4",
     "codecov": "^3.8.1",
     "conventional-changelog-conventionalcommits": "^4.5.0",
@@ -100,7 +100,7 @@
     "vue-template-compiler": "^2.6.12"
   },
   "peerDependencies": {
-    "@vue/composition-api": "1.0.0-rc.6",
+    "@vue/composition-api": "1.0.0-rc.8",
     "vue": "^2"
   }
 }
