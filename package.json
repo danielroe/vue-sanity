@@ -100,7 +100,7 @@
     "vue-template-compiler": "^2.6.12"
   },
   "peerDependencies": {
-    "@vue/composition-api": "1.0.0-rc.8",
+    "@vue/composition-api": "1.0.0-rc.9",
     "vue": "^2"
   }
 }
