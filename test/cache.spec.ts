@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { ref, watch } from '@vue/composition-api'
 
 import { useCache } from '../src'

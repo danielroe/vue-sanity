@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { expectTypeOf } from 'expect-type'
 import { Ref } from '@vue/composition-api'
 import { defineDocument } from 'sanity-typed-queries'

@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { ref } from '@vue/composition-api'
 import flushPromises from 'flush-promises'
 import { defineDocument } from 'sanity-typed-queries'

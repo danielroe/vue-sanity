@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { ref } from '@vue/composition-api'
 
 import { runInSetup } from './helpers/mount'
