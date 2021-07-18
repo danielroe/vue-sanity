@@ -1313,6 +1313,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/eslintrc@npm:^0.4.3":
+  version: 0.4.3
+  resolution: "@eslint/eslintrc@npm:0.4.3"
+  dependencies:
+    ajv: ^6.12.4
+    debug: ^4.1.1
+    espree: ^7.3.0
+    globals: ^13.9.0
+    ignore: ^4.0.6
+    import-fresh: ^3.2.1
+    js-yaml: ^3.13.1
+    minimatch: ^3.0.4
+    strip-json-comments: ^3.1.1
+  checksum: 03a7704150b868c318aab6a94d87a33d30dc2ec579d27374575014f06237ba1370ae11178db772f985ef680d469dc237e7b16a1c5d8edaaeb8c3733e7a95a6d3
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.5.0":
   version: 0.5.0
   resolution: "@humanwhocodes/config-array@npm:0.5.0"
@@ -2544,14 +2561,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/composition-api@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@vue/composition-api@npm:1.0.1"
+"@vue/composition-api@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@vue/composition-api@npm:1.0.3"
   dependencies:
     tslib: ^2.3.0
   peerDependencies:
     vue: ">= 2.5 < 3"
-  checksum: 539f48dfb4d24e60ca31df7deebb14f9a7410f483890ddfd8084df06ef6b1018093da09fa751808e91e10c1185f58faa9651a3f0511c9b08492aaa2c248cd8ba
+  checksum: 0951715f0b9ac16f27df2398d76967ed2e92e46545e52c91bdcbccd94054770af6d2190b309c73d4373d9a345eb0862470a4ee92c3615e701e6068bb71d04af7
   languageName: node
   linkType: hard
 
@@ -4466,7 +4483,57 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.30.0, eslint@npm:^7.5.0":
+"eslint@npm:^7.31.0":
+  version: 7.31.0
+  resolution: "eslint@npm:7.31.0"
+  dependencies:
+    "@babel/code-frame": 7.12.11
+    "@eslint/eslintrc": ^0.4.3
+    "@humanwhocodes/config-array": ^0.5.0
+    ajv: ^6.10.0
+    chalk: ^4.0.0
+    cross-spawn: ^7.0.2
+    debug: ^4.0.1
+    doctrine: ^3.0.0
+    enquirer: ^2.3.5
+    escape-string-regexp: ^4.0.0
+    eslint-scope: ^5.1.1
+    eslint-utils: ^2.1.0
+    eslint-visitor-keys: ^2.0.0
+    espree: ^7.3.1
+    esquery: ^1.4.0
+    esutils: ^2.0.2
+    fast-deep-equal: ^3.1.3
+    file-entry-cache: ^6.0.1
+    functional-red-black-tree: ^1.0.1
+    glob-parent: ^5.1.2
+    globals: ^13.6.0
+    ignore: ^4.0.6
+    import-fresh: ^3.0.0
+    imurmurhash: ^0.1.4
+    is-glob: ^4.0.0
+    js-yaml: ^3.13.1
+    json-stable-stringify-without-jsonify: ^1.0.1
+    levn: ^0.4.1
+    lodash.merge: ^4.6.2
+    minimatch: ^3.0.4
+    natural-compare: ^1.4.0
+    optionator: ^0.9.1
+    progress: ^2.0.0
+    regexpp: ^3.1.0
+    semver: ^7.2.1
+    strip-ansi: ^6.0.0
+    strip-json-comments: ^3.1.0
+    table: ^6.0.9
+    text-table: ^0.2.0
+    v8-compile-cache: ^2.0.3
+  bin:
+    eslint: bin/eslint.js
+  checksum: fd73d07ce0b73e5ea950b295a6eaf8d45914b4e56cba4ef49e55a36dc7e965a4865f63f618c0a096a01d089752d9e44180b80ba8657039b8e631dd40e0af1663
+  languageName: node
+  linkType: hard
+
+"eslint@npm:^7.5.0":
   version: 7.30.0
   resolution: "eslint@npm:7.30.0"
   dependencies:
@@ -9014,9 +9081,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"siroc@npm:^0.13.0":
-  version: 0.13.0
-  resolution: "siroc@npm:0.13.0"
+"siroc@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "siroc@npm:0.14.0"
   dependencies:
     "@rollup/plugin-alias": ^3.1.2
     "@rollup/plugin-commonjs": ^19.0.0
@@ -9044,7 +9111,7 @@ __metadata:
   bin:
     siroc: bin/cli.js
     siroc-runner: bin/runtime.js
-  checksum: bd2baa5e28a236b0843344fe802ef3caea48db47ea65013565d8da896a974b6b498afed290a0c39d13fd7e01e6086b396ca4b075f6d9634406876e171aaecfc6
+  checksum: d1590acb07106cfdb154d21bba8396e5baed4062bedaaadd5700ed60799fcb5649d848faf4ef85b74a8ff163e55af79521becfea5c35da1a3e5c4c00875d8847
   languageName: node
   linkType: hard
 
@@ -10072,11 +10139,11 @@ typescript@^4.3.5:
     "@types/memory-fs": ^0.3.3
     "@typescript-eslint/eslint-plugin": ^4.28.3
     "@typescript-eslint/parser": ^4.28.3
-    "@vue/composition-api": 1.0.1
+    "@vue/composition-api": 1.0.3
     "@vue/test-utils": ^1.2.1
     codecov: ^3.8.2
     conventional-changelog-conventionalcommits: ^4.6.0
-    eslint: ^7.30.0
+    eslint: ^7.31.0
     eslint-config-prettier: ^8.3.0
     eslint-plugin-jest: ^24.3.6
     eslint-plugin-prettier: ^3.4.0
@@ -10094,13 +10161,13 @@ typescript@^4.3.5:
     release-it: 14.10.0
     sanity-typed-queries: ^0.7.5
     semver: ^7.3.5
-    siroc: ^0.13.0
+    siroc: ^0.14.0
     typescript: ^4.3.5
     vue: 2.6.14
     vue-server-renderer: ^2.6.14
     vue-template-compiler: ^2.6.14
   peerDependencies:
-    "@vue/composition-api": 1.0.1
+    "@vue/composition-api": 1.0.3
     vue: ^2
   languageName: unknown
   linkType: soft
