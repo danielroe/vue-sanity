@@ -89,7 +89,7 @@
     "jest": "^27.0.6",
     "jest-environment-jsdom": "^27.0.6",
     "jest-environment-node": "^27.0.6",
-    "lint-staged": "^11.1.0",
+    "lint-staged": "^11.1.1",
     "memory-fs": "^0.5.0",
     "pinst": "^2.1.6",
     "prettier": "^2.3.2",
