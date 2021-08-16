@@ -1,7 +1,7 @@
 {
   "name": "vue-sanity",
   "version": "0.11.0",
-  "description": "Sanity integration for VueJS",
+  "description": "Sanity integration for Vue",
   "keywords": [
     "vue",
     "vuejs",
@@ -13,12 +13,10 @@
   ],
   "repository": "danielroe/vue-sanity",
   "license": "MIT",
-  "contributors": [
-    {
-      "name": "Daniel Roe <daniel@roe.dev>",
-      "url": "https://github.com/danielroe"
-    }
-  ],
+  "author": {
+    "name": "Daniel Roe <daniel@roe.dev>",
+    "url": "https://github.com/danielroe"
+  },
   "sideEffects": false,
   "exports": {
     ".": {
