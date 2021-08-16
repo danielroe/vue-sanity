@@ -29,12 +29,12 @@
 - 🗄 **Caching:** Query results are cached.
 - 💪 **TypeScript**: Written in TypeScript.
 - 📡 **Real-time**: Supports previews using Sanity listening mode.
-- 🖇 **Composition API**: Vue3 support coming soon.
+- 🖇 **Composition API**: Vue3/Vue2 support using `vue-demi`.
 - 📝 **SSR support**: Compatible with server-side rendering with Nuxt and vanilla Vue.
 
 ## Quick Start
 
-> This project requires usage of [`@vue/composition-api`](https://github.com/vuejs/composition-api). Make sure you've set that up correctly first.
+> If you are using Vue 2, then this project requires usage of [`@vue/composition-api`](https://github.com/vuejs/composition-api). Make sure you've set that up correctly first. If you're using Vue 3, no extra steps are required.
 
 First install `vue-sanity`:
 
