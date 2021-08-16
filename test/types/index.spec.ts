@@ -9,11 +9,13 @@ describe('useSanityClient', () => {
         // @ts-expect-error
         useSanityClient({
           dataset: '',
+          apiVersion: '2021-03-25',
         })
 
         // @ts-expect-error
         useSanityClient({
           projectId: '',
+          apiVersion: '2021-03-25',
         })
 
         // eslint-disable-next-line

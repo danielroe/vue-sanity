@@ -2,14 +2,16 @@
  * @jest-environment jsdom
  */
 import { ref } from '@vue/composition-api'
+import { ClientConfig } from '@sanity/client'
 
 import { runInSetup } from './helpers/mount'
 import { useSanityImage, useSanityClient } from '../src'
 
-const config = {
+const config: ClientConfig = {
   projectId: 'id',
   dataset: 'production',
   useCdn: true,
+  apiVersion: '2021-03-25',
 }
 
 ;(global.console.error as any) = jest.fn()

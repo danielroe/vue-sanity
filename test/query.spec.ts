@@ -17,6 +17,8 @@ import { runInSetup } from './helpers/mount'
 const config = {
   projectId: 'id',
   dataset: 'production',
+  useCdn: true,
+  apiVersion: '2021-03-25',
 }
 
 const mockFetch = jest.fn(async (key: string) => `return value-${key}`)
