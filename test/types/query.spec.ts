@@ -7,7 +7,7 @@ import { defineDocument } from 'sanity-typed-queries'
 
 import { mount } from '@vue/test-utils'
 
-import { useSanityFetcher, useSanityClient, useSanityQuery } from '../../lib'
+import { useSanityFetcher, useSanityClient, useSanityQuery } from '../..'
 
 import { runInSetup } from '../helpers/mount'
 

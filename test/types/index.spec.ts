@@ -1,4 +1,4 @@
-import { useSanityClient } from '../../lib'
+import { useSanityClient } from '../..'
 
 import { runInSetup } from '../helpers/mount'
 
