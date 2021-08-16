@@ -58,7 +58,7 @@
     "@sanity/image-url": "^0.140.22",
     "minify-groq": "^1.0.0",
     "sanity-typed-queries": "^0.7.5",
-    "vue-demi": "^0.7.1"
+    "vue-demi": "^0.11.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -101,7 +101,7 @@
     "vue-template-compiler": "^2.6.14"
   },
   "peerDependencies": {
-    "@vue/composition-api": "1.0.5",
+    "@vue/composition-api": "1.1.1",
     "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
   "peerDependenciesMeta": {
