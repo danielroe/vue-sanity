@@ -21,6 +21,8 @@ const sanityClient = require('@sanity/client')
 const config = {
   projectId: 'id',
   dataset: 'production',
+  useCdn: true,
+  apiVersion: '2021-03-25',
 }
 
 beforeEach(() => {
