@@ -42,13 +42,13 @@
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts}\"",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
-    "prepare": "yarn build && husky install",
-    "prepublishOnly": "pinst --disable",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn pinst --disable",
     "release": "release-it",
     "test": "yarn test:unit",
     "test:unit": "jest",
     "postinstall": "husky install",
-    "postpublish": "pinst --enable"
+    "postpublish": "yarn pinst --enable"
   },
   "resolutions": {
     "minimist": ">=1.2.5"
