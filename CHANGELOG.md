@@ -1,3 +1,20 @@
+## [0.11.0](https://github.com/danielroe/vue-sanity/compare/v0.10.6...v0.11.0) (2021-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* package now depends on @sanity/client and @sanity/image-url directly
+* library now uses cjs/mjs suffix
+
+### Features
+
+* vue3 support ([#163](https://github.com/danielroe/vue-sanity/issues/163)) ([bdfff8a](https://github.com/danielroe/vue-sanity/commit/bdfff8a26a84af5a83091903fa3eb30363045607))
+
+
+### Bug Fixes
+
+* better support for esm ([a8967f3](https://github.com/danielroe/vue-sanity/commit/a8967f38a475126913db54e1ab04d87dc649973d))
+
 ### [0.10.6](https://github.com/danielroe/vue-sanity/compare/v0.10.5...v0.10.6) (2021-03-07)
 
 ### [0.10.5](https://github.com/danielroe/vue-sanity/compare/v0.10.4...v0.10.5) (2021-03-07)
