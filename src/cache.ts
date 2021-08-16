@@ -1,4 +1,4 @@
-import { VueConstructor } from 'vue'
+import type { VueConstructor } from 'vue'
 import {
   computed,
   getCurrentInstance,
@@ -9,7 +9,7 @@ import {
   set,
   unref,
   watch,
-} from '@vue/composition-api'
+} from 'vue-demi'
 
 /**
  * Cached data, status of fetch, timestamp of last fetch, error

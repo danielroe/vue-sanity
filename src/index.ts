@@ -1,4 +1,4 @@
-import { provide, inject } from '@vue/composition-api'
+import { provide, inject } from 'vue-demi'
 
 import sanityClient, { ClientConfig } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
