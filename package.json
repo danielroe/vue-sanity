@@ -22,13 +22,13 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "require": "./lib/index.js",
-      "import": "./lib/index.es.js"
+      "require": "./lib/index.cjs",
+      "import": "./lib/index.mjs"
     },
     "./package.json": "./package.json"
   },
-  "main": "lib/index.js",
-  "module": "lib/index.es.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*",
@@ -56,6 +56,8 @@
     "minimist": ">=1.2.5"
   },
   "dependencies": {
+    "@sanity/client": "^2.14.0",
+    "@sanity/image-url": "^0.140.22",
     "minify-groq": "^1.0.0",
     "sanity-typed-queries": "^0.7.5"
   },
@@ -67,8 +69,6 @@
     "@babel/runtime": "^7.15.3",
     "@jest/test-sequencer": "^27.0.6",
     "@release-it/conventional-changelog": "^3.2.0",
-    "@sanity/client": "^2.14.0",
-    "@sanity/image-url": "^0.140.22",
     "@siroc/eslint-config": "^0.2.0",
     "@types/jest": "^27.0.1",
     "@types/jsdom": "^16.2.13",

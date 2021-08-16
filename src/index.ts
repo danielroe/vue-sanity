@@ -1,6 +1,7 @@
 import { provide, inject } from '@vue/composition-api'
 
-import { ClientConfig } from '@sanity/client'
+import sanityClient, { ClientConfig } from '@sanity/client'
+import imageUrlBuilder from '@sanity/image-url'
 
 import { useCache, ensureInstance } from './cache'
 import type { FetchStatus, CacheOptions } from './cache'
@@ -35,10 +36,6 @@ export function useSanityClient(
   defaultOptions: Options = {}
 ) {
   ensureInstance()
-  // eslint-disable-next-line
-  const sanityClient = require('@sanity/client')
-  // eslint-disable-next-line
-  const imageUrlBuilder = require('@sanity/image-url')
 
   const client = sanityClient(config)
   const imageBuilder = imageUrlBuilder(config)
