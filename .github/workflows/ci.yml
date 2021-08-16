@@ -23,8 +23,8 @@ jobs:
             !.yarn/plugins
             !.yarn/sdks
             !.yarn/versions
-            .pnp.js
-          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.js') }}
+            .pnp.cjs
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.cjs') }}
           restore-keys: |
             ${{ runner.os }}-yarn
 
@@ -55,8 +55,8 @@ jobs:
             !.yarn/plugins
             !.yarn/sdks
             !.yarn/versions
-            .pnp.js
-          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.js') }}
+            .pnp.cjs
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.cjs') }}
           restore-keys: |
             ${{ runner.os }}-yarn
 
