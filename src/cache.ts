@@ -3,13 +3,12 @@ import {
   computed,
   getCurrentInstance,
   isRef,
+  onServerPrefetch,
   reactive,
   Ref,
   set,
   unref,
   watch,
-  onServerPrefetch,
-  Vue2,
 } from 'vue-demi'
 
 /**
