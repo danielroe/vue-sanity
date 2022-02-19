@@ -99,7 +99,7 @@
     "vue-template-compiler": "^2.6.14"
   },
   "peerDependencies": {
-    "@vue/composition-api": "1.1.3",
+    "@vue/composition-api": "1.4.6",
     "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
   "peerDependenciesMeta": {
