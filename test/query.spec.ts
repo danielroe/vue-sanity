@@ -1,9 +1,12 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment happy-dom
  */
 import { ref } from '@vue/composition-api'
 import flushPromises from 'flush-promises'
 import { defineDocument } from 'sanity-typed-queries'
+import { describe, test, it, expect, beforeEach, vi } from 'vitest'
+
+import sanityClient from '@sanity/client'
 
 import {
   useCustomClient,
@@ -21,27 +24,27 @@ const config = {
   apiVersion: '2021-03-25',
 }
 
-const mockFetch = jest.fn(async (key: string) => `return value-${key}`)
-;(global.console.error as any) = jest.fn()
+const mockFetch = vi.fn(async (key: string) => `return value-${key}`)
+;(global.console.error as any) = vi.fn()
 
-const mockUnsubscribe = jest.fn()
-const mockSubscribe = jest.fn((callback: (result: any) => void) => {
+const mockUnsubscribe = vi.fn()
+const mockSubscribe = vi.fn((callback: (result: any) => void) => {
   callback({ result: 'sub update' })
   return {
     unsubscribe: mockUnsubscribe,
   }
 })
-const mockListen = jest.fn(() => ({
+const mockListen = vi.fn(() => ({
   subscribe: mockSubscribe,
 }))
 
-jest.mock('@sanity/client', () => {
-  return jest.fn().mockImplementation(() => {
-    return { fetch: mockFetch, listen: mockListen }
-  })
+vi.mock('@sanity/client', () => {
+  return {
+    default: vi.fn().mockImplementation(() => {
+      return { fetch: mockFetch, listen: mockListen }
+    }),
+  }
 })
-// eslint-disable-next-line
-const sanityClient = require('@sanity/client')
 
 beforeEach(() => {
   sanityClient.mockClear()
@@ -118,7 +121,7 @@ describe('fetcher', () => {
     expect(result.value.data).toBe('fetched-query')
   })
   test('does not listen with a custom client', async () => {
-    const mockListen = jest.fn()
+    const mockListen = vi.fn()
     const customClient = new Proxy(
       {
         fetch: async t => `fetched-${t}`,

@@ -1,8 +1,8 @@
-/**
- * @jest-environment jsdom
- */
 import Vue from 'vue'
 import CompositionApi from '@vue/composition-api'
+
+import { describe, beforeEach, test, expect, vi } from 'vitest'
+import sanityClient from '@sanity/client'
 
 import { useSanityClient } from '../src'
 import { runInSetup } from './helpers/mount'
@@ -12,11 +12,8 @@ Vue.config.devtools = false
 
 Vue.use(CompositionApi)
 
-jest.mock('@sanity/client')
-// eslint-disable-next-line
-const sanityClient = require('@sanity/client')
-
-;(global.console.error as any) = jest.fn()
+vi.mock('@sanity/client')
+;(global.console.error as any) = vi.fn()
 
 const config = {
   projectId: 'id',

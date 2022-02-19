@@ -1,5 +1,5 @@
 import { useSanityClient } from '../..'
-
+import { describe, it, expect } from 'vitest'
 import { runInSetup } from '../helpers/mount'
 
 describe('useSanityClient', () => {

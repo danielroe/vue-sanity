@@ -1,8 +1,9 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment happy-dom
  */
 import { ref } from '@vue/composition-api'
 import { ClientConfig } from '@sanity/client'
+import { describe, test, expect, vi } from 'vitest'
 
 import { runInSetup } from './helpers/mount'
 import { useSanityImage, useSanityClient } from '../src'
@@ -14,7 +15,7 @@ const config: ClientConfig = {
   apiVersion: '2021-03-25',
 }
 
-;(global.console.error as any) = jest.fn()
+;(global.console.error as any) = vi.fn()
 
 describe('image builder', () => {
   const image = {
