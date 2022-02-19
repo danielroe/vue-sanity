@@ -1,15 +1,15 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`image builder produces relevant image url 1`] = `
-Object {
+exports[`image builder > produces relevant image url 1`] = `
+{
   "placeholder": "",
   "src": "https://cdn.sanity.io/images/siteid/production/imageid-100x100.jpg",
   "srcset": "https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=300&q=82&fit=min 300w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=600&q=82&fit=min 600w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=1200&q=82&fit=min 1200w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=1920&q=82&fit=min 1920w, https://cdn.sanity.io/images/siteid/production/imageid-100x100.jpg 3w",
 }
 `;
 
-exports[`image builder works without dimensions 1`] = `
-Object {
+exports[`image builder > works without dimensions 1`] = `
+{
   "placeholder": "",
   "src": "https://cdn.sanity.io/images/siteid/production/imageid-100x100.jpg",
   "srcset": "https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=300&q=82&fit=min 300w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=600&q=82&fit=min 600w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=1200&q=82&fit=min 1200w, https://cdn.sanity.io/images/id/production/imageid-100x100.jpg?w=1920&q=82&fit=min 1920w",

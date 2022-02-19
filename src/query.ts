@@ -50,7 +50,7 @@ export type Options = Omit<CacheOptions<any>, 'initialValue'> & {
  *
  * @param query A string, or a function that retuns a query string. If the return value changes, a new Sanity query will be run and the return value automatically updated.
  */
-export function useSanityFetcher<T extends any>(query: Query): Result<T | null>
+export function useSanityFetcher<T>(query: Query): Result<T | null>
 
 /**
  *
@@ -58,7 +58,7 @@ export function useSanityFetcher<T extends any>(query: Query): Result<T | null>
  * @param initialValue The value to return before the Sanity client returns an actual result. Defaults to null.
  * @param mapper A function that transforms the result from Sanity, before returning it to your component.
  */
-export function useSanityFetcher<T extends any, R extends any = T>(
+export function useSanityFetcher<T, R = T>(
   query: Query,
   initialValue: R,
   mapper?: (result: any) => T,

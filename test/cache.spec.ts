@@ -1,12 +1,10 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment happy-dom
  */
 import { ref, watch } from '@vue/composition-api'
-
+import { describe, test, expect, vi } from 'vitest'
 import { useCache } from '../src'
 import { runInSetup } from './helpers/mount'
-
-jest.setTimeout(10000)
 
 describe('cache', () => {
   test('initialises null when no default is given', async () => {
@@ -210,7 +208,7 @@ describe('cache', () => {
 
   test('is reactive', async () => {
     const key = ref('reactive')
-    const mockWatcher = jest.fn()
+    const mockWatcher = vi.fn()
 
     await runInSetup(() => {
       const { data } = useCache(key, async newKey => newKey)
@@ -222,4 +220,4 @@ describe('cache', () => {
 
     expect(mockWatcher).toHaveBeenCalledTimes(2)
   })
-})
+}, 10000)

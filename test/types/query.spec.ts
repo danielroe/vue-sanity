@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment happy-dom
  */
 import { expectTypeOf } from 'expect-type'
 import { Ref } from '@vue/composition-api'
@@ -7,28 +7,32 @@ import { defineDocument } from 'sanity-typed-queries'
 
 import { mount } from '@vue/test-utils'
 
+import { describe, expect, it, vi } from 'vitest'
+
 import { useSanityFetcher, useSanityClient, useSanityQuery } from '../..'
 
 import { runInSetup } from '../helpers/mount'
 
-const mockFetch = jest.fn(async (key: string) => `return value-${key}`)
-;(global.console.error as any) = jest.fn()
+const mockFetch = vi.fn(async (key: string) => `return value-${key}`)
+;(global.console.error as any) = vi.fn()
 
-const mockUnsubscribe = jest.fn()
-const mockSubscribe = jest.fn((callback: (result: any) => void) => {
+const mockUnsubscribe = vi.fn()
+const mockSubscribe = vi.fn((callback: (result: any) => void) => {
   callback({ result: 'sub update' })
   return {
     unsubscribe: mockUnsubscribe,
   }
 })
-const mockListen = jest.fn(() => ({
+const mockListen = vi.fn(() => ({
   subscribe: mockSubscribe,
 }))
 
-jest.mock('@sanity/client', () => {
-  return jest.fn().mockImplementation(() => {
-    return { fetch: mockFetch, listen: mockListen }
-  })
+vi.mock('@sanity/client', () => {
+  return {
+    default: vi.fn().mockImplementation(() => {
+      return { fetch: mockFetch, listen: mockListen }
+    }),
+  }
 })
 
 describe('useSanityFetcher', () => {

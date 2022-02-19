@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { ensureInstance, getServerInstance } from '../src/cache'
 import { runInSetup } from './helpers/mount'
 
