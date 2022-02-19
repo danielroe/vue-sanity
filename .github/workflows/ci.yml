@@ -68,7 +68,7 @@ jobs:
         run: yarn build
 
       - name: Test project
-        run: yarn test
+        run: yarn test --coverage
 
       - name: Coverage
         run: yarn codecov

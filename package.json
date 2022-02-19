@@ -43,8 +43,7 @@
     "prepare": "yarn build",
     "prepublishOnly": "yarn pinst --disable",
     "release": "release-it",
-    "test": "yarn test:unit",
-    "test:unit": "vitest",
+    "test": "yarn vitest",
     "postinstall": "husky install",
     "postpublish": "yarn pinst --enable"
   },
