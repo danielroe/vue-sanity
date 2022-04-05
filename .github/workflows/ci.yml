@@ -8,68 +8,39 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - uses: actions/cache@v3
-        id: cache
+      - uses: actions/setup-node@v3
         with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .yarn/*
-            !.yarn/releases
-            !.yarn/plugins
-            !.yarn/sdks
-            !.yarn/versions
-            .pnp.cjs
-          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.cjs') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn
+          node-version: "14"
+          cache: "pnpm"
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+        run: pnpm install --frozen-lockfile
 
       - name: Lint project
-        run: yarn lint
+        run: npm run lint
 
   test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - uses: actions/cache@v3
-        id: cache
+      - uses: actions/setup-node@v3
         with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .yarn/*
-            !.yarn/releases
-            !.yarn/plugins
-            !.yarn/sdks
-            !.yarn/versions
-            .pnp.cjs
-          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.cjs') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn
+          node-version: "14"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn
+        run: pnpm install --frozen-lockfile
 
       - name: Build project
-        run: yarn build
+        run: npm run build
 
       - name: Test project
-        run: yarn test --coverage
+        run: npm run test -- --coverage
 
       - name: Coverage
-        run: yarn codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v2

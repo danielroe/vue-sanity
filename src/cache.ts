@@ -28,7 +28,7 @@ export function getServerInstance() {
   const instance = getCurrentInstance()
 
   if (process.env.VITE_SSG || instance?.proxy.$isServer)
-    return instance.proxy as InstanceType<VueConstructor>
+    return instance?.proxy as InstanceType<VueConstructor>
   return false
 }
 
