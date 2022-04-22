@@ -27,7 +27,7 @@ specifiers:
   pinst: ^3.0.0
   prettier: ^2.6.2
   release-it: 14.14.2
-  sanity-typed-queries: ^0.7.5
+  sanity-typed-queries: ^0.8.1
   semver: ^7.3.7
   typescript: ^4.6.3
   unbuild: ^0.7.2
@@ -42,7 +42,7 @@ dependencies:
   '@sanity/client': 3.3.0
   '@sanity/image-url': 1.0.1
   minify-groq: 1.0.0
-  sanity-typed-queries: 0.7.5
+  sanity-typed-queries: 0.8.1
   vue-demi: 0.12.5_8414dc0546a7fec2b290b41e4edbca0b
 
 devDependencies:
@@ -4946,8 +4946,8 @@ packages:
     resolution: {integrity: sha1-wih9MZJXffUXrLvW0UUanDw5FPU=}
     dev: false
 
-  /sanity-typed-queries/0.7.5:
-    resolution: {integrity: sha512-74+OCy28aOQznx11YnhgLORqur4gxc89k7nrltXlzOzpXScm1Q1OF2ySLht+aceimn91cwQO3Dhrc1QrTzLvvA==}
+  /sanity-typed-queries/0.8.1:
+    resolution: {integrity: sha512-0eL8R3yqTEMMKOanFOoJfp+ixdbimsWnTmYdWryJRWM1x//4xyc+fe0LZfFXgdXyOm3d5bV3A7tAf3GdlVbZCQ==}
     dev: false
 
   /scule/0.2.1:

@@ -19,6 +19,7 @@ export const optionsSymbol: InjectionKey<Options> = Symbol(
 )
 
 type Query = string | (() => string | null | undefined | false)
+type QueryReturnType<T> = [string, T]
 
 interface Result<T> {
   /**
@@ -141,12 +142,13 @@ export function useSanityFetcher(
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
-  Type,
+  Subqueries extends Record<string, QueryReturnType<any>>,
+  Type extends Record<string, QueryReturnType<any>>,
   Project extends boolean,
   Exclude extends string
 >(
@@ -159,11 +161,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
+  Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
   Project extends boolean,
   Exclude extends string
@@ -174,11 +177,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
+  Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
   Project extends boolean,
   Exclude extends string,
@@ -190,11 +194,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
+  Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
   Project extends boolean,
   Exclude extends string,
@@ -208,11 +213,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
+  Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
   Project extends boolean,
   Exclude extends string,
@@ -227,11 +233,12 @@ export function useSanityQuery<
 
 export function useSanityQuery<
   Builder extends Pick<
-    QueryBuilder<Schema, Mappings, Type, Project, Exclude>,
+    QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
   Schema,
   Mappings extends Record<string, any>,
+  Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
   Project extends boolean,
   Exclude extends string
