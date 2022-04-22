@@ -36,16 +36,16 @@
   "scripts": {
     "build": "unbuild",
     "postinstall": "husky install",
-    "lint": "yarn lint:all:eslint && yarn lint:all:prettier",
-    "lint:all:eslint": "yarn lint:eslint --ext .js,.ts,.vue .",
-    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts}\"",
+    "lint": "npm run lint:all:eslint && npm run lint:all:prettier",
+    "lint:all:eslint": "npm run lint:eslint -- --ext .js,.ts,.vue .",
+    "lint:all:prettier": "npm run lint:prettier -- \"**/*.{js,json,ts}\"",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
-    "prepare": "yarn build",
-    "prepublishOnly": "yarn pinst --disable",
-    "postpublish": "yarn pinst --enable",
+    "prepare": "npm run build",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable",
     "release": "release-it",
-    "test": "yarn vitest"
+    "test": "vitest"
   },
   "resolutions": {
     "minimist": ">=1.2.5"

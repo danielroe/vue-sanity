@@ -1,8 +1,4 @@
-lib/*
-!lib/.gitkeep
 dist/*
 !dist/.gitkeep
 node_modules
 coverage
-
-.pnp.*
