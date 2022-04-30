@@ -4,7 +4,7 @@ overrides:
   minimist: '>=1.2.5'
 
 specifiers:
-  '@release-it/conventional-changelog': ^4.3.0
+  '@release-it/conventional-changelog': ^5.0.0
   '@sanity/client': ^3.3.0
   '@sanity/image-url': ^1.0.1
   '@types/memory-fs': ^0.3.3
@@ -46,7 +46,7 @@ dependencies:
   vue-demi: 0.12.5_8414dc0546a7fec2b290b41e4edbca0b
 
 devDependencies:
-  '@release-it/conventional-changelog': 4.3.0_release-it@14.14.2
+  '@release-it/conventional-changelog': 5.0.0_release-it@14.14.2
   '@types/memory-fs': 0.3.3
   '@typescript-eslint/eslint-plugin': 5.20.0_b9ac9b5656ce5dffade639fcf5e491bf
   '@typescript-eslint/parser': 5.20.0_eslint@8.13.0+typescript@4.6.3
@@ -478,11 +478,11 @@ packages:
       '@octokit/openapi-types': 11.2.0
     dev: true
 
-  /@release-it/conventional-changelog/4.3.0_release-it@14.14.2:
-    resolution: {integrity: sha512-SAdattAPXyxADh+cWbNqlk7OBWh/SskYCj0hAb5VPmm/wrIR1dQrlKpsUQ/7O0WGGe7uhvj4YB8kVTIZipcc9w==}
-    engines: {node: '>=10'}
+  /@release-it/conventional-changelog/5.0.0_release-it@14.14.2:
+    resolution: {integrity: sha512-YAvGgxA8cIQSbmyHmAmLMwzCkNP74upLST8jFuDJTI+AVfK2Grp2HbZu0/NeV3sHYD20sT8YMzNVUeRxNlyHeg==}
+    engines: {node: '>=14'}
     peerDependencies:
-      release-it: ^14.12.1
+      release-it: ^15.0.0-esm.4
     dependencies:
       concat-stream: 2.0.0
       conventional-changelog: 3.1.25
