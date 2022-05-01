@@ -83,7 +83,7 @@
     "unbuild": "^0.7.2",
     "vite": "^2.9.5",
     "vitest": "^0.9.4",
-    "vue": "2.6.14",
+    "vue": "3.2.33",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14"
   },
