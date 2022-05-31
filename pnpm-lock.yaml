@@ -34,7 +34,7 @@ specifiers:
   vite: ^2.9.5
   vitest: ^0.9.4
   vue: 2.6.14
-  vue-demi: ^0.12.5
+  vue-demi: ^0.13.0
   vue-server-renderer: ^2.6.14
   vue-template-compiler: ^2.6.14
 
@@ -43,7 +43,7 @@ dependencies:
   '@sanity/image-url': 1.0.1
   minify-groq: 1.0.0
   sanity-typed-queries: 0.8.1
-  vue-demi: 0.12.5_qqknybkgu77mfmuqwqpe5w6kbm
+  vue-demi: 0.13.0_qqknybkgu77mfmuqwqpe5w6kbm
 
 devDependencies:
   '@release-it/conventional-changelog': 4.3.0_release-it@14.14.2
@@ -5662,8 +5662,8 @@ packages:
       - stylus
     dev: true
 
-  /vue-demi/0.12.5_qqknybkgu77mfmuqwqpe5w6kbm:
-    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==}
+  /vue-demi/0.13.0_qqknybkgu77mfmuqwqpe5w6kbm:
+    resolution: {integrity: sha512-pu9R4Nydj+LMcKkIL1cnP1L2anJBTmVZzVWSdy5P1rkSRs9fxGCFrZmXdPTEsN37m5JtBVBSYKPk6xnORfjUsQ==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true

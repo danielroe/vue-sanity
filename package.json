@@ -55,7 +55,7 @@
     "@sanity/image-url": "^1.0.1",
     "minify-groq": "^1.0.0",
     "sanity-typed-queries": "^0.8.1",
-    "vue-demi": "^0.12.5"
+    "vue-demi": "^0.13.0"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^4.3.0",
