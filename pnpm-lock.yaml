@@ -17,7 +17,7 @@ specifiers:
   eslint: ^8.19.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.2.1
-  expect-type: ^0.13.0
+  expect-type: ^0.14.0
   flush-promises: ^1.0.2
   happy-dom: ^6.0.0
   husky: ^8.0.1
@@ -57,7 +57,7 @@ devDependencies:
   eslint: 8.19.0
   eslint-config-prettier: 8.5.0_eslint@8.19.0
   eslint-plugin-prettier: 4.2.1_7uxdfn2xinezdgvmbammh6ev5i
-  expect-type: 0.13.0
+  expect-type: 0.14.0
   flush-promises: 1.0.2
   happy-dom: 6.0.0
   husky: 8.0.1
@@ -2803,8 +2803,8 @@ packages:
       strip-final-newline: 3.0.0
     dev: true
 
-  /expect-type/0.13.0:
-    resolution: {integrity: sha512-CclevazQfrqo8EvbLPmP7osnb1SZXkw47XPPvUUpeMz4HuGzDltE7CaIt3RLyT9UQrwVK/LDn+KVcC0hcgjgDg==}
+  /expect-type/0.14.0:
+    resolution: {integrity: sha512-c1b8FMNk9lUP+ho7z4Fgug6wyqvT/its7EWzZ8kRvJkGlNmvAk5ZKHlan5VVYuozY+3C9iWRYX/cK6DQvduhRQ==}
     dev: true
 
   /extend-shallow/2.0.1:
