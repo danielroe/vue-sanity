@@ -19,7 +19,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   expect-type: ^0.14.0
   flush-promises: ^1.0.2
-  happy-dom: ^6.0.0
+  happy-dom: ^7.0.0
   husky: ^8.0.1
   lint-staged: ^13.0.3
   memory-fs: ^0.5.0
@@ -59,7 +59,7 @@ devDependencies:
   eslint-plugin-prettier: 4.2.1_7uxdfn2xinezdgvmbammh6ev5i
   expect-type: 0.14.0
   flush-promises: 1.0.2
-  happy-dom: 6.0.0
+  happy-dom: 7.0.0
   husky: 8.0.1
   lint-staged: 13.0.3
   memory-fs: 0.5.0
@@ -70,7 +70,7 @@ devDependencies:
   typescript: 4.7.4
   unbuild: 0.7.2
   vite: 3.0.4
-  vitest: 0.21.0_c8@7.11.3+happy-dom@6.0.0
+  vitest: 0.21.0_c8@7.11.3+happy-dom@7.0.0
   vue: 2.6.14
   vue-server-renderer: 2.6.14
   vue-template-compiler: 2.6.14
@@ -692,7 +692,7 @@ packages:
     dev: true
 
   /@types/form-data/0.0.33:
-    resolution: {integrity: sha1-yayFsqX9GENbjIXZ7LUObWyJP/g=}
+    resolution: {integrity: sha512-8BSvG1kGm83cyJITQMZSulnl6QV8jqAGreJsc5tPu1Jq0vTSOiY/k24Wx82JRpWwZSqrala6sd5rWi6aNXvqcw==}
     dependencies:
       '@types/node': 17.0.23
     dev: true
@@ -3232,8 +3232,8 @@ packages:
       uglify-js: 3.15.4
     dev: true
 
-  /happy-dom/6.0.0:
-    resolution: {integrity: sha512-Nk+hyCemZGIyQ0gDLyb6K1PFOHepfec101dG93z5g8+LIYSUZWT3FDzWUIUwfYkcAnaRCM9hMDgmR2pFLUYE9w==}
+  /happy-dom/7.0.0:
+    resolution: {integrity: sha512-nLhVhWIf4M4SIm2hBqAb1rshuAyzJwgD0iJtWeXa07poPdhiR99o0A+JxCOquJWWSFkCREynMNbbvA6sGEz/cQ==}
     dependencies:
       css.escape: 1.5.1
       he: 1.2.0
@@ -5989,7 +5989,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.21.0_c8@7.11.3+happy-dom@6.0.0:
+  /vitest/0.21.0_c8@7.11.3+happy-dom@7.0.0:
     resolution: {integrity: sha512-+BQB2swk4wQdw5loOoL8esIYh/1ifAliuwj2HWHNE2F8SAl/jF7/aoCJBoXGSf/Ws19k3pH4NrWeVtcSwM0j2w==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -6020,7 +6020,7 @@ packages:
       c8: 7.11.3
       chai: 4.3.6
       debug: 4.3.4
-      happy-dom: 6.0.0
+      happy-dom: 7.0.0
       local-pkg: 0.4.2
       tinypool: 0.2.4
       tinyspy: 1.0.0
