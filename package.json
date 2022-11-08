@@ -58,7 +58,7 @@
     "vue-demi": "^0.13.0"
   },
   "devDependencies": {
-    "@release-it/conventional-changelog": "^5.0.0",
+    "@release-it/conventional-changelog": "5.1.1",
     "@types/memory-fs": "^0.3.3",
     "@typescript-eslint/eslint-plugin": "5.42.1",
     "@typescript-eslint/parser": "5.42.1",
