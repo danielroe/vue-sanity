@@ -19,7 +19,7 @@ specifiers:
   eslint-plugin-prettier: 4.2.1
   expect-type: ^0.15.0
   flush-promises: ^1.0.2
-  happy-dom: 8.1.0
+  happy-dom: 8.1.1
   husky: ^8.0.1
   lint-staged: ^13.0.3
   memory-fs: ^0.5.0
@@ -50,7 +50,7 @@ devDependencies:
   '@types/memory-fs': 0.3.3
   '@typescript-eslint/eslint-plugin': 5.47.0_nhsapmiglubrqprsdyeihsllom
   '@typescript-eslint/parser': 5.47.0_7yp3msae2ah6x4svoyguc3s57e
-  '@vitest/coverage-c8': 0.26.0_happy-dom@8.1.0
+  '@vitest/coverage-c8': 0.26.0_happy-dom@8.1.1
   '@vue/composition-api': 1.7.1_vue@2.6.14
   '@vue/test-utils': 1.3.0_sbs6or2oam5i4s4vmfp4rzwdnq
   conventional-changelog-conventionalcommits: 5.0.0
@@ -59,7 +59,7 @@ devDependencies:
   eslint-plugin-prettier: 4.2.1_bat6r7ilbbslsp5dhd45s4onze
   expect-type: 0.15.0
   flush-promises: 1.0.2
-  happy-dom: 8.1.0
+  happy-dom: 8.1.1
   husky: 8.0.1
   lint-staged: 13.0.3
   memory-fs: 0.5.0
@@ -70,7 +70,7 @@ devDependencies:
   typescript: 4.7.4
   unbuild: 0.7.2
   vite: 4.0.2
-  vitest: 0.26.1_happy-dom@8.1.0
+  vitest: 0.26.1_happy-dom@8.1.1
   vue: 2.6.14
   vue-server-renderer: 2.6.14
   vue-template-compiler: 2.6.14
@@ -1049,11 +1049,11 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitest/coverage-c8/0.26.0_happy-dom@8.1.0:
+  /@vitest/coverage-c8/0.26.0_happy-dom@8.1.1:
     resolution: {integrity: sha512-1LSMHvX1Winy1dIV1XqQanIskYBvd3+TlQtxO6BeyFa57Lah2uNBm3gh5iDB+ZWCySN5o6bl7qOJdaZjEQZZeg==}
     dependencies:
       c8: 7.12.0
-      vitest: 0.26.0_happy-dom@8.1.0
+      vitest: 0.26.0_happy-dom@8.1.1
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -3240,8 +3240,8 @@ packages:
       uglify-js: 3.15.4
     dev: true
 
-  /happy-dom/8.1.0:
-    resolution: {integrity: sha512-R9NVb5815gpMFsldZF0wVSHw2uSobx6yitSkCdQPda1kwfAmVw4Ut8ZspxGHXkK6OA93SznldkcvrbhKFr6JcA==}
+  /happy-dom/8.1.1:
+    resolution: {integrity: sha512-uI8NneN2B0D+vwIhjQVKtIUYOSh/zymfj61bU/fxkoAw+Aktn0ewG6dYKyFPOvyBoFLPg3S8fsn2OqSoYCqJeQ==}
     dependencies:
       css.escape: 1.5.1
       he: 1.2.0
@@ -6085,7 +6085,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.26.0_happy-dom@8.1.0:
+  /vitest/0.26.0_happy-dom@8.1.1:
     resolution: {integrity: sha512-5kUnms5WOa0qrDCJePEPB13v9mhr+ZT1Qy0qNg0eVj1X7/Fx4GY4L1e5s3OH+BQ/J7M5WtaKsUGv9l1pbC7v2Q==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -6114,7 +6114,7 @@ packages:
       acorn-walk: 8.2.0
       chai: 4.3.7
       debug: 4.3.4
-      happy-dom: 8.1.0
+      happy-dom: 8.1.1
       local-pkg: 0.4.2
       source-map: 0.6.1
       strip-literal: 1.0.0
@@ -6132,7 +6132,7 @@ packages:
       - terser
     dev: true
 
-  /vitest/0.26.1_happy-dom@8.1.0:
+  /vitest/0.26.1_happy-dom@8.1.1:
     resolution: {integrity: sha512-qTLRnjYmjmJpHlLUtErxtlRqGCe8WItFhGXKklpWivu7CLP9KXN9iTezROe+vf51Kb+BB/fzxK6fUG9DvFGL5Q==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -6161,7 +6161,7 @@ packages:
       acorn-walk: 8.2.0
       chai: 4.3.7
       debug: 4.3.4
-      happy-dom: 8.1.0
+      happy-dom: 8.1.1
       local-pkg: 0.4.2
       source-map: 0.6.1
       strip-literal: 1.0.0
