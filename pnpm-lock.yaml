@@ -31,7 +31,7 @@ specifiers:
   semver: ^7.3.7
   typescript: ^4.7.4
   unbuild: ^0.7.2
-  vite: 4.1.1
+  vite: 4.1.2
   vitest: 0.28.5
   vue: 2.6.14
   vue-demi: ^0.13.0
@@ -69,7 +69,7 @@ devDependencies:
   semver: 7.3.7
   typescript: 4.7.4
   unbuild: 0.7.2
-  vite: 4.1.1
+  vite: 4.1.2
   vitest: 0.28.5_happy-dom@8.4.3
   vue: 2.6.14
   vue-server-renderer: 2.6.14
@@ -6044,7 +6044,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.1.1_@types+node@17.0.23
+      vite: 4.1.2_@types+node@17.0.23
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -6055,8 +6055,8 @@ packages:
       - terser
     dev: true
 
-  /vite/4.1.1:
-    resolution: {integrity: sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==}
+  /vite/4.1.2:
+    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -6088,8 +6088,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite/4.1.1_@types+node@17.0.23:
-    resolution: {integrity: sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==}
+  /vite/4.1.2_@types+node@17.0.23:
+    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -6166,7 +6166,7 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.1
       tinyspy: 1.0.2
-      vite: 4.1.1_@types+node@17.0.23
+      vite: 4.1.2_@types+node@17.0.23
       vite-node: 0.28.5_@types+node@17.0.23
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
