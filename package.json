@@ -71,7 +71,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "expect-type": "^0.15.0",
     "flush-promises": "^1.0.2",
-    "happy-dom": "8.5.0",
+    "happy-dom": "8.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "memory-fs": "^0.5.0",
