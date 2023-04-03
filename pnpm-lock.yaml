@@ -26,7 +26,7 @@ specifiers:
   minify-groq: ^1.0.0
   pinst: ^3.0.0
   prettier: 2.8.7
-  release-it: 15.10.0
+  release-it: 15.10.1
   sanity-typed-queries: ^0.9.0
   semver: ^7.3.7
   typescript: ^5.0.0
@@ -46,7 +46,7 @@ dependencies:
   vue-demi: 0.13.0_6dlujnoejfirpqflnwh7rm2qe4
 
 devDependencies:
-  '@release-it/conventional-changelog': 5.1.1_release-it@15.10.0
+  '@release-it/conventional-changelog': 5.1.1_release-it@15.10.1
   '@types/memory-fs': 0.3.3
   '@typescript-eslint/eslint-plugin': 5.57.0_s5k7qbmvzkal3edwy7gcxmnteu
   '@typescript-eslint/parser': 5.57.0_bcnce6t2n5ss3lv2getliffzhq
@@ -65,7 +65,7 @@ devDependencies:
   memory-fs: 0.5.0
   pinst: 3.0.0
   prettier: 2.8.7
-  release-it: 15.10.0
+  release-it: 15.10.1
   semver: 7.3.7
   typescript: 5.0.2
   unbuild: 0.7.2
@@ -747,7 +747,7 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@release-it/conventional-changelog/5.1.1_release-it@15.10.0:
+  /@release-it/conventional-changelog/5.1.1_release-it@15.10.1:
     resolution: {integrity: sha512-QtbDBe36dQfzexAfDYrbLPvd5Cb5bMWmLcjcGhCOWBss7fe1/gCjoxDULVz+7N7G5Nu2UMeBwHcUp/w8RDh5VQ==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -756,7 +756,7 @@ packages:
       concat-stream: 2.0.0
       conventional-changelog: 3.1.25
       conventional-recommended-bump: 6.1.0
-      release-it: 15.10.0
+      release-it: 15.10.1
       semver: 7.3.8
     dev: true
 
@@ -5219,8 +5219,8 @@ packages:
       rc: 1.2.8
     dev: true
 
-  /release-it/15.10.0:
-    resolution: {integrity: sha512-cXY7cZyXjZ/e8TPUjzM7AHvnOKzNmj2NwNT3gREmZIdnDRmuX3DSnS3S3SLbVF8S3SmM88WfHVifGxFaFjNthQ==}
+  /release-it/15.10.1:
+    resolution: {integrity: sha512-Wkk4aFHSo27vQwHIlcEy77lJwnQlh4UDQckc53gh5tKo7F22mAUEAe8SYQZJcFh7icdkf0OV70onhB1dDmeClA==}
     engines: {node: '>=14.9'}
     hasBin: true
     dependencies:
