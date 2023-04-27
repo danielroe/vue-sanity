@@ -20,7 +20,7 @@ specifiers:
   expect-type: 0.15.0
   flush-promises: 1.0.2
   happy-dom: 9.9.2
-  husky: 8.0.1
+  husky: 8.0.3
   lint-staged: 13.0.3
   memory-fs: 0.5.0
   minify-groq: ^1.0.0
@@ -60,7 +60,7 @@ devDependencies:
   expect-type: 0.15.0
   flush-promises: 1.0.2
   happy-dom: 9.9.2
-  husky: 8.0.1
+  husky: 8.0.3
   lint-staged: 13.0.3
   memory-fs: 0.5.0
   pinst: 3.0.0
@@ -3499,8 +3499,8 @@ packages:
     engines: {node: '>=14.18.0'}
     dev: true
 
-  /husky/8.0.1:
-    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+  /husky/8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
