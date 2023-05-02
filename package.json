@@ -77,7 +77,7 @@
     "memory-fs": "0.5.0",
     "pinst": "3.0.0",
     "prettier": "2.8.8",
-    "release-it": "15.10.2",
+    "release-it": "15.10.3",
     "semver": "7.5.0",
     "typescript": "5.0.4",
     "unbuild": "0.7.2",
