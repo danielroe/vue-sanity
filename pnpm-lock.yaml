@@ -11,7 +11,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 5.59.9
   '@typescript-eslint/parser': 5.59.9
   '@vitest/coverage-c8': 0.31.4
-  '@vue/composition-api': 1.7.1
+  '@vue/composition-api': 1.7.2
   '@vue/test-utils': 1.3.6
   conventional-changelog-conventionalcommits: 5.0.0
   eslint: 8.42.0
@@ -43,7 +43,7 @@ dependencies:
   '@sanity/image-url': 1.0.1
   minify-groq: 1.0.0
   sanity-typed-queries: 0.9.1
-  vue-demi: 0.14.0_6dlujnoejfirpqflnwh7rm2qe4
+  vue-demi: 0.14.0_w6byxhhjt3kc4nreagfk5h2rbm
 
 devDependencies:
   '@release-it/conventional-changelog': 5.1.1_release-it@15.11.0
@@ -51,7 +51,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.59.9_3cembfv4vokiyn6g4ljynjc5d4
   '@typescript-eslint/parser': 5.59.9_tizxnkcvjrb4cldxgwq5h3lj5u
   '@vitest/coverage-c8': 0.31.4_vitest@0.31.4
-  '@vue/composition-api': 1.7.1_vue@2.6.14
+  '@vue/composition-api': 1.7.2_vue@2.6.14
   '@vue/test-utils': 1.3.6_sbs6or2oam5i4s4vmfp4rzwdnq
   conventional-changelog-conventionalcommits: 5.0.0
   eslint: 8.42.0
@@ -1137,8 +1137,8 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@vue/composition-api/1.7.1_vue@2.6.14:
-    resolution: {integrity: sha512-xDWoEtxGXhH9Ku3ROYX/rzhcpt4v31hpPU5zF3UeVC/qxA3dChmqU8zvTUYoKh3j7rzpNsoFOwqsWG7XPMlaFA==}
+  /@vue/composition-api/1.7.2_vue@2.6.14:
+    resolution: {integrity: sha512-M8jm9J/laYrYT02665HkZ5l2fWTK4dcVg3BsDHm/pfz+MjDYwX+9FUaZyGwEyXEDonQYRCo0H7aLgdklcIELjw==}
     peerDependencies:
       vue: '>= 2.5 < 2.7'
     dependencies:
@@ -6317,7 +6317,7 @@ packages:
       acorn-walk: 8.2.0
     dev: true
 
-  /vue-demi/0.14.0_6dlujnoejfirpqflnwh7rm2qe4:
+  /vue-demi/0.14.0_w6byxhhjt3kc4nreagfk5h2rbm:
     resolution: {integrity: sha512-gt58r2ogsNQeVoQ3EhoUAvUsH9xviydl0dWJj7dabBC/2L4uBId7ujtCwDRD0JhkGsV1i0CtfLAeyYKBht9oWg==}
     engines: {node: '>=12'}
     hasBin: true
@@ -6329,7 +6329,7 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      '@vue/composition-api': 1.7.1_vue@2.6.14
+      '@vue/composition-api': 1.7.2_vue@2.6.14
       vue: 2.6.14
     dev: false
 
