@@ -7,7 +7,7 @@ specifiers:
   '@release-it/conventional-changelog': 5.1.1
   '@sanity/client': ^3.3.2
   '@sanity/image-url': ^1.0.1
-  '@types/memory-fs': 0.3.3
+  '@types/memory-fs': 0.3.7
   '@typescript-eslint/eslint-plugin': 5.62.0
   '@typescript-eslint/parser': 5.62.0
   '@vitest/coverage-c8': 0.31.4
@@ -47,7 +47,7 @@ dependencies:
 
 devDependencies:
   '@release-it/conventional-changelog': 5.1.1_release-it@15.11.0
-  '@types/memory-fs': 0.3.3
+  '@types/memory-fs': 0.3.7
   '@typescript-eslint/eslint-plugin': 5.62.0_fwvlcsgqwojgihv6ecx5m65iwa
   '@typescript-eslint/parser': 5.62.0_rngtr6f3b25lvetpihwplgecf4
   '@vitest/coverage-c8': 0.31.4_vitest@0.31.4
@@ -937,8 +937,8 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
-  /@types/memory-fs/0.3.3:
-    resolution: {integrity: sha512-rLEYzl1xODshz+Lm+YX8NYws8Xw7/qcYbQInMkotl96VpLZmUvoCfYYGxfajMSiugANV02QO5Fc+R98KKeE4gQ==}
+  /@types/memory-fs/0.3.7:
+    resolution: {integrity: sha512-wCRjyqBTpCsnPWDjYkG8x1Ym0ylHUXu2loom+CIXoP9syXvLAROnfghoNKAMSxvetmRXThMd1XSK2AffVT1WMQ==}
     dependencies:
       '@types/node': 17.0.23
     dev: true
