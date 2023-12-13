@@ -40,7 +40,7 @@
     "lint:all:eslint": "npm run lint:eslint -- --ext .js,.ts,.vue .",
     "lint:all:prettier": "npm run lint:prettier -- \"**/*.{js,json,ts}\"",
     "lint:eslint": "eslint --fix",
-    "lint:prettier": "prettier --write --loglevel warn",
+    "lint:prettier": "prettier --write --log-level warn",
     "prepare": "npm run build",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
