@@ -35,8 +35,8 @@ specifiers:
   vitest: 0.31.4
   vue: 2.6.14
   vue-demi: ^0.14.0
-  vue-server-renderer: 2.6.14
-  vue-template-compiler: 2.6.14
+  vue-server-renderer: 2.7.16
+  vue-template-compiler: 2.7.16
 
 dependencies:
   '@sanity/client': 3.3.2
@@ -52,7 +52,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.62.0_rngtr6f3b25lvetpihwplgecf4
   '@vitest/coverage-c8': 0.31.4_vitest@0.31.4
   '@vue/composition-api': 1.7.2_vue@2.6.14
-  '@vue/test-utils': 1.3.6_sbs6or2oam5i4s4vmfp4rzwdnq
+  '@vue/test-utils': 1.3.6_ljbtxgygzorvmg2du3mqb33w2a
   conventional-changelog-conventionalcommits: 5.0.0
   eslint: 8.49.0
   eslint-config-prettier: 8.10.0_eslint@8.49.0
@@ -72,8 +72,8 @@ devDependencies:
   vite: 4.4.9
   vitest: 0.31.4_happy-dom@9.20.3
   vue: 2.6.14
-  vue-server-renderer: 2.6.14
-  vue-template-compiler: 2.6.14
+  vue-server-renderer: 2.7.16
+  vue-template-compiler: 2.7.16
 
 packages:
 
@@ -1154,7 +1154,7 @@ packages:
     dependencies:
       vue: 2.6.14
 
-  /@vue/test-utils/1.3.6_sbs6or2oam5i4s4vmfp4rzwdnq:
+  /@vue/test-utils/1.3.6_ljbtxgygzorvmg2du3mqb33w2a:
     resolution: {integrity: sha512-udMmmF1ts3zwxUJEIAj5ziioR900reDrt6C9H3XpWPsLBx2lpHKoA4BTdd9HNIYbkGltWw+JjWJ+5O6QBwiyEw==}
     peerDependencies:
       vue: 2.x
@@ -1164,7 +1164,7 @@ packages:
       lodash: 4.17.21
       pretty: 2.0.0
       vue: 2.6.14
-      vue-template-compiler: 2.6.14
+      vue-template-compiler: 2.7.16
     dev: true
 
   /JSONStream/1.3.5:
@@ -1246,11 +1246,6 @@ packages:
       type-fest: 1.4.0
     dev: true
 
-  /ansi-regex/2.1.1:
-    resolution: {integrity: sha512-TIGnTpdo+E3+pCyAluZvtED5p5wCqLdezCyhPZzKPcxvFplEt4i+W7OONCKgeZFT3+y5NZZfOOS/Bdcanm1MYA==}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
@@ -1259,11 +1254,6 @@ packages:
   /ansi-regex/6.0.1:
     resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
     engines: {node: '>=12'}
-    dev: true
-
-  /ansi-styles/2.2.1:
-    resolution: {integrity: sha512-kmCevFghRiWM7HB5zTPULl4r9bVFSWjz62MhqizDGUrq2NWuNMQyuv4tHHoKJHs69M/MF64lEcHdYIocrdWQYA==}
-    engines: {node: '>=0.10.0'}
     dev: true
 
   /ansi-styles/3.2.1:
@@ -1548,17 +1538,6 @@ packages:
       loupe: 2.3.6
       pathval: 1.1.1
       type-detect: 4.0.8
-    dev: true
-
-  /chalk/1.1.3:
-    resolution: {integrity: sha512-U3lRVLMSlsCfjqYPbLyVv11M9CPW4I728d6TCKMAOJueEeB9/8o+eSsMnxPJD+Q+K909sdESg7C+tIkoH6on1A==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      ansi-styles: 2.2.1
-      escape-string-regexp: 1.0.5
-      has-ansi: 2.0.0
-      strip-ansi: 3.0.1
-      supports-color: 2.0.0
     dev: true
 
   /chalk/2.4.2:
@@ -3365,13 +3344,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /has-ansi/2.0.0:
-    resolution: {integrity: sha512-C8vBJ8DwUCx19vhm7urhTuUsr4/IyP6l4VzNQDv+ryHQObW3TTTp9yB68WpYgRe2bbaGuZ/se74IqFeVnMnLZg==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      ansi-regex: 2.1.1
-    dev: true
-
   /has-bigints/1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
     dev: true
@@ -3416,8 +3388,8 @@ packages:
       function-bind: 1.1.1
     dev: true
 
-  /hash-sum/1.0.2:
-    resolution: {integrity: sha512-fUs4B4L+mlt8/XAtSOGMUO1TXmAelItBPtJG7CyHJfYTdDjwisntGO2JQz7oUsatOY9o68+57eziUVNw/mRHmA==}
+  /hash-sum/2.0.0:
+    resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
     dev: true
 
   /he/1.2.0:
@@ -5497,8 +5469,8 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
-  /serialize-javascript/3.1.0:
-    resolution: {integrity: sha512-JIJT1DGiWmIKhzRsG91aS6Ze4sFUrYbltlkg2onR5OrnNM02Kl/hnY/T4FN2omvyeBbQmMJv+K4cPOpGzOTFBg==}
+  /serialize-javascript/6.0.1:
+    resolution: {integrity: sha512-owoXEFjWRllis8/M1Q+Cw5k8ZH40e3zhp/ovX+Xr/vi1qj6QesbyXXViFbpNvWvPNAD62SutwEXavefrLJWj7w==}
     dependencies:
       randombytes: 2.1.0
     dev: true
@@ -5719,13 +5691,6 @@ packages:
       safe-buffer: 5.2.1
     dev: true
 
-  /strip-ansi/3.0.1:
-    resolution: {integrity: sha512-VhumSSbBqDTP8p2ZLKj40UjBCV4+v8bUSEpUb4KjRgWk9pbqGF4REFj6KEagidb2f/M6AzC0EmFyDNGaw9OCzg==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      ansi-regex: 2.1.1
-    dev: true
-
   /strip-ansi/6.0.1:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
     engines: {node: '>=8'}
@@ -5776,11 +5741,6 @@ packages:
     resolution: {integrity: sha512-QZTsipNpa2Ppr6v1AmJHESqJ3Uz247MUS0OjrnnZjFAvEoWqxuyFuXn2xLgMtRnijJShAa1HL0gtJyUs7u7n3Q==}
     dependencies:
       acorn: 8.10.0
-    dev: true
-
-  /supports-color/2.0.0:
-    resolution: {integrity: sha512-KKNVtd6pCYgPIKU4cp2733HWYCpplQhddZLBUryaAHou723x+FRzQ5Df824Fj+IyyuiQTRoub4SnIFfIcrp70g==}
-    engines: {node: '>=0.8.0'}
     dev: true
 
   /supports-color/5.5.0:
@@ -6322,21 +6282,21 @@ packages:
       vue: 2.6.14
     dev: false
 
-  /vue-server-renderer/2.6.14:
-    resolution: {integrity: sha512-HifYRa/LW7cKywg9gd4ZtvtRuBlstQBao5ZCWlg40fyB4OPoGfEXAzxb0emSLv4pBDOHYx0UjpqvxpiQFEuoLA==}
+  /vue-server-renderer/2.7.16:
+    resolution: {integrity: sha512-U7GgR4rYmHmbs3Z2gqsasfk7JNuTsy/xrR5EMMGRLkjN8+ryDlqQq6Uu3DcmbCATAei814YOxyl0eq2HNqgXyQ==}
     dependencies:
-      chalk: 1.1.3
-      hash-sum: 1.0.2
+      chalk: 4.1.2
+      hash-sum: 2.0.0
       he: 1.2.0
       lodash.template: 4.5.0
       lodash.uniq: 4.5.0
       resolve: 1.22.1
-      serialize-javascript: 3.1.0
+      serialize-javascript: 6.0.1
       source-map: 0.5.6
     dev: true
 
-  /vue-template-compiler/2.6.14:
-    resolution: {integrity: sha512-ODQS1SyMbjKoO1JBJZojSw6FE4qnh9rIpUZn2EUT86FKizx9uH5z6uXiIrm4/Nb/gwxTi/o17ZDEGWAXHvtC7g==}
+  /vue-template-compiler/2.7.16:
+    resolution: {integrity: sha512-AYbUWAJHLGGQM7+cNTELw+KsOG9nl2CnSv467WobS5Cv9uk3wFcnr1Etsz2sEIHEZvw1U+o9mRlEO6QbZvUPGQ==}
     dependencies:
       de-indent: 1.0.2
       he: 1.2.0
