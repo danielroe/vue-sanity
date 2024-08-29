@@ -2,7 +2,7 @@ import Vue from 'vue'
 import CompositionApi from '@vue/composition-api'
 
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import sanityClient from '@sanity/client'
+import { createClient } from '@sanity/client'
 
 import { useSanityClient } from '../src'
 import { runInSetup } from './helpers/mount'
@@ -23,7 +23,7 @@ const config = {
 }
 
 beforeEach(() => {
-  sanityClient.mockClear()
+  createClient.mockClear()
   ;(globalThis.console.error as any).mockClear()
 })
 
@@ -34,9 +34,9 @@ describe('instantiator', () => {
       return {}
     })
 
-    expect(sanityClient).toHaveBeenCalledTimes(2)
-    expect(sanityClient).toHaveBeenCalledWith(config)
-    expect(sanityClient).toHaveBeenLastCalledWith({
+    expect(createClient).toHaveBeenCalledTimes(2)
+    expect(createClient).toHaveBeenCalledWith(config)
+    expect(createClient).toHaveBeenLastCalledWith({
       ...config,
       useCdn: false,
       token: undefined,

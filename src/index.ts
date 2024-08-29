@@ -1,7 +1,7 @@
 import { inject, provide } from 'vue-demi'
 
 import type { ClientConfig } from '@sanity/client'
-import sanityClient from '@sanity/client'
+import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 
 import { ensureInstance, useCache } from './cache'
@@ -39,7 +39,7 @@ export function useSanityClient(
 ) {
   ensureInstance()
 
-  const client = sanityClient(config)
+  const client = createClient(config)
   const imageBuilder = imageUrlBuilder(config)
 
   provide(clientSymbol, client)
@@ -47,7 +47,7 @@ export function useSanityClient(
   provide(optionsSymbol, defaultOptions)
 
   if (supportPreview) {
-    const previewClient = sanityClient({
+    const previewClient = createClient({
       ...config,
       useCdn: false,
       token: undefined,

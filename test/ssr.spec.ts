@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { h, ref } from '@vue/composition-api'
 import { createRenderer } from 'vue-server-renderer'
 
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { useCache } from '../src'
 import { fetcher } from './helpers/utils'

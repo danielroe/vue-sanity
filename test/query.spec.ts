@@ -6,7 +6,7 @@ import flushPromises from 'flush-promises'
 import { defineDocument } from 'sanity-typed-queries'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import sanityClient from '@sanity/client'
+import { createClient } from '@sanity/client'
 
 import {
   fetch as _fetch,
@@ -40,14 +40,14 @@ const mockListen = vi.fn(() => ({
 
 vi.mock('@sanity/client', () => {
   return {
-    default: vi.fn().mockImplementation(() => {
+    createClient: vi.fn().mockImplementation(() => {
       return { fetch: mockFetch, listen: mockListen }
     }),
   }
 })
 
 beforeEach(() => {
-  sanityClient.mockClear()
+  createClient.mockClear()
   ;(globalThis.console.error as any).mockClear()
   mockListen.mockClear()
   mockSubscribe.mockClear()

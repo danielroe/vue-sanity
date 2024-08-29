@@ -2,7 +2,7 @@
  * @jest-environment happy-dom
  */
 import { ref, watch } from '@vue/composition-api'
-import { describe, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { useCache } from '../src'
 import { runInSetup } from './helpers/mount'
 

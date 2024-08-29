@@ -3,7 +3,7 @@
  */
 import { ref } from '@vue/composition-api'
 import type { ClientConfig } from '@sanity/client'
-import { describe, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { useSanityClient, useSanityImage } from '../src'
 import { runInSetup } from './helpers/mount'
