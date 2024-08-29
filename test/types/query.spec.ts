@@ -29,7 +29,7 @@ const mockListen = vi.fn(() => ({
 
 vi.mock('@sanity/client', () => {
   return {
-    default: vi.fn().mockImplementation(() => {
+    createClient: vi.fn().mockImplementation(() => {
       return { fetch: mockFetch, listen: mockListen }
     }),
   }
