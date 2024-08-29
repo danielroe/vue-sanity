@@ -75,9 +75,6 @@ importers:
       memory-fs:
         specifier: 0.5.0
         version: 0.5.0
-      pinst:
-        specifier: 3.0.0
-        version: 3.0.0
       release-it:
         specifier: 17.6.0
         version: 17.6.0(typescript@5.2.2)
@@ -2935,11 +2932,6 @@ packages:
   pidtree@0.6.0:
     resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
     engines: {node: '>=0.10'}
-    hasBin: true
-
-  pinst@3.0.0:
-    resolution: {integrity: sha512-cengSmBxtCyaJqtRSvJorIIZXMXg+lJ3sIljGmtBGUVonMnMsVJbnzl6jGN1HkOWwxNuJynCJ2hXxxqCQrFDdw==}
-    engines: {node: '>=12.0.0'}
     hasBin: true
 
   pkg-types@0.3.6:
@@ -6649,8 +6641,6 @@ snapshots:
   picomatch@4.0.2: {}
 
   pidtree@0.6.0: {}
-
-  pinst@3.0.0: {}
 
   pkg-types@0.3.6:
     dependencies:
