@@ -39,7 +39,7 @@
     "build": "unbuild",
     "lint": "pnpm eslint .",
     "prepare": "pnpm build && husky",
-    "release": "bumpp && npm release",
+    "release": "bumpp && npm publish",
     "test": "vitest --typecheck",
     "test:types": "tsc --noEmit"
   },
