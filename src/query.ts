@@ -145,7 +145,7 @@ export function useSanityQuery<
     QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
-  Schema,
+  Schema extends Record<string, any>,
   Mappings extends Record<string, any>,
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type extends Record<string, QueryReturnType<any>>,
@@ -164,7 +164,7 @@ export function useSanityQuery<
     QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
-  Schema,
+  Schema extends Record<string, any>,
   Mappings extends Record<string, any>,
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
@@ -180,7 +180,7 @@ export function useSanityQuery<
     QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
-  Schema,
+  Schema extends Record<string, any>,
   Mappings extends Record<string, any>,
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
@@ -197,7 +197,7 @@ export function useSanityQuery<
     QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
-  Schema,
+  Schema extends Record<string, any>,
   Mappings extends Record<string, any>,
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
@@ -216,7 +216,7 @@ export function useSanityQuery<
     QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
-  Schema,
+  Schema extends Record<string, any>,
   Mappings extends Record<string, any>,
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
@@ -236,7 +236,7 @@ export function useSanityQuery<
     QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude>,
     'use'
   >,
-  Schema,
+  Schema extends Record<string, any>,
   Mappings extends Record<string, any>,
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
