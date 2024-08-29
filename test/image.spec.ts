@@ -1,19 +1,16 @@
-/**
- * @vitest-environment happy-dom
- */
-import { ref } from '@vue/composition-api'
+import { ref } from 'vue'
 import type { ClientConfig } from '@sanity/client'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useSanityClient, useSanityImage } from '../src'
 import { runInSetup } from './helpers/mount'
 
-const config: ClientConfig = {
+const config = {
   projectId: 'id',
   dataset: 'production',
   useCdn: true,
   apiVersion: '2021-03-25',
-}
+} satisfies ClientConfig
 
 ;(globalThis.console.error as any) = vi.fn()
 
@@ -26,17 +23,25 @@ describe('image builder', () => {
       width: 3,
     },
   }
+
   it('errors without proper config', async () => {
-    await runInSetup(() => {
-      useSanityImage(ref(image))
+    let error: unknown
+    runInSetup(() => {
+      try {
+        useSanityImage(ref(image))
+      }
+      catch (e) {
+        error = e
+      }
       return {}
     })
 
+    expect(error).toBeDefined()
     expect(console.error).toBeCalled()
   })
 
   it('errors when run outside of setup', async () => {
-    let error
+    let error: unknown
     try {
       useSanityImage(ref(image))
     }
@@ -47,26 +52,18 @@ describe('image builder', () => {
   })
 
   it('produces relevant image url', async () => {
-    const data = await runInSetup(() => {
-      useSanityClient(config, true)
-      const result = useSanityImage(ref(image))
-      return { result }
-    })
+    const data = await runInSetup(() => useSanityClient(config, true), () => ({
+      result: useSanityImage(ref(image)),
+    }))
 
-    const result = data.value.result
-
-    expect(result).toMatchSnapshot()
+    expect(data.result.value).toMatchSnapshot()
   })
 
   it('works without dimensions', async () => {
-    const data = await runInSetup(() => {
-      useSanityClient(config, true)
-      const result = useSanityImage(ref({ ...image, dimensions: undefined }))
-      return { result }
-    })
+    const data = await runInSetup(() => useSanityClient(config, true), () => ({
+      result: useSanityImage(ref({ ...image, dimensions: undefined })),
+    }))
 
-    const result = data.value.result
-
-    expect(result).toMatchSnapshot()
+    expect(data.result.value).toMatchSnapshot()
   })
 })

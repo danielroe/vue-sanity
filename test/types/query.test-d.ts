@@ -1,8 +1,5 @@
-/**
- * @vitest-environment happy-dom
- */
 import { expectTypeOf } from 'expect-type'
-import type { Ref } from '@vue/composition-api'
+import type { Ref } from 'vue'
 import { defineDocument } from 'sanity-typed-queries'
 
 import { mount } from '@vue/test-utils'
@@ -10,7 +7,6 @@ import { mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useSanityClient, useSanityFetcher, useSanityQuery } from '../..'
-
 import { runInSetup } from '../helpers/mount'
 
 const mockFetch = vi.fn(async (key: string) => `return value-${key}`)

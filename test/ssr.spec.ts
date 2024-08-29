@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import { h, ref } from '@vue/composition-api'
+/** @vitest-environment node */
+import Vue, { h, ref } from 'vue'
 import { createRenderer } from 'vue-server-renderer'
 
 import { describe, expect, it } from 'vitest'
 
-import { useCache } from '../src'
+import { useCache } from '../src/cache'
 import { fetcher } from './helpers/utils'
 
 Vue.config.productionTip = false

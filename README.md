@@ -34,7 +34,7 @@
 
 ## Quick Start
 
-> If you are using Vue 2, then this project requires usage of [`@vue/composition-api`](https://github.com/vuejs/composition-api). Make sure you've set that up correctly first. If you're using Vue 3, no extra steps are required.
+> If you are using Vue 2, then this project requires you be on at least Vue 2.7.
 
 First install `vue-sanity`:
 

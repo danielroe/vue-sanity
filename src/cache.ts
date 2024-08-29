@@ -1,7 +1,6 @@
 import process from 'node:process'
-import type { VueConstructor } from 'vue'
-import type { Ref } from 'vue-demi'
-import { computed, getCurrentInstance, isRef, onServerPrefetch, reactive, set, unref, watch } from 'vue-demi'
+import type { Ref } from 'vue'
+import { computed, getCurrentInstance, isRef, onServerPrefetch, reactive, set, unref, watch } from 'vue'
 
 /**
  * Cached data, status of fetch, timestamp of last fetch, error
@@ -14,14 +13,14 @@ export function ensureInstance() {
   const instance = getCurrentInstance()
   if (!instance)
     throw new Error('You must call this from within a component')
-  return instance.proxy as InstanceType<VueConstructor>
+  return instance.proxy
 }
 
 export function getServerInstance() {
   const instance = getCurrentInstance()
 
   if (process.env.VITE_SSG || instance?.proxy.$isServer)
-    return instance?.proxy as InstanceType<VueConstructor>
+    return instance?.proxy
   return false
 }
 

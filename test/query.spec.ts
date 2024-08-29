@@ -1,7 +1,4 @@
-/**
- * @vitest-environment happy-dom
- */
-import { ref } from '@vue/composition-api'
+import { ref } from 'vue'
 import flushPromises from 'flush-promises'
 import { defineDocument } from 'sanity-typed-queries'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -62,8 +59,10 @@ describe('fetcher', () => {
   })
   it('errors when client is not injected', async () => {
     await runInSetup(() => {
-      useSanityFetcher(() => `my-error`)
-      return {}
+      try {
+        useSanityFetcher(() => `my-error`)
+      }
+      catch {}
     })
 
     expect(console.error).toBeCalled()
@@ -74,7 +73,7 @@ describe('fetcher', () => {
       useSanityClient(config, true, {
         strategy: 'server',
       })
-
+    }, () => {
       const key = ref('default-server')
       ;(window as any).__NUXT__ = {
         vsanity: {
@@ -84,17 +83,17 @@ describe('fetcher', () => {
       const { data, status } = useSanityFetcher(() => key.value)
       return { data, status }
     })
-    expect(results.value.data).toBe('server')
-    expect(results.value.status).toBe('server loaded')
+
+    expect(results.data.value).toBe('server')
+    expect(results.status.value).toBe('server loaded')
   })
 
   it('allows direct access to client', async () => {
-    const result = await runInSetup(() => {
-      useCustomClient({ fetch: async t => `fetched-${t}` })
+    const result = await runInSetup(() => useCustomClient({ fetch: async t => `fetched-${t}` }), () => {
       const data = _fetch('test')
       return { data }
     })
-    expect(await result.value.data).toBe('fetched-test')
+    expect(await result.data).toBe('fetched-test')
     const errored = await runInSetup(() => {
       let data = false
       try {
@@ -105,16 +104,15 @@ describe('fetcher', () => {
       }
       return { data }
     })
-    expect(errored.value.data).toBe(true)
+    expect(errored.data).toBe(true)
   })
 
   it('allows custom client to be provided', async () => {
-    const result = await runInSetup(() => {
-      useCustomClient({ fetch: async t => `fetched-${t}` })
+    const result = await runInSetup(() => useCustomClient({ fetch: async t => `fetched-${t}` }), () => {
       const { data } = useSanityFetcher(() => `query`)
       return { data }
     })
-    expect(result.value.data).toBe('fetched-query')
+    expect(result.data.value).toBe('fetched-query')
   })
   it('does not listen with a custom client', async () => {
     const mockListen = vi.fn()
@@ -130,8 +128,7 @@ describe('fetcher', () => {
         },
       },
     )
-    await runInSetup(() => {
-      useCustomClient(customClient)
+    await runInSetup(() => useCustomClient(customClient), () => {
       const { data } = useSanityFetcher(
         () => `query`,
         null,
@@ -145,8 +142,7 @@ describe('fetcher', () => {
   it('fetches query when slug updates', async () => {
     const slug = ref('key')
 
-    await runInSetup(() => {
-      useSanityClient(config)
+    await runInSetup(() => useSanityClient(config), () => {
       useSanityFetcher(() => `my-${slug.value}`)
 
       return {}
@@ -160,8 +156,7 @@ describe('fetcher', () => {
   it('allows passing a query string', async () => {
     const slug = ref('key')
 
-    await runInSetup(() => {
-      useSanityClient(config)
+    await runInSetup(() => useSanityClient(config), () => {
       useSanityFetcher(slug.value)
 
       return {}
@@ -176,8 +171,7 @@ describe('fetcher', () => {
   it('doesn\'t fetch with falsy query', async () => {
     const slug = ref('key')
 
-    await runInSetup(() => {
-      useSanityClient(config)
+    await runInSetup(() => useSanityClient(config), () => {
       useSanityFetcher(() => slug.value && `my-${slug.value}`)
 
       return {}
@@ -191,8 +185,7 @@ describe('fetcher', () => {
   })
 
   it('returns correct initial value with falsy query', async () => {
-    const result = await runInSetup(() => {
-      useSanityClient(config)
+    const result = await runInSetup(() => useSanityClient(config), () => {
       const { data: dataArray } = useSanityFetcher(() => false, [])
       const { data: dataDefault } = useSanityFetcher(() => false)
 
@@ -201,36 +194,30 @@ describe('fetcher', () => {
         dataDefault,
       }
     })
-    expect(result.value.dataArray).toEqual([])
-    expect(result.value.dataDefault).toEqual(null)
+    expect(result.dataArray.value).toEqual([])
+    expect(result.dataDefault.value).toEqual(null)
     expect(mockFetch).toHaveBeenCalledTimes(0)
   })
 
   it('status updates correctly', async () => {
-    const data = await runInSetup(() => {
-      useSanityClient(config)
-
+    const data = await runInSetup(() => useSanityClient(config), () => {
       const { status } = useSanityFetcher(() => `my-key-status`, 'apple')
       return { status }
     })
-    expect(data.value.status).toEqual('client loaded')
+    expect(data.status.value).toEqual('client loaded')
   })
 
   it('data updates correctly', async () => {
-    const data = await runInSetup(() => {
-      useSanityClient(config)
-
+    const data = await runInSetup(() => useSanityClient(config), () => {
       const { data } = useSanityFetcher(() => `my-key-data`, 'apple')
       return { data }
     })
-    expect(data.value.data).toEqual('return value-my-key-data')
+    expect(data.data.value).toEqual('return value-my-key-data')
   })
 
   it('subscribes to a sanity resource', async () => {
     const key = ref('subscription')
-    await runInSetup(() => {
-      useSanityClient(config)
-
+    await runInSetup(() => useSanityClient(config), () => {
       const { data } = useSanityFetcher(
         () => `my-key-${key.value}`,
         'apple',
@@ -249,9 +236,7 @@ describe('fetcher', () => {
 
   it('subscribes to a sanity resource with preview client', async () => {
     const key = ref('preview-subscription')
-    await runInSetup(() => {
-      useSanityClient(config, true)
-
+    await runInSetup(() => useSanityClient(config, true), () => {
       const { data } = useSanityFetcher(
         () => `my-key-${key.value}`,
         'apple',
@@ -270,9 +255,7 @@ describe('fetcher', () => {
 
   it('subscribes to a sanity resource with a single query string', async () => {
     const key = ref('preview-subscription')
-    await runInSetup(() => {
-      useSanityClient(config, true)
-
+    await runInSetup(() => useSanityClient(config, true), () => {
       const { data } = useSanityFetcher(
         `my-key-${key.value}`,
         'apple',
@@ -292,9 +275,7 @@ describe('fetcher', () => {
   it('passes relevant options to listener', async () => {
     const key = ref('listen-options')
     const listenOptions = { sampleId: 30 }
-    await runInSetup(() => {
-      useSanityClient(config, true)
-
+    await runInSetup(() => useSanityClient(config, true), () => {
       const { data } = useSanityFetcher(
         () => `my-key-${key.value}`,
         'apple',
@@ -329,22 +310,21 @@ describe('sanity-typed-queries helper', () => {
       validation: Rule => Rule.required(),
     },
   })
+
   it('returns the expected data', async () => {
-    const result = await runInSetup(() => {
-      useSanityClient(config)
+    const result = await runInSetup(() => useSanityClient(config), () => {
       const { data } = useSanityQuery(builder.pick(['description', 'cost']))
       expect(data.value).toEqual([])
       return { data }
     })
     expect(mockFetch).toHaveBeenCalled()
-    expect(result.value.data).toBe(
+    expect(result.data.value).toBe(
       'return value-*[_type == \'author\'] { cost, description }',
     )
   })
 
   it('works with a builder function', async () => {
-    const result = await runInSetup(() => {
-      useSanityClient(config)
+    const result = await runInSetup(() => useSanityClient(config), () => {
       const { data } = useSanityQuery(() => builder.pick(['description']))
       expect(data.value).toEqual([])
       return { data }
@@ -352,7 +332,7 @@ describe('sanity-typed-queries helper', () => {
     expect(mockFetch).toHaveBeenCalledWith(
       `*[_type == 'author'] { description }`,
     )
-    expect(result.value.data).toBe(
+    expect(result.data.value).toBe(
       'return value-*[_type == \'author\'] { description }',
     )
   })

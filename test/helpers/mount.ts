@@ -1,35 +1,27 @@
-import Vue from 'vue'
-import type { Ref } from '@vue/composition-api'
-import VueCompositionAPI from '@vue/composition-api'
-import type { Data, SetupFunction } from '@vue/composition-api/dist/component'
+import Vue, { h } from 'vue'
+import type { Data, SetupFunction } from 'vue'
+import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-Vue.use(VueCompositionAPI)
-
-type Unwrap<T extends Record<string, any>> = {
-  [P in keyof T]: T[P] extends Ref<infer R> ? R : T[P]
-}
-
-export function mount(component: Record<string, any>) {
-  return new Vue(component).$mount()
-}
-
-export async function runInSetup<T extends SetupFunction<Data, Data>>(
-  setup: T,
-) {
-  const vm = mount({
-    setup,
-    render: h => h('div'),
+export async function runInSetup<T extends SetupFunction<Data, Data>, D extends SetupFunction<Data, Data>>(setup: T, child?: D) {
+  let result
+  mount({
+    setup() {
+      result = (setup as any)() || {}
+      return child
+        ? () => h({
+            setup() {
+              Object.assign(result, (child as any)())
+            },
+          })
+        : () => h('div')
+    },
   })
 
   await flushPromises()
 
-  return {
-    get value() {
-      return vm.$data as Unwrap<ReturnType<T>>
-    },
-  }
+  return result as ReturnType<T> & ReturnType<D>
 }

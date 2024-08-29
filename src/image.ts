@@ -1,15 +1,10 @@
-import type { InjectionKey, Ref } from 'vue-demi'
-import { computed, inject } from 'vue-demi'
+import type { InjectionKey, Ref } from 'vue'
+import { computed, inject } from 'vue'
 
-import type {
-  FitMode,
-  SanityImageDimensions,
-} from '@sanity/image-url/lib/types/types'
+import type { FitMode, SanityImageDimensions } from '@sanity/image-url/lib/types/types'
 import type { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder'
 
-export const imageBuilderSymbol: InjectionKey<ImageUrlBuilder> = Symbol(
-  'Sanity image URL builder',
-)
+export const imageBuilderSymbol: InjectionKey<ImageUrlBuilder> = Symbol('Sanity image URL builder')
 
 export interface ResolvedSanityImage {
   url: string

@@ -9,7 +9,7 @@ describe('ensureInstance', () => {
       return { vm }
     })
 
-    expect(data.value.vm).toBeDefined()
+    expect(data.vm).toBeDefined()
   })
   it('errors when called out of setup', async () => {
     let error = false
@@ -31,6 +31,6 @@ describe('getServerInstance', () => {
       return { vm }
     })
 
-    expect(data.value.vm).toBe(false)
+    expect(data.vm).toBe(false)
   })
 })

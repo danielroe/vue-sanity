@@ -1,4 +1,4 @@
-import { inject, provide } from 'vue-demi'
+import { inject, provide } from 'vue'
 
 import type { ClientConfig } from '@sanity/client'
 import { createClient } from '@sanity/client'
@@ -7,13 +7,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import { ensureInstance, useCache } from './cache'
 import type { CacheOptions, FetchStatus } from './cache'
 import { imageBuilderSymbol, useSanityImage } from './image'
-import {
-  clientSymbol,
-  optionsSymbol,
-  previewClientSymbol,
-  useSanityFetcher,
-  useSanityQuery,
-} from './query'
+import { clientSymbol, optionsSymbol, previewClientSymbol, useSanityFetcher, useSanityQuery } from './query'
 import type { Client, Options } from './query'
 
 interface RequiredConfig {

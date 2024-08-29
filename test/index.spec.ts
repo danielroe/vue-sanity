@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import CompositionApi from '@vue/composition-api'
 
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createClient } from '@sanity/client'
@@ -9,8 +8,6 @@ import { runInSetup } from './helpers/mount'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
-
-Vue.use(CompositionApi)
 
 vi.mock('@sanity/client')
 ;(globalThis.console.error as any) = vi.fn()

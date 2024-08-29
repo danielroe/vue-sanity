@@ -1,7 +1,4 @@
-/**
- * @vitest-environment happy-dom
- */
-import { ref, watch } from '@vue/composition-api'
+import { ref, watch } from 'vue'
 import { describe, expect, it, vi } from 'vitest'
 import { useCache } from '../src'
 import { runInSetup } from './helpers/mount'
@@ -15,7 +12,7 @@ describe('cache', () => {
       return { data }
     })
 
-    expect(data.value.data).toBe(null)
+    expect(data.data.value).toBe(null)
   })
   it('initialises with default when one is given', async () => {
     const data = await runInSetup(() => {
@@ -27,7 +24,7 @@ describe('cache', () => {
       return { data }
     })
 
-    expect(data.value.data).toBe('orange')
+    expect(data.data.value).toBe('orange')
   })
 
   it('calls fetcher immediately', async () => {
@@ -37,7 +34,7 @@ describe('cache', () => {
       return { data }
     })
 
-    expect(data.value.data).toBe('cherry')
+    expect(data.data.value).toBe('cherry')
   })
 
   it('sets initial value from SSR', async () => {
@@ -54,7 +51,7 @@ describe('cache', () => {
       expect(status.value).toBe('loading')
       return { data, status }
     })
-    expect(data.value.status).toBe('client loaded')
+    expect(data.status.value).toBe('client loaded')
   })
 
   it('allows server-only strategy', async () => {
@@ -70,8 +67,8 @@ describe('cache', () => {
       })
       return { data, status }
     })
-    expect(data.value.data).toBe('server')
-    expect(data.value.status).toBe('server loaded')
+    expect(data.data.value).toBe('server')
+    expect(data.status.value).toBe('server loaded')
   })
 
   it('reloads on client when appropriate under server-only strategy', async () => {
@@ -83,8 +80,8 @@ describe('cache', () => {
       })
       return { data, status }
     })
-    expect(data.value.data).toBe('server-strategy-without-data')
-    expect(data.value.status).toBe('client loaded')
+    expect(data.data.value).toBe('server-strategy-without-data')
+    expect(data.status.value).toBe('client loaded')
   })
 
   it('allows client-only strategy', async () => {
@@ -103,8 +100,8 @@ describe('cache', () => {
       expect(status.value).toBe('loading')
       return { data, status }
     })
-    expect(data.value.status).toBe('client loaded')
-    expect(data.value.data).toBe('client-strategy')
+    expect(data.status.value).toBe('client loaded')
+    expect(data.data.value).toBe('client-strategy')
   })
 
   it('can trigger fetch manually', async () => {
@@ -113,14 +110,14 @@ describe('cache', () => {
       const { data, fetch } = useCache(key, async newKey => newKey)
       return { data, fetch }
     })
-    expect(data.value.data).toBe('manualFetch')
+    expect(data.data.value).toBe('manualFetch')
 
     key.value = 'change'
-    expect(data.value.data).toBe(null)
+    expect(data.data.value).toBe(null)
 
-    await data.value.fetch('triggered')
+    await data.fetch('triggered')
     key.value = 'triggered'
-    expect(data.value.data).toBe('triggered')
+    expect(data.data.value).toBe('triggered')
   })
 
   it('sets error status correctly', async () => {
@@ -131,8 +128,8 @@ describe('cache', () => {
       })
       return { status, error }
     })
-    expect(data.value.status).toBe('error')
-    expect(data.value.error).toBeInstanceOf(Error)
+    expect(data.status.value).toBe('error')
+    expect(data.error.value).toBeInstanceOf(Error)
   })
 
   it('uses cache and deduplicates requests', async () => {
@@ -162,8 +159,8 @@ describe('cache', () => {
       return { status, fetch }
     })
     expect(number).toBe(1)
-    expect(result.value.status).toBe('client loaded')
-    await result.value.fetch()
+    expect(result.status.value).toBe('client loaded')
+    await result.fetch()
     expect(number).toBe(1)
   })
 
@@ -194,10 +191,10 @@ describe('cache', () => {
       return { status, fetch }
     })
     expect(number).toBe(1)
-    expect(result.value.status).toBe('client loaded')
-    await new Promise(resolve =>
+    expect(result.status.value).toBe('client loaded')
+    await new Promise<void>(resolve =>
       setTimeout(async () => {
-        await result.value.fetch()
+        await result.fetch()
         resolve()
       }, 20),
     )

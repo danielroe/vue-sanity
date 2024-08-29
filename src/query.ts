@@ -1,5 +1,5 @@
-import type { InjectionKey, Ref } from 'vue-demi'
-import { computed, inject, isRef, watch } from 'vue-demi'
+import type { InjectionKey, Ref } from 'vue'
+import { computed, inject, isRef, watch } from 'vue'
 import minifier from 'minify-groq'
 import type { SanityClient } from '@sanity/client'
 import type { QueryBuilder } from 'sanity-typed-queries'
