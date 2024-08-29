@@ -16,7 +16,7 @@ const config = {
 }
 
 const mockFetch = vi.fn(async (key: string) => `return value-${key}`)
-;(globalThis.console.error as any) = vi.fn()
+;(globalThis.console.warn as any) = vi.fn()
 
 const mockUnsubscribe = vi.fn()
 const mockSubscribe = vi.fn((callback: (result: any) => void) => {
@@ -39,7 +39,7 @@ vi.mock('@sanity/client', () => {
 
 beforeEach(() => {
   createClient.mockClear()
-  ;(globalThis.console.error as any).mockClear()
+  ;(globalThis.console.warn as any).mockClear()
   mockListen.mockClear()
   mockSubscribe.mockClear()
   mockUnsubscribe.mockClear()
@@ -58,14 +58,18 @@ describe('fetcher', () => {
     expect(error).toBeDefined()
   })
   it('errors when client is not injected', async () => {
+    let error
     await runInSetup(() => {
       try {
         useSanityFetcher(() => `my-error`)
       }
-      catch {}
+      catch (e) {
+        error = e
+      }
     })
 
-    expect(console.error).toBeCalled()
+    expect(console.warn).toBeCalled()
+    expect(error).toBeDefined()
   })
 
   it('allows default options to be set', async () => {

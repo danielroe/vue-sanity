@@ -1,13 +1,8 @@
-import Vue from 'vue'
-
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createClient } from '@sanity/client'
 
 import { useSanityClient } from '../src'
 import { runInSetup } from './helpers/mount'
-
-Vue.config.productionTip = false
-Vue.config.devtools = false
 
 vi.mock('@sanity/client')
 ;(globalThis.console.error as any) = vi.fn()

@@ -1,5 +1,5 @@
 <h1 align="center">🟢 vue-sanity</h1>
-<p align="center">Sanity integration for VueJS</p>
+<p align="center">Sanity integration for Vue</p>
 
 <p align="center">
 <a href="https://npmjs.com/package/vue-sanity">
@@ -33,8 +33,6 @@
 - 📝 **SSR support**: Compatible with server-side rendering with Nuxt and vanilla Vue.
 
 ## Quick Start
-
-> If you are using Vue 2, then this project requires you be on at least Vue 2.7.
 
 First install `vue-sanity`:
 

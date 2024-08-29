@@ -1,13 +1,9 @@
-import Vue, { h } from 'vue'
-import type { Data, SetupFunction } from 'vue'
+import { h } from 'vue'
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 
-Vue.config.productionTip = false
-Vue.config.devtools = false
-
-export async function runInSetup<T extends SetupFunction<Data, Data>, D extends SetupFunction<Data, Data>>(setup: T, child?: D) {
-  let result
+export async function runInSetup<T extends () => unknown, D extends () => unknown>(setup: T, child?: D) {
+  let result: T & D
   mount({
     setup() {
       result = (setup as any)() || {}
@@ -23,5 +19,5 @@ export async function runInSetup<T extends SetupFunction<Data, Data>, D extends 
 
   await flushPromises()
 
-  return result as ReturnType<T> & ReturnType<D>
+  return result! as ReturnType<T> & ReturnType<D>
 }

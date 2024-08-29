@@ -12,7 +12,7 @@ const config = {
   apiVersion: '2021-03-25',
 } satisfies ClientConfig
 
-;(globalThis.console.error as any) = vi.fn()
+;(globalThis.console.warn as any) = vi.fn()
 
 describe('image builder', () => {
   const image = {
@@ -37,7 +37,7 @@ describe('image builder', () => {
     })
 
     expect(error).toBeDefined()
-    expect(console.error).toBeCalled()
+    expect(console.warn).toBeCalled()
   })
 
   it('errors when run outside of setup', async () => {

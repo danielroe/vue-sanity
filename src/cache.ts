@@ -1,11 +1,11 @@
 import process from 'node:process'
 import type { Ref } from 'vue'
-import { computed, getCurrentInstance, isRef, onServerPrefetch, reactive, set, unref, watch } from 'vue'
+import { computed, getCurrentInstance, isRef, onServerPrefetch, reactive, unref, useSSRContext, watch } from 'vue'
 
 /**
  * Cached data, status of fetch, timestamp of last fetch, error
  */
-type CacheEntry<T> = [T, FetchStatus, number, any, Promise<T>]
+type CacheEntry<T> = [T, FetchStatus, number, any, Promise<T> | null]
 
 const cache = reactive<Record<string, CacheEntry<any>>>({})
 
@@ -19,7 +19,7 @@ export function ensureInstance() {
 export function getServerInstance() {
   const instance = getCurrentInstance()
 
-  if (process.env.VITE_SSG || instance?.proxy.$isServer)
+  if (process.env.VITE_SSG || (import.meta as any).env?.SSR || (import.meta as any).server)
     return instance?.proxy
   return false
 }
@@ -83,7 +83,7 @@ export function useCache<T, K = null>(
     status = 'initialised',
     time = new Date().getTime(),
   }: SetCacheOptions<T, K>) {
-    set(cache, key, [value, status, time, error])
+    cache[key] = [value, status, time, error, null]
   }
 
   const serverInstance = getServerInstance()
@@ -123,11 +123,7 @@ export function useCache<T, K = null>(
     if (!(key in cache))
       initialiseCache({ key, value, status })
 
-    set(cache[key], 0, value)
-    set(cache[key], 1, status)
-    set(cache[key], 2, new Date().getTime())
-    set(cache[key], 3, error)
-    set(cache[key], 4, promise)
+    cache[key] = [value, status, new Date().getTime(), error, promise]
   }
 
   function fetch(query = unref(key), force?: boolean) {
@@ -164,7 +160,7 @@ export function useCache<T, K = null>(
   }
 
   if (enableSSR && serverInstance) {
-    const ctx = serverInstance.$ssrContext
+    const ctx = useSSRContext()
     if (ctx) {
       if (ctx.nuxt && !ctx.nuxt.vsanity) {
         ctx.nuxt.vsanity = {}
