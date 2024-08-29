@@ -1,5 +1,5 @@
 /**
- * @jest-environment happy-dom
+ * @vitest-environment happy-dom
  */
 import { expectTypeOf } from 'expect-type'
 import type { Ref } from '@vue/composition-api'

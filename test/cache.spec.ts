@@ -1,5 +1,5 @@
 /**
- * @jest-environment happy-dom
+ * @vitest-environment happy-dom
  */
 import { ref, watch } from '@vue/composition-api'
 import { describe, expect, it, vi } from 'vitest'

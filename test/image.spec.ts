@@ -1,5 +1,5 @@
 /**
- * @jest-environment happy-dom
+ * @vitest-environment happy-dom
  */
 import { ref } from '@vue/composition-api'
 import type { ClientConfig } from '@sanity/client'

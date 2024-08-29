@@ -1,5 +1,5 @@
 /**
- * @jest-environment happy-dom
+ * @vitest-environment happy-dom
  */
 import { ref } from '@vue/composition-api'
 import flushPromises from 'flush-promises'
@@ -8,13 +8,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { createClient } from '@sanity/client'
 
-import {
-  fetch as _fetch,
-  useCustomClient,
-  useSanityClient,
-  useSanityFetcher,
-  useSanityQuery,
-} from '../src'
+import { fetch as _fetch, useCustomClient, useSanityClient, useSanityFetcher, useSanityQuery } from '../src'
 import { runInSetup } from './helpers/mount'
 
 const config = {

@@ -1,11 +1,10 @@
-// /// <reference types="vitest" />
-// import { defineConfig } from 'vitest/node'
+import { defineConfig } from 'vitest/config'
 
-export default {
+export default defineConfig({
   test: {
     coverage: {
       include: ['src'],
       reporter: ['text', 'json', 'html'],
     },
   },
-}
+})
