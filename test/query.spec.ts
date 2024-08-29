@@ -341,7 +341,7 @@ describe('sanity-typed-queries helper', () => {
     })
     expect(mockFetch).toHaveBeenCalled()
     expect(result.value.data).toBe(
-      "return value-*[_type == 'author'] { description, cost }"
+      "return value-*[_type == 'author'] { cost, description }"
     )
   })
 
