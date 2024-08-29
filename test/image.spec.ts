@@ -2,11 +2,11 @@
  * @jest-environment happy-dom
  */
 import { ref } from '@vue/composition-api'
-import { ClientConfig } from '@sanity/client'
-import { describe, test, expect, vi } from 'vitest'
+import type { ClientConfig } from '@sanity/client'
+import { describe, expect, vi } from 'vitest'
 
+import { useSanityClient, useSanityImage } from '../src'
 import { runInSetup } from './helpers/mount'
-import { useSanityImage, useSanityClient } from '../src'
 
 const config: ClientConfig = {
   projectId: 'id',
@@ -15,7 +15,7 @@ const config: ClientConfig = {
   apiVersion: '2021-03-25',
 }
 
-;(global.console.error as any) = vi.fn()
+;(globalThis.console.error as any) = vi.fn()
 
 describe('image builder', () => {
   const image = {
@@ -26,26 +26,27 @@ describe('image builder', () => {
       width: 3,
     },
   }
-  test('errors without proper config', async () => {
+  it('errors without proper config', async () => {
     await runInSetup(() => {
       useSanityImage(ref(image))
       return {}
     })
-    // eslint-disable-next-line
+
     expect(console.error).toBeCalled()
   })
 
-  test('errors when run outside of setup', async () => {
+  it('errors when run outside of setup', async () => {
     let error
     try {
       useSanityImage(ref(image))
-    } catch (e) {
+    }
+    catch (e) {
       error = e
     }
     expect(error).toBeDefined()
   })
 
-  test('produces relevant image url', async () => {
+  it('produces relevant image url', async () => {
     const data = await runInSetup(() => {
       useSanityClient(config, true)
       const result = useSanityImage(ref(image))
@@ -57,7 +58,7 @@ describe('image builder', () => {
     expect(result).toMatchSnapshot()
   })
 
-  test('works without dimensions', async () => {
+  it('works without dimensions', async () => {
     const data = await runInSetup(() => {
       useSanityClient(config, true)
       const result = useSanityImage(ref({ ...image, dimensions: undefined }))

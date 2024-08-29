@@ -1,13 +1,14 @@
-import { Ref, inject, computed, InjectionKey } from 'vue-demi'
+import type { InjectionKey, Ref } from 'vue-demi'
+import { computed, inject } from 'vue-demi'
 
-import {
+import type {
   FitMode,
   SanityImageDimensions,
 } from '@sanity/image-url/lib/types/types'
-import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder'
+import type { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder'
 
 export const imageBuilderSymbol: InjectionKey<ImageUrlBuilder> = Symbol(
-  'Sanity image URL builder'
+  'Sanity image URL builder',
 )
 
 export interface ResolvedSanityImage {
@@ -28,19 +29,20 @@ interface ImageOptions {
 export function useSanityImage(
   image: Ref<ResolvedSanityImage>,
   options?: Partial<ImageOptions>,
-  widths = [300, 600, 1200, 1920]
+  widths = [300, 600, 1200, 1920],
 ) {
   const builder = inject(imageBuilderSymbol)
 
-  if (!builder)
+  if (!builder) {
     throw new Error(
-      'You must call useSanityClient before using sanity resources in this project.'
+      'You must call useSanityClient before using sanity resources in this project.',
     )
+  }
 
   function getImageUrl(
     image: Required<ResolvedSanityImage>,
     width: number,
-    { quality = 82, fit = 'min' }: ImageOptions
+    { quality = 82, fit = 'min' }: ImageOptions,
   ) {
     return (builder as ImageUrlBuilder)
       .image(image.url)
@@ -60,8 +62,8 @@ export function useSanityImage(
                 `${getImageUrl(
                   image.value as Required<ResolvedSanityImage>,
                   width,
-                  options || {}
-                )} ${width}w`
+                  options || {},
+                )} ${width}w`,
             ),
             `${image.value.url} ${image.value.dimensions.width}w`,
           ].join(', '),
@@ -74,8 +76,8 @@ export function useSanityImage(
                 `${getImageUrl(
                   image.value as Required<ResolvedSanityImage>,
                   width,
-                  options || {}
-                )} ${width}w`
+                  options || {},
+                )} ${width}w`,
             ),
           ].join(', '),
           placeholder: '',

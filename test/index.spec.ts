@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import CompositionApi from '@vue/composition-api'
 
-import { describe, beforeEach, test, expect, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import sanityClient from '@sanity/client'
 
 import { useSanityClient } from '../src'
@@ -13,7 +13,7 @@ Vue.config.devtools = false
 Vue.use(CompositionApi)
 
 vi.mock('@sanity/client')
-;(global.console.error as any) = vi.fn()
+;(globalThis.console.error as any) = vi.fn()
 
 const config = {
   projectId: 'id',
@@ -24,11 +24,11 @@ const config = {
 
 beforeEach(() => {
   sanityClient.mockClear()
-  ;(global.console.error as any).mockClear()
+  ;(globalThis.console.error as any).mockClear()
 })
 
 describe('instantiator', () => {
-  test('creates new sanity client', async () => {
+  it('creates new sanity client', async () => {
     await runInSetup(() => {
       useSanityClient(config, true)
       return {}

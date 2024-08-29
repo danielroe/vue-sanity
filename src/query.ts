@@ -1,9 +1,11 @@
-import { computed, inject, watch, InjectionKey, Ref, isRef } from 'vue-demi'
+import type { InjectionKey, Ref } from 'vue-demi'
+import { computed, inject, isRef, watch } from 'vue-demi'
 import minifier from 'minify-groq'
 import type { SanityClient } from '@sanity/client'
 import type { QueryBuilder } from 'sanity-typed-queries'
 
-import { useCache, CacheOptions, FetchStatus } from './cache'
+import type { CacheOptions, FetchStatus } from './cache'
+import { useCache } from './cache'
 
 export interface Client {
   fetch: (query: string) => Promise<any>
@@ -12,10 +14,10 @@ export interface Client {
 
 export const clientSymbol: InjectionKey<Client> = Symbol('Sanity client')
 export const previewClientSymbol: InjectionKey<SanityClient> = Symbol(
-  'Sanity client for previews'
+  'Sanity client for previews',
 )
 export const optionsSymbol: InjectionKey<Options> = Symbol(
-  'Default query options'
+  'Default query options',
 )
 
 type Query = string | (() => string | null | undefined | false)
@@ -70,7 +72,7 @@ export function useSanityFetcher(
   query: Query,
   initialValue = null,
   mapper = (result: any) => result,
-  queryOptions?: Options
+  queryOptions?: Options,
 ) {
   const client = inject(clientSymbol)
   const defaultOptions = inject(optionsSymbol, {})
@@ -80,13 +82,14 @@ export function useSanityFetcher(
     initialValue,
     ...queryOptions,
   }
-  if (!client)
+  if (!client) {
     throw new Error(
-      'You must call useSanityClient before using sanity resources in this project.'
+      'You must call useSanityClient before using sanity resources in this project.',
     )
+  }
 
-  const computedQuery =
-    typeof query === 'string'
+  const computedQuery
+    = typeof query === 'string'
       ? minifier(query).replace(/\n/g, ' ')
       : computed(() => minifier(query() || '').replace(/\n/g, ' '))
 
@@ -94,44 +97,45 @@ export function useSanityFetcher(
     computedQuery,
     query =>
       query ? client.fetch(query).then(mapper) : Promise.resolve(initialValue),
-    options
+    options,
   )
 
   if (options.listen) {
     const previewClient = inject(previewClientSymbol, client as SanityClient)
     if ('listen' in previewClient) {
-      const listenOptions =
-        typeof options.listen === 'boolean' ? undefined : options.listen
+      const listenOptions
+        = typeof options.listen === 'boolean' ? undefined : options.listen
 
       const subscribe = (query: string) =>
         previewClient.listen(query, listenOptions).subscribe(
           event =>
-            event.result &&
-            setCache({
+            event.result
+            && setCache({
               key: query,
               value: event.result,
-            })
+            }),
         )
       if (isRef(computedQuery)) {
         watch(
           computedQuery,
-          query => {
+          (query) => {
             const subscription = subscribe(query)
 
             const unwatch = watch(
               computedQuery,
-              newQuery => {
+              (newQuery) => {
                 if (newQuery !== query) {
                   subscription.unsubscribe()
                   unwatch()
                 }
               },
-              { immediate: true }
+              { immediate: true },
             )
           },
-          { immediate: true }
+          { immediate: true },
         )
-      } else {
+      }
+      else {
         subscribe(computedQuery)
       }
     }
@@ -150,7 +154,7 @@ export function useSanityQuery<
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type extends Record<string, QueryReturnType<any>>,
   Project extends boolean,
-  Exclude extends string
+  Exclude extends string,
 >(
   builder: Builder | (() => Builder)
 ): Result<
@@ -169,7 +173,7 @@ export function useSanityQuery<
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
   Project extends boolean,
-  Exclude extends string
+  Exclude extends string,
 >(
   builder: Builder | (() => Builder),
   initialValue: null
@@ -186,7 +190,7 @@ export function useSanityQuery<
   Type,
   Project extends boolean,
   Exclude extends string,
-  InitialValue
+  InitialValue,
 >(
   builder: Builder | (() => Builder),
   initialValue: InitialValue
@@ -203,7 +207,7 @@ export function useSanityQuery<
   Type,
   Project extends boolean,
   Exclude extends string,
-  Mapper extends (result: ReturnType<Builder['use']>[1]) => any
+  Mapper extends (result: ReturnType<Builder['use']>[1]) => any,
 >(
   builder: Builder | (() => Builder),
   initialValue: null,
@@ -223,7 +227,7 @@ export function useSanityQuery<
   Project extends boolean,
   Exclude extends string,
   InitialValue,
-  Mapper extends (result: ReturnType<Builder['use']>[1]) => any
+  Mapper extends (result: ReturnType<Builder['use']>[1]) => any,
 >(
   builder: Builder | (() => Builder),
   initialValue: InitialValue,
@@ -241,21 +245,21 @@ export function useSanityQuery<
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type,
   Project extends boolean,
-  Exclude extends string
+  Exclude extends string,
 >(
   builder: Builder | (() => Builder),
   initialValue = null,
   mapper = (result: any) => result,
-  options?: Options
+  options?: Options,
 ) {
-  const query =
-    'use' in builder ? () => builder.use()[0] : () => builder().use()[0]
+  const query
+    = 'use' in builder ? () => builder.use()[0] : () => builder().use()[0]
   const type = 'use' in builder ? builder.use()[1] : builder().use()[1]
 
   return useSanityFetcher<typeof type>(
     query,
     initialValue || type,
     mapper,
-    options
+    options,
   )
 }

@@ -1,25 +1,24 @@
+import { describe, expect, it } from 'vitest'
 import { useSanityClient } from '../..'
-import { describe, it, expect } from 'vitest'
 import { runInSetup } from '../helpers/mount'
 
 describe('useSanityClient', () => {
   it('needs to provide both dataset & projectId', async () => {
     await runInSetup(() => {
       try {
-        // @ts-expect-error
+        // @ts-expect-error dataset is a required option
         useSanityClient({
           dataset: '',
           apiVersion: '2021-03-25',
         })
 
-        // @ts-expect-error
+        // @ts-expect-error dataset is a required option
         useSanityClient({
           projectId: '',
           apiVersion: '2021-03-25',
         })
-
-        // eslint-disable-next-line
-      } catch {}
+      }
+      catch {}
     })
 
     expect(true).toBeTruthy()

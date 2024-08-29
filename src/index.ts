@@ -1,17 +1,18 @@
-import { provide, inject } from 'vue-demi'
+import { inject, provide } from 'vue-demi'
 
-import sanityClient, { ClientConfig } from '@sanity/client'
+import type { ClientConfig } from '@sanity/client'
+import sanityClient from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 
-import { useCache, ensureInstance } from './cache'
-import type { FetchStatus, CacheOptions } from './cache'
-import { useSanityImage, imageBuilderSymbol } from './image'
+import { ensureInstance, useCache } from './cache'
+import type { CacheOptions, FetchStatus } from './cache'
+import { imageBuilderSymbol, useSanityImage } from './image'
 import {
+  clientSymbol,
+  optionsSymbol,
+  previewClientSymbol,
   useSanityFetcher,
   useSanityQuery,
-  clientSymbol,
-  previewClientSymbol,
-  optionsSymbol,
 } from './query'
 import type { Client, Options } from './query'
 
@@ -27,13 +28,14 @@ interface RequiredConfig {
 }
 
 /**
- *
+ * @param config The configuration for the client.
  * @param supportPreview Whether to create a preview client (that won't use CDN, and supports credentials for viewing drafts). Defaults to false.
+ * @param defaultOptions Default options for the fetcher.
  */
 export function useSanityClient(
   config: ClientConfig & RequiredConfig,
   supportPreview = false,
-  defaultOptions: Options = {}
+  defaultOptions: Options = {},
 ) {
   ensureInstance()
 
@@ -64,10 +66,11 @@ export function useCustomClient(client: Client, defaultOptions: Options = {}) {
 export function fetch(query: string) {
   ensureInstance()
   const client = inject(clientSymbol)
-  if (!client)
+  if (!client) {
     throw new Error(
-      'You must call useSanityClient before using sanity resources in this project.'
+      'You must call useSanityClient before using sanity resources in this project.',
     )
+  }
   return client.fetch(query)
 }
 

@@ -2,27 +2,25 @@
  * @jest-environment happy-dom
  */
 import { ref, watch } from '@vue/composition-api'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, expect, vi } from 'vitest'
 import { useCache } from '../src'
 import { runInSetup } from './helpers/mount'
 
 describe('cache', () => {
-  test('initialises null when no default is given', async () => {
+  it('initialises null when no default is given', async () => {
     const data = await runInSetup(() => {
       const key = ref('defaults')
 
-      // eslint-disable-next-line
       const { data } = useCache(key, async () => {})
       return { data }
     })
 
     expect(data.value.data).toBe(null)
   })
-  test('initialises with default when one is given', async () => {
+  it('initialises with default when one is given', async () => {
     const data = await runInSetup(() => {
       const key = ref('defaults')
 
-      // eslint-disable-next-line
       const { data } = useCache(key, async () => {}, {
         initialValue: 'orange',
       })
@@ -32,7 +30,7 @@ describe('cache', () => {
     expect(data.value.data).toBe('orange')
   })
 
-  test('calls fetcher immediately', async () => {
+  it('calls fetcher immediately', async () => {
     const data = await runInSetup(() => {
       const key = ref('fetcherCalled')
       const { data } = useCache(key, async () => 'cherry')
@@ -42,7 +40,7 @@ describe('cache', () => {
     expect(data.value.data).toBe('cherry')
   })
 
-  test('sets initial value from SSR', async () => {
+  it('sets initial value from SSR', async () => {
     const data = await runInSetup(() => {
       const key = ref('SSR value')
       ;(window as any).__NUXT__ = {
@@ -50,7 +48,7 @@ describe('cache', () => {
           'SSR value': ['grapefruit', 'server loaded', 1000],
         },
       }
-      // eslint-disable-next-line
+
       const { data, status } = useCache(key, async () => {})
       expect(data.value).toBe('grapefruit')
       expect(status.value).toBe('loading')
@@ -59,7 +57,7 @@ describe('cache', () => {
     expect(data.value.status).toBe('client loaded')
   })
 
-  test('allows server-only strategy', async () => {
+  it('allows server-only strategy', async () => {
     const data = await runInSetup(() => {
       const key = ref('server-strategy')
       ;(window as any).__NUXT__ = {
@@ -76,10 +74,10 @@ describe('cache', () => {
     expect(data.value.status).toBe('server loaded')
   })
 
-  test('reloads on client when appropriate under server-only strategy', async () => {
+  it('reloads on client when appropriate under server-only strategy', async () => {
     const data = await runInSetup(() => {
       const key = ref('server-strategy-without-data')
-      // eslint-disable-next-line
+
       const { data, status } = useCache(key, async key => key, {
         strategy: 'server',
       })
@@ -89,7 +87,7 @@ describe('cache', () => {
     expect(data.value.status).toBe('client loaded')
   })
 
-  test('allows client-only strategy', async () => {
+  it('allows client-only strategy', async () => {
     const data = await runInSetup(() => {
       const key = ref('client-strategy')
       ;(window as any).__NUXT__ = {
@@ -97,7 +95,7 @@ describe('cache', () => {
           'client-strategy': ['grapefruit', 'server loaded', 1000],
         },
       }
-      // eslint-disable-next-line
+
       const { data, status } = useCache(key, async key => key, {
         strategy: 'client',
       })
@@ -109,7 +107,7 @@ describe('cache', () => {
     expect(data.value.data).toBe('client-strategy')
   })
 
-  test('can trigger fetch manually', async () => {
+  it('can trigger fetch manually', async () => {
     const key = ref('manualFetch')
     const data = await runInSetup(() => {
       const { data, fetch } = useCache(key, async newKey => newKey)
@@ -125,7 +123,7 @@ describe('cache', () => {
     expect(data.value.data).toBe('triggered')
   })
 
-  test('sets error status correctly', async () => {
+  it('sets error status correctly', async () => {
     const data = await runInSetup(() => {
       const key = ref('error')
       const { status, error } = useCache(key, async () => {
@@ -137,29 +135,29 @@ describe('cache', () => {
     expect(data.value.error).toBeInstanceOf(Error)
   })
 
-  test('uses cache and deduplicates requests', async () => {
+  it('uses cache and deduplicates requests', async () => {
     const key = ref('deduplicating')
     let number = 0
     const result = await runInSetup(() => {
       const { status, fetch } = useCache(
         key,
-        async newKey => {
+        async (newKey) => {
           number++
           return newKey
         },
         {
           deduplicate: true,
-        }
+        },
       )
       useCache(
         key,
-        async newKey => {
+        async (newKey) => {
           number++
           return newKey
         },
         {
           deduplicate: true,
-        }
+        },
       )
       return { status, fetch }
     })
@@ -169,29 +167,29 @@ describe('cache', () => {
     expect(number).toBe(1)
   })
 
-  test('does not use cache if enough time passes', async () => {
+  it('does not use cache if enough time passes', async () => {
     const key = ref('deduplicating')
     let number = 0
     const result = await runInSetup(() => {
       const { status, fetch } = useCache(
         key,
-        async newKey => {
+        async (newKey) => {
           number++
           return newKey
         },
         {
           deduplicate: 10,
-        }
+        },
       )
       useCache(
         key,
-        async newKey => {
+        async (newKey) => {
           number++
           return newKey
         },
         {
           deduplicate: true,
-        }
+        },
       )
       return { status, fetch }
     })
@@ -201,12 +199,12 @@ describe('cache', () => {
       setTimeout(async () => {
         await result.value.fetch()
         resolve()
-      }, 20)
+      }, 20),
     )
     expect(number).toBe(1)
   })
 
-  test('is reactive', async () => {
+  it('is reactive', async () => {
     const key = ref('reactive')
     const mockWatcher = vi.fn()
 

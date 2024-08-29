@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { ensureInstance, getServerInstance } from '../src/cache'
 import { runInSetup } from './helpers/mount'
 
@@ -15,7 +15,8 @@ describe('ensureInstance', () => {
     let error = false
     try {
       ensureInstance()
-    } catch {
+    }
+    catch {
       error = true
     }
 

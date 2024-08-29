@@ -1,17 +1,17 @@
 import Vue from 'vue'
-import { ref, h } from '@vue/composition-api'
+import { h, ref } from '@vue/composition-api'
 import { createRenderer } from 'vue-server-renderer'
 
-import { describe, test, expect } from 'vitest'
+import { describe, expect } from 'vitest'
 
-import { fetcher } from './helpers/utils'
 import { useCache } from '../src'
+import { fetcher } from './helpers/utils'
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
 describe('ssr', () => {
-  test('cache fetches data correctly on SSR', async () => {
+  it('cache fetches data correctly on SSR', async () => {
     const app = new Vue({
       setup() {
         const { data, status } = useCache(ref('key'), () => fetcher('value'))

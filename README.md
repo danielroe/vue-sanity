@@ -66,14 +66,6 @@ export default {
 Then you can use `useSanityFetcher` in any child component:
 
 ```vue
-<template>
-  <div>
-    <h1>
-      {{ title }}
-    </h1>
-  </div>
-</template>
-
 <script>
 import { useSanityFetcher } from 'vue-sanity'
 
@@ -90,6 +82,14 @@ export default {
   },
 }
 </script>
+
+<template>
+  <div>
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+</template>
 ```
 
 ## API

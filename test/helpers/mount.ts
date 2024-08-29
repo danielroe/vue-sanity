@@ -1,6 +1,7 @@
 import Vue from 'vue'
-import VueCompositionAPI, { Ref } from '@vue/composition-api'
-import { SetupFunction, Data } from '@vue/composition-api/dist/component'
+import type { Ref } from '@vue/composition-api'
+import VueCompositionAPI from '@vue/composition-api'
+import type { Data, SetupFunction } from '@vue/composition-api/dist/component'
 import flushPromises from 'flush-promises'
 
 Vue.config.productionTip = false
@@ -17,7 +18,7 @@ export function mount(component: Record<string, any>) {
 }
 
 export async function runInSetup<T extends SetupFunction<Data, Data>>(
-  setup: T
+  setup: T,
 ) {
   const vm = mount({
     setup,
