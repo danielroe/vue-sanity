@@ -74,7 +74,7 @@
     "unbuild": "2.0.0",
     "vite": "5.4.5",
     "vitest": "2.0.5",
-    "vue": "3.4.38"
+    "vue": "3.5.7"
   },
   "resolutions": {
     "minimist": ">=1.2.8"
