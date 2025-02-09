@@ -1,6 +1,6 @@
-import { ref } from 'vue'
 import type { ClientConfig } from '@sanity/client'
 import { describe, expect, it, vi } from 'vitest'
+import { ref } from 'vue'
 
 import { useSanityClient, useSanityImage } from '../src'
 import { runInSetup } from './helpers/mount'

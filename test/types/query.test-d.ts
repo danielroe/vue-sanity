@@ -1,8 +1,8 @@
-import { expectTypeOf } from 'expect-type'
 import type { Ref } from 'vue'
-import { defineDocument } from 'sanity-typed-queries'
-
 import { mount } from '@vue/test-utils'
+import { expectTypeOf } from 'expect-type'
+
+import { defineDocument } from 'sanity-typed-queries'
 
 import { describe, expect, it, vi } from 'vitest'
 

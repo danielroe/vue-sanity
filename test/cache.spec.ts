@@ -1,5 +1,5 @@
-import { ref, watch } from 'vue'
 import { describe, expect, it, vi } from 'vitest'
+import { ref, watch } from 'vue'
 import { useCache } from '../src'
 import { runInSetup } from './helpers/mount'
 

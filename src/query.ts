@@ -1,10 +1,9 @@
-import type { InjectionKey, Ref } from 'vue'
-import { computed, inject, isRef, watch } from 'vue'
-import minifier from 'minify-groq'
 import type { SanityClient } from '@sanity/client'
-import type { QueryBuilder } from 'sanity-typed-queries'
-
+import type { InjectionKey, Ref } from 'vue'
 import type { CacheOptions, FetchStatus } from './cache'
+import minifier from 'minify-groq'
+
+import { computed, inject, isRef, watch } from 'vue'
 import { useCache } from './cache'
 
 export interface Client {

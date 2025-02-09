@@ -1,6 +1,6 @@
-import { h } from 'vue'
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
+import { h } from 'vue'
 
 export async function runInSetup<T extends () => unknown, D extends () => unknown>(setup: T, child?: D) {
   let result: T & D
