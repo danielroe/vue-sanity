@@ -1,8 +1,7 @@
 /** @vitest-environment node */
+import { describe, expect, it } from 'vitest'
 import { createApp, h, ref } from 'vue'
 import { renderToString } from 'vue/server-renderer'
-
-import { describe, expect, it } from 'vitest'
 
 import { useCache } from '../src/cache'
 import { fetcher } from './helpers/utils'
