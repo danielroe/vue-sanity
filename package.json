@@ -47,7 +47,7 @@
     "vue": "^3.0.0"
   },
   "dependencies": {
-    "@sanity/client": "^6.21.3",
+    "@sanity/client": "^7.0.0",
     "@sanity/image-url": "^1.0.2",
     "minify-groq": "^1.0.0",
     "sanity-typed-queries": "^0.9.5"
