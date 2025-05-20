@@ -61,7 +61,7 @@
     "@vue/composition-api": "1.7.2",
     "@vue/test-utils": "2.4.6",
     "bumpp": "10.0.1",
-    "conventional-changelog-conventionalcommits": "8.0.0",
+    "conventional-changelog-conventionalcommits": "9.0.0",
     "eslint": "9.26.0",
     "expect-type": "1.0.0",
     "flush-promises": "1.0.2",
