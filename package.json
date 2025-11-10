@@ -1,7 +1,7 @@
 {
   "name": "vue-sanity",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.2.1",
+  "packageManager": "pnpm@10.21.0",
   "description": "Sanity integration for Vue",
   "author": {
     "name": "Daniel Roe <daniel@roe.dev>",
