@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createClient } from '@sanity/client'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useSanityClient } from '../src'
 import { runInSetup } from './helpers/mount'

@@ -1,5 +1,5 @@
-import process from 'node:process'
 import type { Ref } from 'vue'
+import process from 'node:process'
 import { computed, getCurrentInstance, isRef, onServerPrefetch, reactive, unref, useSSRContext, watch } from 'vue'
 
 /**
@@ -92,7 +92,7 @@ export function useCache<T, K = null>(
   if (enableSSR && !serverInstance) {
     const prefetchState
       = (window as any).__VSANITY_STATE__
-      || ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
+        || ((window as any).__NUXT__ && (window as any).__NUXT__.vsanity)
     if (prefetchState && prefetchState[k]) {
       const [value, status, time, error] = prefetchState[k] as CacheEntry<T>
 
@@ -133,10 +133,10 @@ export function useCache<T, K = null>(
       && cache[query]
       && cache[query][1] !== 'error'
       && (cache[query][0] !== initialValue
-      || cache[query][4] instanceof Promise)
+        || cache[query][4] instanceof Promise)
       && deduplicate
       && (deduplicate === true
-      || deduplicate < new Date().getTime() - cache[query][2])
+        || deduplicate < new Date().getTime() - cache[query][2])
     ) {
       return cache[query][4] instanceof Promise
         ? (cache[query][4] as Promise<T>)
