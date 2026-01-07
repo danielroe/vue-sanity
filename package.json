@@ -76,6 +76,9 @@
     "vitest": "4.0.16",
     "vue": "3.5.26"
   },
+  "lintStaged": {
+    "*.{js,ts,mjs,md,json}": "pnpm eslint --fix"
+  },
   "resolutions": {
     "minimist": ">=1.2.8"
   }
