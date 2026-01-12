@@ -1,9 +1,9 @@
-import { ref } from 'vue'
+import { createClient } from '@sanity/client'
 import flushPromises from 'flush-promises'
 import { defineDocument } from 'sanity-typed-queries'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { createClient } from '@sanity/client'
+import { ref } from 'vue'
 
 import { fetch as _fetch, useCustomClient, useSanityClient, useSanityFetcher, useSanityQuery } from '../src'
 import { runInSetup } from './helpers/mount'

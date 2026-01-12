@@ -1,14 +1,14 @@
-import { inject, provide } from 'vue'
-
 import type { ClientConfig } from '@sanity/client'
-import { createClient } from '@sanity/client'
-import imageUrlBuilder from '@sanity/image-url'
 
-import { ensureInstance, useCache } from './cache'
 import type { CacheOptions, FetchStatus } from './cache'
+import type { Client, Options } from './query'
+import { createClient } from '@sanity/client'
+
+import imageUrlBuilder from '@sanity/image-url'
+import { inject, provide } from 'vue'
+import { ensureInstance, useCache } from './cache'
 import { imageBuilderSymbol, useSanityImage } from './image'
 import { clientSymbol, optionsSymbol, previewClientSymbol, useSanityFetcher, useSanityQuery } from './query'
-import type { Client, Options } from './query'
 
 interface RequiredConfig {
   /**
@@ -69,4 +69,4 @@ export function fetch(query: string) {
 }
 
 export { useCache, useSanityFetcher, useSanityImage, useSanityQuery }
-export type { Options, FetchStatus, CacheOptions }
+export type { CacheOptions, FetchStatus, Options }
