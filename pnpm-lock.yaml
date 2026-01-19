@@ -46,8 +46,8 @@ importers:
         specifier: 2.4.6
         version: 2.4.6
       bumpp:
-        specifier: 10.3.2
-        version: 10.3.2(magicast@0.5.1)
+        specifier: 10.4.0
+        version: 10.4.0(magicast@0.5.1)
       conventional-changelog-conventionalcommits:
         specifier: 9.1.0
         version: 9.1.0
@@ -1190,8 +1190,8 @@ packages:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
     engines: {node: '>=6'}
 
-  bumpp@10.3.2:
-    resolution: {integrity: sha512-yUUkVx5zpTywLNX97MlrqtpanI7eMMwFwLntWR2EBVDw3/Pm3aRIzCoDEGHATLIiHK9PuJC7xWI4XNWqXItSPg==}
+  bumpp@10.4.0:
+    resolution: {integrity: sha512-VzJhB4iyZ04w99HreEvXJY/lxzApnE/PRbcFY4cKnOUSRVbRbAf0AIU0DeavrkffW+mclJlkmnQYn9NdwcBk1g==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4118,7 +4118,7 @@ snapshots:
 
   builtin-modules@3.3.0: {}
 
-  bumpp@10.3.2(magicast@0.5.1):
+  bumpp@10.4.0(magicast@0.5.1):
     dependencies:
       ansis: 4.2.0
       args-tokenizer: 0.3.0
