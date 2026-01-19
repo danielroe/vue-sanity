@@ -74,7 +74,7 @@
     "unbuild": "3.6.1",
     "vite": "7.3.1",
     "vitest": "4.0.17",
-    "vue": "3.5.26"
+    "vue": "3.5.27"
   },
   "lintStaged": {
     "*.{js,ts,mjs,md,json}": "pnpm eslint --fix"
