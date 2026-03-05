@@ -2,14 +2,14 @@
 <p align="center">Sanity integration for Vue</p>
 
 <p align="center">
-<a href="https://npmjs.com/package/vue-sanity">
-    <img alt="" src="https://img.shields.io/npm/v/vue-sanity/latest.svg?style=flat-square">
+<a href="https://npmx.dev/package/vue-sanity">
+    <img alt="" src="https://npmx.dev/api/registry/badge/version/vue-sanity">
 </a>
 <a href="https://bundlephobia.com/result?p=vue-sanity">
     <img alt="" src="https://img.shields.io/bundlephobia/minzip/vue-sanity?style=flat-square">
 </a>
-<a href="https://npmjs.com/package/vue-sanity">
-    <img alt="" src="https://img.shields.io/npm/dt/vue-sanity.svg?style=flat-square">
+<a href="https://npmx.dev/package/vue-sanity">
+    <img alt="" src="https://npmx.dev/api/registry/badge/downloads/vue-sanity">
 </a>
 <a href="https://lgtm.com/projects/g/danielroe/vue-sanity">
     <img alt="" src="https://img.shields.io/lgtm/alerts/github/danielroe/vue-sanity?style=flat-square">
