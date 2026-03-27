@@ -15,8 +15,8 @@ importers:
         specifier: ^7.0.0
         version: 7.20.0
       '@sanity/image-url':
-        specifier: ^1.0.2
-        version: 1.2.0
+        specifier: ^2.0.0
+        version: 2.1.0
       minify-groq:
         specifier: ^1.0.0
         version: 1.0.0
@@ -610,6 +610,13 @@ packages:
   '@napi-rs/wasm-runtime@1.1.1':
     resolution: {integrity: sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A==}
 
+  '@noble/ed25519@3.0.1':
+    resolution: {integrity: sha512-t/T8LuK0ym8ALQudCCQCtrRdMSxBnRgHXw+wg+YsSlE6d+on7sX3flqlSJ2mOs9xEuchM36kj9SuX5MG7pXQMA==}
+
+  '@noble/hashes@2.0.1':
+    resolution: {integrity: sha512-XlOlEbQcE9fmuXxrVTXCTlG2nlRXa9Rj3rr5Ue/+tX+nmkgbX720YHh0VR3hBF9xDvwnb8D2shVGOwNx+ulArw==}
+    engines: {node: '>= 20.19.0'}
+
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
 
@@ -903,9 +910,12 @@ packages:
   '@sanity/eventsource@5.0.2':
     resolution: {integrity: sha512-/B9PMkUvAlUrpRq0y+NzXgRv5lYCLxZNsBJD2WXVnqZYOfByL9oQBV7KiTaARuObp5hcQYuPfOAVjgXe3hrixA==}
 
-  '@sanity/image-url@1.2.0':
-    resolution: {integrity: sha512-pYRhti+lDi22it+npWXkEGuYyzbXJLF+d0TYLiyWbKu46JHhYhTDKkp6zmGu4YKF5cXUjT6pnUjFsaf2vlB9nQ==}
-    engines: {node: '>=10.0.0'}
+  '@sanity/image-url@2.1.0':
+    resolution: {integrity: sha512-U6M8EF6i4HjzBLcpOie6JZuSj3PLUTK7mAkjK/ugVWm2xCo2BSW0kr5BQfcR5As1mW+uaRvXLVfN/xEVxppTTQ==}
+    engines: {node: '>=20.19.0'}
+
+  '@sanity/signed-urls@2.0.2':
+    resolution: {integrity: sha512-w/Aq0JDYI44WC5w8mzJBAjCem8qlGrxGTzvNbUWwBfys6kSL+TZBSypV5waCc35XRgt0X5zdYZMJOrshcjJLFw==}
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
@@ -3713,6 +3723,10 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
+  '@noble/ed25519@3.0.1': {}
+
+  '@noble/hashes@2.0.1': {}
+
   '@one-ini/wasm@0.1.1': {}
 
   '@oxc-project/types@0.122.0': {}
@@ -3902,7 +3916,14 @@ snapshots:
       event-source-polyfill: 1.0.31
       eventsource: 2.0.2
 
-  '@sanity/image-url@1.2.0': {}
+  '@sanity/image-url@2.1.0':
+    dependencies:
+      '@sanity/signed-urls': 2.0.2
+
+  '@sanity/signed-urls@2.0.2':
+    dependencies:
+      '@noble/ed25519': 3.0.1
+      '@noble/hashes': 2.0.1
 
   '@standard-schema/spec@1.1.0': {}
 
