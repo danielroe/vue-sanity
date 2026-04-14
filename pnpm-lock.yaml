@@ -13,7 +13,7 @@ importers:
     dependencies:
       '@sanity/client':
         specifier: ^7.0.0
-        version: 7.20.0
+        version: 7.21.0
       '@sanity/image-url':
         specifier: ^1.0.2
         version: 1.2.0
@@ -896,8 +896,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sanity/client@7.20.0':
-    resolution: {integrity: sha512-uKwfqA+UfyWH6QzqpDD2DQnZu+WRa2iCM3OJ9AoyDZB9oHLl2NKI+9mX1xEZ7PiBuq09pogI7sxKaTKnaB6d+g==}
+  '@sanity/client@7.21.0':
+    resolution: {integrity: sha512-j3SdOGy9ggQSj9LtlrV8x4jaZgJmyYKNB5cXpXWkMLgi2/v0U+OTu0mHj17smioTdQSCHuVyJaxGcdpu3hxoOA==}
     engines: {node: '>=20'}
 
   '@sanity/eventsource@5.0.2':
@@ -936,9 +936,6 @@ packages:
 
   '@types/eventsource@1.1.15':
     resolution: {integrity: sha512-XQmGcbnxUNa06HR3VBVkc9+A2Vpi9ZyLJcdS5dwaQQ/4ZMWFO+5c90FnMUpbtMZwB/FChoYHwuVg8TvkECacTA==}
-
-  '@types/follow-redirects@1.14.4':
-    resolution: {integrity: sha512-GWXfsD0Jc1RWiFmMuMFCpXMzi9L7oPDVwxUnZdg89kDNnqsRfUKXEtUYtA98A6lig1WXH/CYY/fvPW9HuN5fTA==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -1888,15 +1885,6 @@ packages:
   flush-promises@1.0.2:
     resolution: {integrity: sha512-G0sYfLQERwKz4+4iOZYQEZVpOt9zQrlItIxQAAYAWpfby3gbHrx0osCHz5RLl/XoXevXk0xoN4hDFky/VV9TrA==}
 
-  follow-redirects@1.15.11:
-    resolution: {integrity: sha512-deG2P0JfjrTxl50XGCDyfI97ZGVCxIpfKYmfyrQ54n5FO/0gfIES8C/Psl6kWVDolizcaaxZJnTS0QSMxvnsBQ==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-
   foreground-child@3.3.0:
     resolution: {integrity: sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==}
     engines: {node: '>=14'}
@@ -1924,8 +1912,8 @@ packages:
     resolution: {integrity: sha512-QZjmEOC+IT1uk6Rx0sX22V6uHWVwbdbxf1faPqJ1QhLdGgsRGCZoyaQBm/piRdJy/D2um6hM1UP7ZEeQ4EkP+Q==}
     engines: {node: '>=18'}
 
-  get-it@8.7.0:
-    resolution: {integrity: sha512-uong/+jOz0GiuIWIUJXp2tnQKgQKukC99LEqOxLckPUoHYoerQbV6vC0Tu+/pSgk0tgHh1xX2aJtCk4y35LLLg==}
+  get-it@8.7.2:
+    resolution: {integrity: sha512-slSwC/BBAnoz9OnHopU+V5pJKAieddoF6dmx2CvbWMRePgup8ftiB+D7d+pr2PZzcqNtZOVDMoLOsXGsERhTEg==}
     engines: {node: '>=14.0.0'}
 
   get-tsconfig@4.13.0:
@@ -3892,14 +3880,12 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.52.5':
     optional: true
 
-  '@sanity/client@7.20.0':
+  '@sanity/client@7.21.0':
     dependencies:
       '@sanity/eventsource': 5.0.2
-      get-it: 8.7.0
+      get-it: 8.7.2
       nanoid: 3.3.11
       rxjs: 7.8.2
-    transitivePeerDependencies:
-      - debug
 
   '@sanity/eventsource@5.0.2':
     dependencies:
@@ -3944,10 +3930,6 @@ snapshots:
   '@types/event-source-polyfill@1.0.5': {}
 
   '@types/eventsource@1.1.15': {}
-
-  '@types/follow-redirects@1.14.4':
-    dependencies:
-      '@types/node': 25.5.0
 
   '@types/json-schema@7.0.15': {}
 
@@ -5033,8 +5015,6 @@ snapshots:
 
   flush-promises@1.0.2: {}
 
-  follow-redirects@1.15.11: {}
-
   foreground-child@3.3.0:
     dependencies:
       cross-spawn: 7.0.6
@@ -5053,16 +5033,12 @@ snapshots:
 
   get-east-asian-width@1.4.0: {}
 
-  get-it@8.7.0:
+  get-it@8.7.2:
     dependencies:
-      '@types/follow-redirects': 1.14.4
       decompress-response: 7.0.0
-      follow-redirects: 1.15.11
       is-retry-allowed: 2.2.0
       through2: 4.0.2
       tunnel-agent: 0.6.0
-    transitivePeerDependencies:
-      - debug
 
   get-tsconfig@4.13.0:
     dependencies:
