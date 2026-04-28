@@ -1,2 +1,2 @@
 overrides:
-  minimist: ">=1.2.8"
+  minimist: '>=1.2.8'
