@@ -12,5 +12,5 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "lib", "test"]
+  "exclude": ["node_modules", "lib", "dist", "test", "tsdown.config.ts"]
 }

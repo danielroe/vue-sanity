@@ -20,28 +20,32 @@
   ],
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./src/index.ts",
     "./package.json": "./package.json"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
   "files": [
     "!**/*.map",
-    "dist/**/*",
-    "dist/index.d.ts"
+    "dist/**/*"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "tsdown",
     "lint": "pnpm eslint .",
     "prepare": "pnpm build && husky",
     "release": "bumpp && npm publish",
     "test": "vitest --typecheck",
     "test:types": "tsc --noEmit"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "peerDependencies": {
     "vue": "^3.0.0"
@@ -70,8 +74,8 @@
     "lint-staged": "17.0.7",
     "memory-fs": "0.5.0",
     "semver": "7.8.2",
+    "tsdown": "0.22.0",
     "typescript": "5.9.3",
-    "unbuild": "3.6.1",
     "vite": "8.0.16",
     "vitest": "4.1.8",
     "vue": "3.5.35"

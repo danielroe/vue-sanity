@@ -30,7 +30,7 @@ export function useSanityClient(
   config: ClientConfig & RequiredConfig,
   supportPreview = false,
   defaultOptions: Options = {},
-) {
+): void {
   ensureInstance()
 
   const client = createClient(config)
@@ -51,13 +51,13 @@ export function useSanityClient(
   }
 }
 
-export function useCustomClient(client: Client, defaultOptions: Options = {}) {
+export function useCustomClient(client: Client, defaultOptions: Options = {}): void {
   ensureInstance()
   provide(clientSymbol, client)
   provide(optionsSymbol, defaultOptions)
 }
 
-export function fetch(query: string) {
+export function fetch(query: string): Promise<any> {
   ensureInstance()
   const client = inject(clientSymbol)
   if (!client) {

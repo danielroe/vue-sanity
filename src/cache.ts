@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { ComponentInternalInstance, ComponentPublicInstance, ComputedRef, Ref } from 'vue'
 import process from 'node:process'
 import { computed, getCurrentInstance, isRef, onServerPrefetch, reactive, unref, useSSRContext, watch } from 'vue'
 
@@ -9,18 +9,18 @@ type CacheEntry<T> = [T, FetchStatus, number, any, Promise<T> | null]
 
 const cache = reactive<Record<string, CacheEntry<any>>>({})
 
-export function ensureInstance() {
+export function ensureInstance(): ComponentPublicInstance | null {
   const instance = getCurrentInstance()
   if (!instance)
     throw new Error('You must call this from within a component')
   return instance.proxy
 }
 
-export function getServerInstance() {
+export function getServerInstance(): ComponentInternalInstance['proxy'] | false {
   const instance = getCurrentInstance()
 
   if (process.env.VITE_SSG || (import.meta as any).env?.SSR || (import.meta as any).server)
-    return instance?.proxy
+    return instance?.proxy ?? false
   return false
 }
 
@@ -62,11 +62,20 @@ export interface CacheOptions<K> {
   deduplicate?: boolean | number
 }
 
+export interface UseCacheReturn<T, K> {
+  setCache: (options: SetCacheOptions<T, K>) => void
+  triggerFetch: (query?: string, force?: boolean) => Promise<T>
+  fetch: (query?: string, force?: boolean) => Promise<T>
+  data: ComputedRef<T | K>
+  status: ComputedRef<FetchStatus>
+  error: ComputedRef<any>
+}
+
 export function useCache<T, K = null>(
   key: string | Ref<string>,
   fetcher: (key: string) => Promise<T>,
   options: CacheOptions<K> = {},
-) {
+): UseCacheReturn<T, K> {
   const {
     initialValue = null,
     deduplicate = false,
@@ -82,7 +91,7 @@ export function useCache<T, K = null>(
     error = null,
     status = 'initialised',
     time = new Date().getTime(),
-  }: SetCacheOptions<T, K>) {
+  }: SetCacheOptions<T, K>): void {
     cache[key] = [value, status, time, error, null]
   }
 
@@ -106,7 +115,7 @@ export function useCache<T, K = null>(
     }
   }
 
-  function verifyKey(key: string) {
+  function verifyKey(key: string): boolean {
     const emptyCache = !(key in cache)
     if (emptyCache)
       initialiseCache({ key, value: initialValue as K })
@@ -119,14 +128,14 @@ export function useCache<T, K = null>(
     status = cache[key]?.[1],
     error = null,
     promise = cache[key]?.[4],
-  }: SetCacheOptions<T, K>) {
+  }: SetCacheOptions<T, K>): void {
     if (!(key in cache))
       initialiseCache({ key, value, status })
 
     cache[key] = [value, status, new Date().getTime(), error, promise]
   }
 
-  function fetch(query = unref(key), force?: boolean) {
+  function fetch(query: string = unref(key), force?: boolean): Promise<T> {
     if (
       !force
       && query
@@ -191,10 +200,10 @@ export function useCache<T, K = null>(
     })
   }
 
-  const data = computed(() => {
+  const data = computed((): T | K => {
     const k = unref(key)
     if (!k)
-      return initialValue
+      return initialValue as K
 
     verifyKey(k)
 

@@ -1,7 +1,7 @@
 import type { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder'
 import type { FitMode, SanityImageDimensions } from '@sanity/image-url/lib/types/types'
 
-import type { InjectionKey, Ref } from 'vue'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
 import { computed, inject } from 'vue'
 
 export const imageBuilderSymbol: InjectionKey<ImageUrlBuilder> = Symbol('Sanity image URL builder')
@@ -24,8 +24,8 @@ interface ImageOptions {
 export function useSanityImage(
   image: Ref<ResolvedSanityImage>,
   options?: Partial<ImageOptions>,
-  widths = [300, 600, 1200, 1920],
-) {
+  widths: number[] = [300, 600, 1200, 1920],
+): ComputedRef<{ src: string, srcset: string, placeholder: string }> {
   const builder = inject(imageBuilderSymbol)
 
   if (!builder) {
@@ -38,7 +38,7 @@ export function useSanityImage(
     image: Required<ResolvedSanityImage>,
     width: number,
     { quality = 82, fit = 'min' }: ImageOptions,
-  ) {
+  ): string {
     return (builder as ImageUrlBuilder)
       .image(image.url)
       .width(Math.round(width))
