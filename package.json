@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "build": "tsdown",
-    "lint": "pnpm eslint .",
+    "lint": "eslint .",
     "prepare": "pnpm build && husky",
     "release": "bumpp && npm publish",
     "test": "vitest --typecheck",

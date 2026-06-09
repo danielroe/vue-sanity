@@ -48,9 +48,9 @@ describe('useSanityFetcher', () => {
           projectId: 'test',
         })
       },
-      render(h) {
+      render(h: any) {
         return h({
-          render(h) {
+          render(h: any) {
             return h('div')
           },
           setup() {

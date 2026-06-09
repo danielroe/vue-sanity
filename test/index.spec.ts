@@ -15,7 +15,7 @@ const config = {
 }
 
 beforeEach(() => {
-  createClient.mockClear()
+  vi.mocked(createClient).mockClear()
   ;(globalThis.console.error as any).mockClear()
 })
 

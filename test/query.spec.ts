@@ -38,7 +38,7 @@ vi.mock('@sanity/client', () => {
 })
 
 beforeEach(() => {
-  createClient.mockClear()
+  vi.mocked(createClient).mockClear()
   ;(globalThis.console.warn as any).mockClear()
   mockListen.mockClear()
   mockSubscribe.mockClear()
@@ -112,7 +112,7 @@ describe('fetcher', () => {
   })
 
   it('allows custom client to be provided', async () => {
-    const result = await runInSetup(() => useCustomClient({ fetch: async t => `fetched-${t}` }), () => {
+    const result = await runInSetup(() => useCustomClient({ fetch: async (t: string) => `fetched-${t}` }), () => {
       const { data } = useSanityFetcher(() => `query`)
       return { data }
     })
@@ -122,13 +122,13 @@ describe('fetcher', () => {
     const mockListen = vi.fn()
     const customClient = new Proxy(
       {
-        fetch: async t => `fetched-${t}`,
+        fetch: async (t: string) => `fetched-${t}`,
       },
       {
         get(target, p) {
           if (p === 'listen')
             return mockListen
-          return target[p]
+          return (target as Record<string | symbol, unknown>)[p]
         },
       },
     )

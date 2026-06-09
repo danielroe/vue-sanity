@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["esnext", "dom"],
-    "rootDir": "src",
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
@@ -12,5 +11,5 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "lib", "dist", "test", "tsdown.config.ts"]
+  "exclude": ["dist"]
 }
