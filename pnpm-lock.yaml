@@ -61,8 +61,8 @@ importers:
         specifier: 1.0.2
         version: 1.0.2
       happy-dom:
-        specifier: 20.10.2
-        version: 20.10.2
+        specifier: 20.10.3
+        version: 20.10.3
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -86,7 +86,7 @@ importers:
         version: 8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 4.1.8
-        version: 4.1.8(@types/node@25.6.0)(@vitest/coverage-v8@4.1.8)(happy-dom@20.10.2)(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0))
+        version: 4.1.8(@types/node@25.6.0)(@vitest/coverage-v8@4.1.8)(happy-dom@20.10.3)(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0))
       vue:
         specifier: 3.5.35
         version: 3.5.35(typescript@5.9.3)
@@ -1538,8 +1538,8 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
-  happy-dom@20.10.2:
-    resolution: {integrity: sha512-5p9Sxis3eowDJKqx90QCsgbNA02XXqJ59NOHvD4V6cxp+rP4d/xOyVx7uY3hS8hiUbY1VeiFH8lbJ81AyuDVLQ==}
+  happy-dom@20.10.3:
+    resolution: {integrity: sha512-Hjdiy8RziuCcn5z04QI/rlsNuQoG8P0xxjgvsSMpi89cvIXIOcucQtiHS1yHSShxoBcSCeYqAskINmTiy/mlfw==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -3328,7 +3328,7 @@ snapshots:
       obug: 2.1.1
       std-env: 4.1.0
       tinyrainbow: 3.1.0
-      vitest: 4.1.8(@types/node@25.6.0)(@vitest/coverage-v8@4.1.8)(happy-dom@20.10.2)(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0))
+      vitest: 4.1.8(@types/node@25.6.0)(@vitest/coverage-v8@4.1.8)(happy-dom@20.10.3)(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0))
 
   '@vitest/eslint-plugin@1.6.16(@typescript-eslint/eslint-plugin@8.60.1(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)(vitest@4.1.8)':
     dependencies:
@@ -3338,7 +3338,7 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.60.1(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
       typescript: 5.9.3
-      vitest: 4.1.8(@types/node@25.6.0)(@vitest/coverage-v8@4.1.8)(happy-dom@20.10.2)(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0))
+      vitest: 4.1.8(@types/node@25.6.0)(@vitest/coverage-v8@4.1.8)(happy-dom@20.10.3)(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0))
     transitivePeerDependencies:
       - supports-color
 
@@ -4121,7 +4121,7 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  happy-dom@20.10.2:
+  happy-dom@20.10.3:
     dependencies:
       '@types/node': 25.6.0
       '@types/whatwg-mimetype': 3.0.2
@@ -5281,7 +5281,7 @@ snapshots:
       jiti: 2.6.1
       yaml: 2.9.0
 
-  vitest@4.1.8(@types/node@25.6.0)(@vitest/coverage-v8@4.1.8)(happy-dom@20.10.2)(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0)):
+  vitest@4.1.8(@types/node@25.6.0)(@vitest/coverage-v8@4.1.8)(happy-dom@20.10.3)(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0)):
     dependencies:
       '@vitest/expect': 4.1.8
       '@vitest/mocker': 4.1.8(vite@8.0.16(@types/node@25.6.0)(jiti@2.6.1)(yaml@2.9.0))
@@ -5306,7 +5306,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
       '@vitest/coverage-v8': 4.1.8(vitest@4.1.8)
-      happy-dom: 20.10.2
+      happy-dom: 20.10.3
     transitivePeerDependencies:
       - msw
 
