@@ -1,7 +1,7 @@
 {
   "name": "vue-sanity",
   "version": "1.0.0",
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@11.10.0",
   "description": "Sanity integration for Vue",
   "author": {
     "name": "Daniel Roe <daniel@roe.dev>",
@@ -65,7 +65,7 @@
     "@vue/composition-api": "1.7.2",
     "@vue/test-utils": "2.4.11",
     "bumpp": "11.1.0",
-    "conventional-changelog-conventionalcommits": "10.2.0",
+    "conventional-changelog-conventionalcommits": "10.2.1",
     "eslint": "9.39.4",
     "expect-type": "1.4.0",
     "flush-promises": "1.0.2",
