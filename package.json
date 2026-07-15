@@ -1,7 +1,7 @@
 {
   "name": "vue-sanity",
   "version": "1.0.0",
-  "packageManager": "pnpm@11.10.0",
+  "packageManager": "pnpm@11.13.0",
   "description": "Sanity integration for Vue",
   "author": {
     "name": "Daniel Roe <daniel@roe.dev>",
@@ -74,7 +74,7 @@
     "lint-staged": "17.0.8",
     "memory-fs": "0.5.0",
     "semver": "7.8.5",
-    "tsdown": "0.22.3",
+    "tsdown": "0.22.7",
     "typescript": "5.9.3",
     "vite": "8.1.4",
     "vitest": "4.1.10",
