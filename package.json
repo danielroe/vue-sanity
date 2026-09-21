@@ -89,7 +89,7 @@
     "typescript": "5.9.3",
     "vite": "8.3.0",
     "vitest": "5.0.0",
-    "vue": "3.5.42"
+    "vue": "3.5.43"
   },
   "lintStaged": {
     "*.{js,ts,mjs,md,json}": "pnpm eslint --fix"
