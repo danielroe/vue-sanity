@@ -84,7 +84,6 @@
     "husky": "9.1.7",
     "lint-staged": "17.4.1",
     "memory-fs": "0.5.0",
-    "semver": "7.8.5",
     "tsdown": "0.22.14",
     "typescript": "5.9.3",
     "vite": "8.3.0",
